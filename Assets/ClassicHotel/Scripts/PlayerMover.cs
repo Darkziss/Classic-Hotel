@@ -10,7 +10,11 @@ namespace ClassicHotel
 
         private Transform _transform;
 
+        private bool _shouldMove;
+
         private const Space MoveSpace = Space.World;
+
+        private const KeyCode MoveKeyCode = KeyCode.Space;
 
         private void OnValidate()
         {
@@ -19,9 +23,15 @@ namespace ClassicHotel
 
         private void Update()
         {
-            if (_transform.position.z >= _endPointTransform.position.z)
-                return;
+            if (Input.GetKeyDown(MoveKeyCode))
+                _shouldMove = !_shouldMove;
             
+            if (_shouldMove && _transform.position.z < _endPointTransform.position.z)
+                Move();
+        }
+
+        private void Move()
+        {
             Vector3 translation = _speed * Time.deltaTime * Vector3.forward;
 
             _transform.Translate(translation, MoveSpace);
