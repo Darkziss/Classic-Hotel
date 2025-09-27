@@ -8,9 +8,9 @@ namespace ClassicHotel
 
         [SerializeField] private float _speed = 1f;
 
-        private Transform _transform;
-
         private bool _shouldMove;
+
+        private Transform _transform;
 
         private const Space MoveSpace = Space.World;
 
