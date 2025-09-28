@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ClassicHotel
 {
@@ -12,18 +13,27 @@ namespace ClassicHotel
 
         private Transform _transform;
 
+        private InputAction _moveAction;
+
+        public bool ShouldMove => _shouldMove;
+
         private const Space MoveSpace = Space.World;
 
-        private const KeyCode MoveKeyCode = KeyCode.Space;
+        private const string MoveActionName = "Move";
 
         private void OnValidate()
         {
             _transform = transform;
         }
 
+        private void Start()
+        {
+            _moveAction = InputSystem.actions.FindAction(MoveActionName);
+        }
+
         private void Update()
         {
-            if (Input.GetKeyDown(MoveKeyCode))
+            if (_moveAction.WasPressedThisFrame())
                 _shouldMove = !_shouldMove;
             
             if (_shouldMove && _transform.position.z < _endPointTransform.position.z)
