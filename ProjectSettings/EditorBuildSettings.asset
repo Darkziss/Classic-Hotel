@@ -4,6 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ClassicHotel/Scenes/Game.unity
+    guid: ae3cd8c72179902449487b541eb481ce
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 56b7ef08ad8f68b4690ec2a5aac4c262, type: 3}
