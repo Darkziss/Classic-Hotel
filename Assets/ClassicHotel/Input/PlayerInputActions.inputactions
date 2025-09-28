@@ -14,6 +14,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LookBack",
+                    "type": "Value",
+                    "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
+                    "expectedControlType": "Axis",
+                    "processors": "Invert",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -27,6 +36,39 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "fb39a60b-449a-4479-8733-efc25201e465",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookBack",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "7bc92e5d-03c2-47f0-ac93-0e8c1350b5c7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Desktop",
+                    "action": "LookBack",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "c31a4da4-961f-4f82-909c-8a259f6e8980",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Desktop",
+                    "action": "LookBack",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
