@@ -5,13 +5,12 @@ namespace ClassicHotel
 {
     public class PlayerMover : MonoBehaviour
     {
+        [SerializeField] private Transform _transform;
         [SerializeField] private Transform _endPointTransform;
 
         [SerializeField] private float _speed = 1f;
 
         private bool _shouldMove;
-
-        private Transform _transform;
 
         private InputAction _moveAction;
 

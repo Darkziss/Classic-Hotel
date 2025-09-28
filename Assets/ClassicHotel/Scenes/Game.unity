@@ -481,6 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endPointTransform: {fileID: 1898229342}
   _speed: 5
+  _transform: {fileID: 813647096}
 --- !u!1 &839271765
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMover: {fileID: 813647097}
+  _cameraTransform: {fileID: 963194228}
 --- !u!1 &976032848
 GameObject:
   m_ObjectHideFlags: 0

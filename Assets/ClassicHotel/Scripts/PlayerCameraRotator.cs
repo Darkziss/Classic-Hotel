@@ -9,7 +9,7 @@ namespace ClassicHotel
     {
         [SerializeField] private PlayerMover _playerMover;
 
-        private Transform _cameraTransform;
+        [SerializeField] private Transform _cameraTransform;
 
         private LookState _desiredLookState = LookState.Forward;
 
