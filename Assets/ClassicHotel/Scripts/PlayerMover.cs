@@ -34,10 +34,14 @@ namespace ClassicHotel
         private void Update()
         {
             if (_moveAction.WasPressedThisFrame())
+            {
                 _shouldMove = !_shouldMove;
-            
+            }
+
             if (_shouldMove && _transform.position.z < _endPointTransform.position.z)
+            {
                 Move();
+            }
         }
 
         private void Move()
