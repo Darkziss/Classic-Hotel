@@ -78,13 +78,13 @@ namespace ClassicHotel
             }
         }
 
-        private void LookForward() => Look(_lookForwardTweenSettings, LookState.Forward);
+        private void LookForward() => Look(_lookForwardTweenSettings);
 
-        private void LookBackFromLeft() => Look(_leftLookBackTweenSettings, LookState.BackFromLeft);
+        private void LookBackFromLeft() => Look(_leftLookBackTweenSettings);
 
-        private void LookBackFromRight() => Look(_rightLookBackTweenSettings, LookState.BackFromRight);
+        private void LookBackFromRight() => Look(_rightLookBackTweenSettings);
 
-        private void Look(TweenSettings<Vector3> tweenSettings, LookState finishLookState)
+        private void Look(TweenSettings<Vector3> tweenSettings)
         {
             Tween.StopAll(_cameraTransform);
             Tween.LocalRotation(_cameraTransform, tweenSettings);
