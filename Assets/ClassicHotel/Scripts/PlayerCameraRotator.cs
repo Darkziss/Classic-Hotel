@@ -27,7 +27,7 @@ namespace ClassicHotel
         private const float LookForwardDuration = 0.5f;
         private const Ease LookForwardEase = Ease.OutCubic;
 
-        private const float LookBackYRotation = 165f;
+        private const float LookBackYRotation = 135f;
         private const float LookBackDuration = 1f;
         private const Ease LookBackEase = Ease.InOutSine;
 

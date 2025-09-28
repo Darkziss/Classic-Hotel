@@ -479,9 +479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb829502d4c1f96499701ddbec1fd957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 813647096}
   _endPointTransform: {fileID: 1898229342}
   _speed: 5
-  _transform: {fileID: 813647096}
 --- !u!1 &839271765
 GameObject:
   m_ObjectHideFlags: 0
