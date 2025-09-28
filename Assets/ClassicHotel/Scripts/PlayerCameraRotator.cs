@@ -87,8 +87,7 @@ namespace ClassicHotel
         private void Look(TweenSettings<Vector3> tweenSettings, LookState finishLookState)
         {
             Tween.StopAll(_cameraTransform);
-            Tween.LocalRotation(_cameraTransform, tweenSettings)
-                .OnComplete(() => _currentLookState = finishLookState);
+            Tween.LocalRotation(_cameraTransform, tweenSettings);
         }
     }
 }
