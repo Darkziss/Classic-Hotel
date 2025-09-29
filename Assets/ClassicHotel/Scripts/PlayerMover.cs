@@ -5,6 +5,8 @@ namespace ClassicHotel
 {
     public class PlayerMover : MonoBehaviour
     {
+        [SerializeField] private PlayerCameraRotator _playerCameraRotator;
+
         [SerializeField] private Transform _transform;
         [SerializeField] private Transform _endPointTransform;
 
@@ -32,7 +34,7 @@ namespace ClassicHotel
 
         private void Update()
         {
-            if (_moveAction.WasPressedThisFrame())
+            if (_moveAction.WasPressedThisFrame() && _playerCameraRotator.CurrentLookState == LookState.Forward)
             {
                 _shouldMove = !_shouldMove;
             }

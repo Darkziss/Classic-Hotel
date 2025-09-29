@@ -23,6 +23,8 @@ namespace ClassicHotel
         private readonly TweenSettings<Vector3> _rightLookBackTweenSettings = new(Vector3.down * LookBackYRotation, LookBackDuration,
             LookBackEase);
 
+        public LookState CurrentLookState => _currentLookState;
+
         private const string LookBackActionName = "LookBack";
 
         private const float LookForwardDuration = 0.5f;
@@ -56,6 +58,11 @@ namespace ClassicHotel
 
         private void UpdateDesiredLookStateAndLookAtIt(InputAction.CallbackContext context)
         {
+            if (_playerMover.ShouldMove)
+            {
+                return;
+            }
+            
             _desiredLookState = (LookState)context.ReadValue<float>();
 
             if (_currentLookState != _desiredLookState)
