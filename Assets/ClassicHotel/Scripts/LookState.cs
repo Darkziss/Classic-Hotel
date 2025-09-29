@@ -6,5 +6,6 @@ namespace ClassicHotel
         Forward = 0,
         BackFromLeft = -1,
         BackFromRight = 1,
+        Turning
     }
 }

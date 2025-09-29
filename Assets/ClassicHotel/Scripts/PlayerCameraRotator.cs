@@ -11,6 +11,7 @@ namespace ClassicHotel
 
         [SerializeField] private Transform _cameraTransform;
 
+        private LookState _currentLookState = LookState.Forward;
         private LookState _desiredLookState = LookState.Forward;
 
         private InputAction _lookBackAction;
@@ -43,21 +44,24 @@ namespace ClassicHotel
 
         private void OnEnable()
         {
-            _lookBackAction.performed += UpdateDesiredLookState;
-            _lookBackAction.canceled += UpdateDesiredLookState;
+            _lookBackAction.performed += UpdateDesiredLookStateAndLookAtIt;
+            _lookBackAction.canceled += UpdateDesiredLookStateAndLookAtIt;
         }
 
         private void OnDisable()
         {
-            _lookBackAction.performed -= UpdateDesiredLookState;
-            _lookBackAction.canceled -= UpdateDesiredLookState;
+            _lookBackAction.performed -= UpdateDesiredLookStateAndLookAtIt;
+            _lookBackAction.canceled -= UpdateDesiredLookStateAndLookAtIt;
         }
 
-        private void UpdateDesiredLookState(InputAction.CallbackContext context)
+        private void UpdateDesiredLookStateAndLookAtIt(InputAction.CallbackContext context)
         {
             _desiredLookState = (LookState)context.ReadValue<float>();
 
-            LookAtDesiredState();
+            if (_currentLookState != _desiredLookState)
+            {
+                LookAtDesiredState();
+            }
         }
 
         private void LookAtDesiredState()
@@ -78,16 +82,32 @@ namespace ClassicHotel
             }
         }
 
-        private void LookForward() => Look(_lookForwardTweenSettings);
+        private void LookForward()
+        {
+            Look(_lookForwardTweenSettings);
+        }
 
-        private void LookBackFromLeft() => Look(_leftLookBackTweenSettings);
+        private void LookBackFromLeft()
+        {
+            Look(_leftLookBackTweenSettings);
+        }
 
-        private void LookBackFromRight() => Look(_rightLookBackTweenSettings);
+        private void LookBackFromRight()
+        {
+            Look(_rightLookBackTweenSettings);
+        }
 
         private void Look(TweenSettings<Vector3> tweenSettings)
         {
-            Tween.StopAll(_cameraTransform);
-            Tween.LocalRotation(_cameraTransform, tweenSettings);
+            if (_currentLookState == LookState.Turning)
+            {
+                Tween.StopAll(_cameraTransform);
+            }
+
+            _currentLookState = LookState.Turning;
+            
+            Tween.LocalRotation(_cameraTransform, tweenSettings)
+                .OnComplete(() => _currentLookState = _desiredLookState);
         }
     }
 }
