@@ -21,7 +21,7 @@
                     "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
                     "expectedControlType": "Axis",
                     "processors": "Invert",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": true
                 }
             ],
