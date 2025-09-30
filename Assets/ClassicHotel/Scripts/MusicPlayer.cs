@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ClassicHotel
 {
@@ -14,10 +13,6 @@ namespace ClassicHotel
 
         private bool _isPlaying;
 
-        private InputAction _controlMusicAction;
-
-        private const string ControlMusicActionName = "ControlMusic";
-
         private void OnValidate()
         {
             if (_spriteRenderer == null)
@@ -31,27 +26,38 @@ namespace ClassicHotel
             }
         }
 
-        private void Start()
+        public void Play()
         {
-            _controlMusicAction = InputSystem.actions.FindAction(ControlMusicActionName);
-
-            _controlMusicAction.performed += (_) => InvertMusicState();
-        }
-
-        private void InvertMusicState()
-        {
-            _isPlaying = !_isPlaying;
-
             if (_isPlaying)
             {
-                _spriteRenderer.sprite = _enabledSprite;
-                _audioSource.Play();
+                return;
+            }
+
+            _isPlaying = true;
+
+            _spriteRenderer.sprite = _enabledSprite;
+            
+            if (_audioSource.time > 0f)
+            {
+                _audioSource.UnPause();
             }
             else
             {
-                _spriteRenderer.sprite = _disabledSprite;
-                _audioSource.Pause();
+                _audioSource.Play();
             }
+        }
+
+        public void Pause()
+        {
+            if (!_isPlaying)
+            {
+                return;
+            }
+
+            _isPlaying = false;
+
+            _spriteRenderer.sprite = _disabledSprite;
+            _audioSource.Pause();
         }
     }
 }

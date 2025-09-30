@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using PrimeTween;
 
 namespace ClassicHotel
@@ -14,8 +13,6 @@ namespace ClassicHotel
         private LookState _currentLookState = LookState.Forward;
         private LookState _desiredLookState = LookState.Forward;
 
-        private InputAction _lookBackAction;
-
         private readonly TweenSettings<Vector3> _lookForwardTweenSettings = new(Vector3.zero, LookForwardDuration, LookForwardEase);
 
         private readonly TweenSettings<Vector3> _leftLookBackTweenSettings = new(Vector3.up * LookBackYRotation, LookBackDuration,
@@ -24,8 +21,6 @@ namespace ClassicHotel
             LookBackEase);
 
         public LookState CurrentLookState => _currentLookState;
-
-        private const string LookBackActionName = "LookBack";
 
         private const float LookForwardDuration = 0.5f;
         private const Ease LookForwardEase = Ease.OutCubic;
@@ -39,31 +34,9 @@ namespace ClassicHotel
             _cameraTransform = transform;
         }
 
-        private void Awake()
+        public void UpdateDesiredLookStateAndLookAtIt(int lookInput)
         {
-            _lookBackAction = InputSystem.actions.FindAction(LookBackActionName);
-        }
-
-        private void OnEnable()
-        {
-            _lookBackAction.performed += UpdateDesiredLookStateAndLookAtIt;
-            _lookBackAction.canceled += UpdateDesiredLookStateAndLookAtIt;
-        }
-
-        private void OnDisable()
-        {
-            _lookBackAction.performed -= UpdateDesiredLookStateAndLookAtIt;
-            _lookBackAction.canceled -= UpdateDesiredLookStateAndLookAtIt;
-        }
-
-        private void UpdateDesiredLookStateAndLookAtIt(InputAction.CallbackContext context)
-        {
-            if (_playerMover.ShouldMove)
-            {
-                return;
-            }
-            
-            _desiredLookState = (LookState)context.ReadValue<float>();
+            _desiredLookState = (LookState)lookInput;
 
             if (_currentLookState != _desiredLookState)
             {

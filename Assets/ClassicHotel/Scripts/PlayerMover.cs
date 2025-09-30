@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ClassicHotel
 {
@@ -12,44 +12,50 @@ namespace ClassicHotel
 
         [SerializeField] private float _speed = 1f;
 
-        private bool _shouldMove;
+        private bool _isMoving;
 
-        private InputAction _moveAction;
+        public bool IsMoving => _isMoving;
 
-        public bool ShouldMove => _shouldMove;
+        private bool IsAtEndPoint => _transform.position.z >= _endPointTransform.position.z;
 
         private const Space MoveSpace = Space.World;
 
-        private const string MoveActionName = "Move";
-
         private void OnValidate()
         {
-            _transform = transform;
-        }
-
-        private void Start()
-        {
-            _moveAction = InputSystem.actions.FindAction(MoveActionName);
+            if (_transform == null)
+            {
+                _transform = transform;
+            }
         }
 
         private void Update()
         {
-            if (_moveAction.WasPressedThisFrame() && _playerCameraRotator.CurrentLookState == LookState.Forward)
+            if (_isMoving && !IsAtEndPoint)
             {
-                _shouldMove = !_shouldMove;
-            }
+                Vector3 translation = _speed * Time.deltaTime * Vector3.forward;
 
-            if (_shouldMove && _transform.position.z < _endPointTransform.position.z)
-            {
-                Move();
+                _transform.Translate(translation, MoveSpace);
             }
         }
 
-        private void Move()
+        public void StartMoving()
         {
-            Vector3 translation = _speed * Time.deltaTime * Vector3.forward;
+            if (_isMoving)
+            {
+                throw new InvalidOperationException(nameof(_isMoving));
+            }
 
-            _transform.Translate(translation, MoveSpace);
+            _isMoving = true;
+        }
+
+        public void StopMoving()
+        {
+            if (!_isMoving)
+            {
+                throw new InvalidOperationException(nameof(_isMoving)); 
+            }
+
+            _isMoving = false;
         }
     }
 }
