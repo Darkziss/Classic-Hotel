@@ -29,16 +29,16 @@ namespace ClassicHotel
         {
             _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
 
-            _lookAroundAction.performed += _lookAroundAction_performed;
-            _lookAroundAction.canceled += _lookAroundAction_performed;
+            _lookAroundAction.performed += HandleLookInput;
+            _lookAroundAction.canceled += HandleLookInput;
         }
 
         private void OnDisable()
         {
             _controlWalkAndMusicAction.performed -= ControlWalkAndMusic;
 
-            _lookAroundAction.performed -= _lookAroundAction_performed;
-            _lookAroundAction.canceled -= _lookAroundAction_performed;
+            _lookAroundAction.performed -= HandleLookInput;
+            _lookAroundAction.canceled -= HandleLookInput;
         }
 
         private void ControlWalkAndMusic(InputAction.CallbackContext context)
@@ -58,7 +58,7 @@ namespace ClassicHotel
             }
         }
 
-        private void _lookAroundAction_performed(InputAction.CallbackContext context)
+        private void HandleLookInput(InputAction.CallbackContext context)
         {
             int lookInput = (int)context.ReadValue<float>();
 
