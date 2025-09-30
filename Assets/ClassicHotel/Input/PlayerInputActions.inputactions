@@ -7,7 +7,7 @@
             "id": "47cbbbdd-588e-4cac-b6b8-6e2366eb3d6b",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "ControlWalkAndMusic",
                     "type": "Button",
                     "id": "cfe3bc2a-f462-4809-8509-3ca7d5d7b7fa",
                     "expectedControlType": "",
@@ -16,22 +16,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LookBack",
+                    "name": "LookAround",
                     "type": "Value",
                     "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
                     "expectedControlType": "Axis",
                     "processors": "Invert",
                     "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "ControlMusic",
-                    "type": "Button",
-                    "id": "73d342c0-d94e-4569-b063-b5308ee6dcd8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -42,7 +33,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "Move",
+                    "action": "ControlWalkAndMusic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -53,7 +44,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LookBack",
+                    "action": "LookAround",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -64,7 +55,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "LookBack",
+                    "action": "LookAround",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -75,20 +66,9 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "LookBack",
+                    "action": "LookAround",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "4b10e776-4f89-4245-b9dc-1a4136880840",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Desktop",
-                    "action": "ControlMusic",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }
