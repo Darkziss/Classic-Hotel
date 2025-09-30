@@ -7,7 +7,7 @@
             "id": "47cbbbdd-588e-4cac-b6b8-6e2366eb3d6b",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "ControlWalkAndMusic",
                     "type": "Button",
                     "id": "cfe3bc2a-f462-4809-8509-3ca7d5d7b7fa",
                     "expectedControlType": "",
@@ -42,7 +42,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "Move",
+                    "action": "ControlWalkAndMusic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
