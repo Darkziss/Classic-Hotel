@@ -23,6 +23,15 @@
                     "processors": "Invert",
                     "interactions": "Hold(duration=0.1)",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ControlMusic",
+                    "type": "Button",
+                    "id": "73d342c0-d94e-4569-b063-b5308ee6dcd8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -69,6 +78,17 @@
                     "action": "LookBack",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "4b10e776-4f89-4245-b9dc-1a4136880840",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Desktop",
+                    "action": "ControlMusic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
