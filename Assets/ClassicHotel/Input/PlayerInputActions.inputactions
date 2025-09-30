@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LookBack",
+                    "name": "LookAround",
                     "type": "Value",
                     "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
                     "expectedControlType": "Axis",
@@ -44,7 +44,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LookBack",
+                    "action": "LookAround",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -55,7 +55,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "LookBack",
+                    "action": "LookAround",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -66,7 +66,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "LookBack",
+                    "action": "LookAround",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
