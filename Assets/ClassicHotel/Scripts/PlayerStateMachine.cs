@@ -62,12 +62,10 @@ namespace ClassicHotel
         {
             int lookInput = (int)context.ReadValue<float>();
 
-            if (_currentState != PlayerState.StandStill)
+            if (_currentState == PlayerState.StandStill)
             {
-                return;
+                _playerCameraRotator.UpdateDesiredLookStateAndLookAtIt(lookInput);
             }
-
-            _playerCameraRotator.UpdateDesiredLookStateAndLookAtIt(lookInput);
         }
     }
 }
