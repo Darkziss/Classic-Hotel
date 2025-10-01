@@ -6,12 +6,18 @@ namespace ClassicHotel
     public class MusicPlayer : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
+
         [SerializeField] private AudioSource _audioSource;
+
+        [SerializeField] private AudioSource _ambienceAudioSource;
 
         [SerializeField] private Sprite _enabledSprite;
         [SerializeField] private Sprite _disabledSprite;
 
         private bool _isPlaying;
+
+        private const float NormalAmbienceVolume = 1f;
+        private const float MuffledAmbienceVolume = 0.3f;
 
         private void OnValidate()
         {
@@ -45,6 +51,8 @@ namespace ClassicHotel
             {
                 _audioSource.Play();
             }
+
+            _ambienceAudioSource.volume = MuffledAmbienceVolume;
         }
 
         public void Pause()
@@ -58,6 +66,8 @@ namespace ClassicHotel
 
             _spriteRenderer.sprite = _disabledSprite;
             _audioSource.Pause();
+
+            _ambienceAudioSource.volume = NormalAmbienceVolume;
         }
     }
 }
