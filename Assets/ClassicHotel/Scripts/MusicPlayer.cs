@@ -79,7 +79,7 @@ namespace ClassicHotel
 
         private void PlayRandomClickSound()
         {
-            int clickClipIndex = Random.Range(0, _clickAudioClips.Length - 1);
+            int clickClipIndex = Random.Range(0, _clickAudioClips.Length);
 
             _clickAudioSource.clip = _clickAudioClips[clickClipIndex];
             _clickAudioSource.Play();
