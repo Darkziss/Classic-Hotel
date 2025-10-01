@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityRandom = UnityEngine.Random;
 
 namespace ClassicHotel
 {
@@ -10,9 +12,17 @@ namespace ClassicHotel
         [SerializeField] private Transform _transform;
         [SerializeField] private Transform _endPointTransform;
 
+        [SerializeField] private AudioSource _footstepAudioSource;
+
+        [SerializeField] private AudioClip[] _footstepsAudioClips;
+
         [SerializeField] private float _speed = 1f;
 
         private bool _isMoving;
+
+        private Coroutine _footstepSoundCoroutine;
+
+        private readonly WaitForSeconds _footstepDelay = new(1f);
 
         public bool IsMoving => _isMoving;
 
@@ -46,6 +56,8 @@ namespace ClassicHotel
             }
 
             _isMoving = true;
+
+            _footstepSoundCoroutine = StartCoroutine(PlayRandomlyFootstepSound());
         }
 
         public void StopMoving()
@@ -56,6 +68,21 @@ namespace ClassicHotel
             }
 
             _isMoving = false;
+
+            StopCoroutine(_footstepSoundCoroutine);
+            _footstepSoundCoroutine = null;
+        }
+
+        private IEnumerator PlayRandomlyFootstepSound()
+        {
+            while (true)
+            {
+                int index = UnityRandom.Range(0, _footstepsAudioClips.Length);
+
+                _footstepAudioSource.PlayOneShot(_footstepsAudioClips[index]);
+
+                yield return _footstepDelay;
+            }
         }
     }
 }
