@@ -8,11 +8,14 @@ namespace ClassicHotel
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         [SerializeField] private AudioSource _audioSource;
-
+        [SerializeField] private AudioSource _clickAudioSource;
+        
         [SerializeField] private AudioSource _ambienceAudioSource;
 
         [SerializeField] private Sprite _enabledSprite;
         [SerializeField] private Sprite _disabledSprite;
+
+        [SerializeField] private AudioClip[] _clickClips;
 
         private bool _isPlaying;
 
@@ -41,8 +44,10 @@ namespace ClassicHotel
 
             _isPlaying = true;
 
+            PlayRandomClickSound();
+
             _spriteRenderer.sprite = _enabledSprite;
-            
+
             if (_audioSource.time > 0f)
             {
                 _audioSource.UnPause();
@@ -64,10 +69,20 @@ namespace ClassicHotel
 
             _isPlaying = false;
 
+            PlayRandomClickSound();
+
             _spriteRenderer.sprite = _disabledSprite;
             _audioSource.Pause();
 
             _ambienceAudioSource.volume = NormalAmbienceVolume;
+        }
+
+        private void PlayRandomClickSound()
+        {
+            int clickClipIndex = Random.Range(0, _clickClips.Length - 1);
+
+            _clickAudioSource.clip = _clickClips[clickClipIndex];
+            _clickAudioSource.Play();
         }
     }
 }
