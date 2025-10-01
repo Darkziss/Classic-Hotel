@@ -15,7 +15,7 @@ namespace ClassicHotel
         [SerializeField] private Sprite _enabledSprite;
         [SerializeField] private Sprite _disabledSprite;
 
-        [SerializeField] private AudioClip[] _clickClips;
+        [SerializeField] private AudioClip[] _clickAudioClips;
 
         private bool _isPlaying;
 
@@ -79,9 +79,9 @@ namespace ClassicHotel
 
         private void PlayRandomClickSound()
         {
-            int clickClipIndex = Random.Range(0, _clickClips.Length - 1);
+            int clickClipIndex = Random.Range(0, _clickAudioClips.Length - 1);
 
-            _clickAudioSource.clip = _clickClips[clickClipIndex];
+            _clickAudioSource.clip = _clickAudioClips[clickClipIndex];
             _clickAudioSource.Play();
         }
     }
