@@ -7,6 +7,21 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: BottomFill
+    second: {fileID: 2100000, guid: 526ec80e344b39a4c8a38f403392b2ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Molding
+    second: {fileID: 2100000, guid: bb53ad7ed6eeaa34ebe65d2e4c2c620a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopFill
+    second: {fileID: 2100000, guid: a1c17aaa8a52b744295b828e76a4cb34, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wall
     second: {fileID: 2100000, guid: a1c17aaa8a52b744295b828e76a4cb34, type: 2}
   materials:
