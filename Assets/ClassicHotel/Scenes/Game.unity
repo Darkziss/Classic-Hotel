@@ -6560,7 +6560,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: db2e0075139cffe4796006dee82aa82d, type: 3}
   - {fileID: 8300000, guid: 20acfcaecd62c1847b1260a41293cd3b, type: 3}
   - {fileID: 8300000, guid: 2532587209dc78d43a82187e4c9f318d, type: 3}
-  _speed: 2
+  _speed: 1.7
 --- !u!114 &589425353
 MonoBehaviour:
   m_ObjectHideFlags: 0
