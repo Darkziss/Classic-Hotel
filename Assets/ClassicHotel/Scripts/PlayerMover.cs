@@ -11,6 +11,9 @@ namespace ClassicHotel
         [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
         [SerializeField] private CinemachineBasicMultiChannelPerlin _noiseChannel;
 
+        [SerializeField] private NoiseSettings _breathingNoiseProfile;
+        [SerializeField] private NoiseSettings _headBobNoiseProfile;
+
         [SerializeField] private PlayerCameraRotator _playerCameraRotator;
 
         [SerializeField] private Transform _transform;
@@ -21,7 +24,6 @@ namespace ClassicHotel
         [SerializeField] private AudioClip[] _footstepsAudioClips;
 
         [SerializeField] private float _speed = 1f;
-        [SerializeField] private float _headBobAmplitude = 1f;
 
         private bool _isMoving;
 
@@ -68,7 +70,7 @@ namespace ClassicHotel
 
             _isMoving = true;
 
-            _noiseChannel.m_AmplitudeGain = _headBobAmplitude;
+            _noiseChannel.m_NoiseProfile = _headBobNoiseProfile;
             
             _footstepSoundCoroutine = StartCoroutine(PlayRandomlyFootstepSound());
         }
@@ -82,7 +84,7 @@ namespace ClassicHotel
 
             _isMoving = false;
 
-            _noiseChannel.m_AmplitudeGain = 0f;
+            _noiseChannel.m_NoiseProfile = _breathingNoiseProfile;
 
             StopCoroutine(_footstepSoundCoroutine);
             _footstepSoundCoroutine = null;

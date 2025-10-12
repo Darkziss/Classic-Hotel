@@ -6618,6 +6618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerVirtualCamera: {fileID: 1617553041}
   _noiseChannel: {fileID: 1046108755}
+  _breathingNoiseProfile: {fileID: 11400000, guid: 8e9851d1d51c0da43a7a166365988af7, type: 2}
+  _headBobNoiseProfile: {fileID: 11400000, guid: dca9795628121e045b671156362ee1a0, type: 2}
   _playerCameraRotator: {fileID: 963194229}
   _transform: {fileID: 589425351}
   _endPointTransform: {fileID: 1898229342}
@@ -12503,7 +12505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 8e9851d1d51c0da43a7a166365988af7, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0
+  m_AmplitudeGain: 1
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 499.30615, y: 249.72522, z: 666.63837}
 --- !u!1001 &1047725879
