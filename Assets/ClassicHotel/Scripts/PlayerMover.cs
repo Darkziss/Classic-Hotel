@@ -47,7 +47,6 @@ namespace ClassicHotel
             if (_playerVirtualCamera != null && _noiseChannel == null)
             {
                 _noiseChannel = _playerVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-                _noiseChannel.m_AmplitudeGain = 0f;
             }
         }
 
