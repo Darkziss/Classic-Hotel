@@ -6616,6 +6616,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb829502d4c1f96499701ddbec1fd957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerVirtualCamera: {fileID: 1617553041}
+  _noiseChannel: {fileID: 1046108755}
   _playerCameraRotator: {fileID: 963194229}
   _transform: {fileID: 589425351}
   _endPointTransform: {fileID: 1898229342}
@@ -6625,6 +6627,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 20acfcaecd62c1847b1260a41293cd3b, type: 3}
   - {fileID: 8300000, guid: 2532587209dc78d43a82187e4c9f318d, type: 3}
   _speed: 1.7
+  _headBobAmplitude: 0.1
 --- !u!114 &589425353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11329,8 +11332,8 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12505,7 +12508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 0.1
+  m_AmplitudeGain: 0
   m_FrequencyGain: 1
   mNoiseOffsets: {x: 499.30615, y: 249.72522, z: 666.63837}
 --- !u!1001 &1047725879

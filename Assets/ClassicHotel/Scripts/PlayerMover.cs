@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Cinemachine;
 using UnityRandom = UnityEngine.Random;
 
 namespace ClassicHotel
 {
     public class PlayerMover : MonoBehaviour
     {
+        [SerializeField] private CinemachineVirtualCamera _playerVirtualCamera;
+        [SerializeField] private CinemachineBasicMultiChannelPerlin _noiseChannel;
+
         [SerializeField] private PlayerCameraRotator _playerCameraRotator;
 
         [SerializeField] private Transform _transform;
@@ -17,6 +21,7 @@ namespace ClassicHotel
         [SerializeField] private AudioClip[] _footstepsAudioClips;
 
         [SerializeField] private float _speed = 1f;
+        [SerializeField] private float _headBobAmplitude = 1f;
 
         private bool _isMoving;
 
@@ -35,6 +40,12 @@ namespace ClassicHotel
             if (_transform == null)
             {
                 _transform = transform;
+            }
+
+            if (_playerVirtualCamera != null && _noiseChannel == null)
+            {
+                _noiseChannel = _playerVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                _noiseChannel.m_AmplitudeGain = 0f;
             }
         }
 
@@ -57,6 +68,8 @@ namespace ClassicHotel
 
             _isMoving = true;
 
+            _noiseChannel.m_AmplitudeGain = _headBobAmplitude;
+            
             _footstepSoundCoroutine = StartCoroutine(PlayRandomlyFootstepSound());
         }
 
@@ -68,6 +81,8 @@ namespace ClassicHotel
             }
 
             _isMoving = false;
+
+            _noiseChannel.m_AmplitudeGain = 0f;
 
             StopCoroutine(_footstepSoundCoroutine);
             _footstepSoundCoroutine = null;
