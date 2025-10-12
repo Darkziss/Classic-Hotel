@@ -325,8 +325,12 @@ MonoBehaviour:
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
   _ambienceAudioSource: {fileID: 0}
-  _screenEnabledMaterial: {fileID: 2100000, guid: fc721c54eb61c1d4982d5a3043530733, type: 2}
-  _screenDisabledMaterial: {fileID: 2100000, guid: d314476e9fc9eac47be0e9a77614a40e, type: 2}
+  _screenEnabledColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  _screenDisabledColor:
+    serializedVersion: 2
+    rgba: 4278190080
   _clickAudioClips:
   - {fileID: 8300000, guid: f1721f16f5f1bdb42bed6da73ce0816f, type: 3}
   - {fileID: 8300000, guid: a3e95fcc9b201aa4da20da6c22b82300, type: 3}
