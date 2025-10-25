@@ -89,7 +89,9 @@ namespace ClassicHotel
 
             _isMoving = false;
 
-            _noiseChannel.m_NoiseProfile = _breathingNoiseProfile;
+            Sequence.Create(Tween.Custom(1f, 0f, _fadeOutSettings, (value) => _noiseChannel.m_AmplitudeGain = value))
+                .ChainCallback(() => _noiseChannel.m_NoiseProfile = _breathingNoiseProfile)
+                .Chain(Tween.Custom(0f, 1f, _fadeInSettings, (value) => _noiseChannel.m_AmplitudeGain = value));
 
             StopCoroutine(_footstepSoundCoroutine);
             _footstepSoundCoroutine = null;
