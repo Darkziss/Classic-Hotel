@@ -32,8 +32,8 @@ namespace ClassicHotel
 
         private readonly WaitForSeconds _footstepDelay = new(1f);
 
-        private readonly TweenSettings _fadeInSettings = new(0.3f, Ease.Linear);
-        private readonly TweenSettings _fadeOutSettings = new(0.5f, Ease.InOutSine);
+        private readonly TweenSettings _fadeInSettings = new(0.5f, Ease.Linear);
+        private readonly TweenSettings _fadeOutSettings = new(0.2f, Ease.Linear);
 
         public bool IsMoving => _isMoving;
 
