@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 using UnityRandom = UnityEngine.Random;
+using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -30,6 +31,9 @@ namespace ClassicHotel
         private Coroutine _footstepSoundCoroutine;
 
         private readonly WaitForSeconds _footstepDelay = new(1f);
+
+        private readonly TweenSettings _fadeInSettings = new(0.3f, Ease.Linear);
+        private readonly TweenSettings _fadeOutSettings = new(0.5f, Ease.InOutSine);
 
         public bool IsMoving => _isMoving;
 
@@ -69,9 +73,11 @@ namespace ClassicHotel
 
             _isMoving = true;
 
-            _noiseChannel.m_NoiseProfile = _headBobNoiseProfile;
-            
             _footstepSoundCoroutine = StartCoroutine(PlayRandomlyFootstepSound());
+
+            Sequence.Create(Tween.Custom(1f, 0f, _fadeOutSettings, (value) => _noiseChannel.m_AmplitudeGain = value))
+                .ChainCallback(() => _noiseChannel.m_NoiseProfile = _headBobNoiseProfile)
+                .Chain(Tween.Custom(0f, 1f, _fadeInSettings, (value) => _noiseChannel.m_AmplitudeGain = value));
         }
 
         public void StopMoving()
