@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -17,25 +16,6 @@ namespace ClassicHotel
         private Vector2 _rotation;
 
         private Vector2 _lookInput;
-
-        private LookState _currentLookState = LookState.Forward;
-        private LookState _desiredLookState = LookState.Forward;
-
-        private readonly TweenSettings<Vector3> _lookForwardTweenSettings = new(Vector3.zero, LookForwardDuration, LookForwardEase);
-
-        private readonly TweenSettings<Vector3> _leftLookBackTweenSettings = new(Vector3.up * LookBackYRotation, LookBackDuration,
-            LookBackEase);
-        private readonly TweenSettings<Vector3> _rightLookBackTweenSettings = new(Vector3.down * LookBackYRotation, LookBackDuration,
-            LookBackEase);
-
-        public LookState CurrentLookState => _currentLookState;
-
-        private const float LookForwardDuration = 0.5f;
-        private const Ease LookForwardEase = Ease.OutCubic;
-
-        private const float LookBackYRotation = 135f;
-        private const float LookBackDuration = 1f;
-        private const Ease LookBackEase = Ease.InOutSine;
 
         private void Update()
         {
