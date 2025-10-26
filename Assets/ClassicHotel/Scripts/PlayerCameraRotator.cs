@@ -9,6 +9,7 @@ namespace ClassicHotel
         [SerializeField] private PlayerMover _playerMover;
 
         [SerializeField] private Transform _cameraTransform;
+        private bool _canLook;
 
         private LookState _currentLookState = LookState.Forward;
         private LookState _desiredLookState = LookState.Forward;
@@ -44,37 +45,30 @@ namespace ClassicHotel
             }
         }
 
-        private void LookAtDesiredState()
+        public void EnableLook()
         {
-            switch (_desiredLookState)
+            if (_canLook)
             {
-                case LookState.Forward:
-                    LookForward();
-                    break;
-                case LookState.BackFromLeft:
-                    LookBackFromLeft();
-                    break;
-                case LookState.BackFromRight:
-                    LookBackFromRight();
-                    break;
-                default:
-                    throw new InvalidOperationException(nameof(_desiredLookState));
+                throw new InvalidOperationException(nameof(_canLook));
             }
-        }
 
         private void LookForward()
         {
             Look(_lookForwardTweenSettings);
+            _canLook = true;
         }
 
-        private void LookBackFromLeft()
+        public void DisableLook()
         {
-            Look(_leftLookBackTweenSettings);
-        }
+            if (!_canLook)
+            {
+                throw new InvalidOperationException(nameof(_canLook));
+            }
 
         private void LookBackFromRight()
         {
             Look(_rightLookBackTweenSettings);
+            _canLook = false;
         }
 
         private void Look(TweenSettings<Vector3> tweenSettings)
