@@ -19,9 +19,9 @@
                     "name": "LookAround",
                     "type": "Value",
                     "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
-                    "expectedControlType": "Axis",
-                    "processors": "Invert",
-                    "interactions": "Hold(duration=0.1)",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": true
                 }
             ],
@@ -38,9 +38,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "fb39a60b-449a-4479-8733-efc25201e465",
-                    "path": "1DAxis",
+                    "name": "One Modifier",
+                    "id": "e64ddbc3-e1f2-4135-aaa3-106c87305cb2",
+                    "path": "OneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -49,8 +49,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Negative",
-                    "id": "7bc92e5d-03c2-47f0-ac93-0e8c1350b5c7",
+                    "name": "modifier",
+                    "id": "8ed34192-62b1-4316-8810-5f1ce1dc318c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -60,11 +60,11 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Positive",
-                    "id": "c31a4da4-961f-4f82-909c-8a259f6e8980",
-                    "path": "<Mouse>/rightButton",
+                    "name": "binding",
+                    "id": "0f372830-de16-431b-bba8-3554f0bb2e70",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "InvertVector2(invertX=false)",
                     "groups": ";Desktop",
                     "action": "LookAround",
                     "isComposite": false,
