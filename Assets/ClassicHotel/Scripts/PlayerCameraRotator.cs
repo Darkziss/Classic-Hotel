@@ -8,9 +8,13 @@ namespace ClassicHotel
     {
         [SerializeField] private PlayerMover _playerMover;
 
-        [SerializeField] private Transform _cameraTransform;
+        [SerializeField] private Transform _headTransform;
+
+        [SerializeField] private float _sensitivity = 1f;
+
         private bool _canLook;
 
+        private Vector2 _rotation;
 
         private Vector2 _lookInput;
 
@@ -33,9 +37,12 @@ namespace ClassicHotel
         private const float LookBackDuration = 1f;
         private const Ease LookBackEase = Ease.InOutSine;
 
-        private void OnValidate()
+        private void Update()
         {
-            _cameraTransform = transform;
+            if (_canLook && _lookInput != Vector2.zero)
+            {
+                Look();
+            }
         }
 
         public void UpdateLookInput(Vector2 delta)
@@ -55,9 +62,6 @@ namespace ClassicHotel
                 throw new InvalidOperationException(nameof(_canLook));
             }
 
-        private void LookForward()
-        {
-            Look(_lookForwardTweenSettings);
             _canLook = true;
         }
 
@@ -68,23 +72,16 @@ namespace ClassicHotel
                 throw new InvalidOperationException(nameof(_canLook));
             }
 
-        private void LookBackFromRight()
-        {
-            Look(_rightLookBackTweenSettings);
             _canLook = false;
         }
 
-        private void Look(TweenSettings<Vector3> tweenSettings)
+        private void Look()
         {
-            if (_currentLookState == LookState.Turning)
-            {
-                Tween.StopAll(_cameraTransform);
-            }
+            Vector2 rotationDelta = new(_lookInput.y, _lookInput.x);
+            rotationDelta *= _sensitivity * Time.deltaTime;
+            _rotation += rotationDelta;
 
-            _currentLookState = LookState.Turning;
-            
-            Tween.LocalRotation(_cameraTransform, tweenSettings)
-                .OnComplete(() => _currentLookState = _desiredLookState);
+            _headTransform.localRotation = Quaternion.Euler(_rotation);
         }
     }
 }
