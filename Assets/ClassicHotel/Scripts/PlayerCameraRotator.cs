@@ -17,6 +17,12 @@ namespace ClassicHotel
 
         private Vector2 _lookInput;
 
+        private const float MinXRotation = -90f;
+        private const float MaxXRotation = 85f;
+
+        private const float MinYRotation = -MaxYRotation;
+        private const float MaxYRotation = 140f;
+
         private void Update()
         {
             if (_canLook && _lookInput != Vector2.zero)
@@ -59,7 +65,10 @@ namespace ClassicHotel
         {
             Vector2 rotationDelta = new(_lookInput.y, _lookInput.x);
             rotationDelta *= _sensitivity * Time.deltaTime;
+
             _rotation += rotationDelta;
+            _rotation.x = Mathf.Clamp(_rotation.x, MinXRotation, MaxXRotation);
+            _rotation.y = Mathf.Clamp(_rotation.y, MinYRotation, MaxYRotation);
 
             _headTransform.localRotation = Quaternion.Euler(_rotation);
         }
