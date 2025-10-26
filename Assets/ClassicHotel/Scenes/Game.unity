@@ -12292,8 +12292,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetFps: 60
-  _isCursorVisible: 1
-  _cursorLockMode: 0
+  _isCursorVisible: 0
+  _cursorLockMode: 1
 --- !u!4 &1030348574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7339160854040558145, guid: 6b8c7a1c7d30ac34ea2ddb8532c1c474, type: 3}
