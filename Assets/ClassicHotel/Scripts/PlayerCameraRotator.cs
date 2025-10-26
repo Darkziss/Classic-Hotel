@@ -11,6 +11,9 @@ namespace ClassicHotel
         [SerializeField] private Transform _cameraTransform;
         private bool _canLook;
 
+
+        private Vector2 _lookInput;
+
         private LookState _currentLookState = LookState.Forward;
         private LookState _desiredLookState = LookState.Forward;
 
@@ -35,14 +38,14 @@ namespace ClassicHotel
             _cameraTransform = transform;
         }
 
-        public void UpdateDesiredLookStateAndLookAtIt(int lookInput)
+        public void UpdateLookInput(Vector2 delta)
         {
-            _desiredLookState = (LookState)lookInput;
-
-            if (_currentLookState != _desiredLookState)
+            if (!_canLook)
             {
-                LookAtDesiredState();
+                throw new InvalidOperationException(nameof(_canLook));
             }
+            
+            _lookInput = delta;
         }
 
         public void EnableLook()

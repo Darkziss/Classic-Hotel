@@ -26,9 +26,11 @@ namespace ClassicHotel
         }
 
         private void OnEnable()
+        private void Start()
         {
             _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
 
+            _playerCameraRotator.EnableLook();
             _lookAroundAction.performed += HandleLookInput;
             _lookAroundAction.canceled += HandleLookInput;
         }
@@ -60,12 +62,9 @@ namespace ClassicHotel
 
         private void HandleLookInput(InputAction.CallbackContext context)
         {
-            int lookInput = (int)context.ReadValue<float>();
+            Vector2 lookInput = context.ReadValue<Vector2>();
 
-            if (_currentState == PlayerState.StandStill)
-            {
-                _playerCameraRotator.UpdateDesiredLookStateAndLookAtIt(lookInput);
-            }
+            _playerCameraRotator.UpdateLookInput(lookInput);
         }
     }
 }
