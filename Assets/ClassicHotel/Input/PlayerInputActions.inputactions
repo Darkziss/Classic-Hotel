@@ -16,10 +16,19 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LookAround",
+                    "name": "Look",
                     "type": "Value",
-                    "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
+                    "id": "5a78ba0a-aec0-4203-bab4-d2610371d037",
                     "expectedControlType": "Delta",
+                    "processors": "InvertVector2(invertX=false)",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "EnableLook",
+                    "type": "Button",
+                    "id": "0e106f04-e671-4168-be77-2d9c48f10ea3",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -38,37 +47,26 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "One Modifier",
-                    "id": "e64ddbc3-e1f2-4135-aaa3-106c87305cb2",
-                    "path": "OneModifier",
+                    "name": "",
+                    "id": "8c4e1e92-641c-4b44-955d-6bc87d966571",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "LookAround",
-                    "isComposite": true,
+                    "groups": ";Desktop",
+                    "action": "Look",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "8ed34192-62b1-4316-8810-5f1ce1dc318c",
+                    "name": "",
+                    "id": "8b4266c1-1fb0-4a48-979b-b7f9704d8676",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Desktop",
-                    "action": "LookAround",
+                    "action": "EnableLook",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "0f372830-de16-431b-bba8-3554f0bb2e70",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "InvertVector2(invertX=false)",
-                    "groups": ";Desktop",
-                    "action": "LookAround",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }
