@@ -17,6 +17,8 @@ namespace ClassicHotel
 
         private Vector2 _lookInput;
 
+        public bool CanLook => _canLook;
+
         private bool HasLookInput => _lookInput != Vector2.zero;
 
         private const float MinXRotation = -90f;
