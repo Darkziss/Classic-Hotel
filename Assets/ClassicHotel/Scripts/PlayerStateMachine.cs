@@ -13,25 +13,31 @@ namespace ClassicHotel
         
         private InputAction _controlWalkAndMusicAction;
 
-        private InputAction _lookAroundAction;
+        private InputAction _lookAction;
+        private InputAction _enableLookAction;
 
         private const string ControlWalkAndMusicActionName = "ControlWalkAndMusic";
-        private const string LookAroundActionName = "LookAround";
+
+        private const string LookActionName = "Look";
+        private const string EnableLookActionName = "EnableLook";
 
         private void Awake()
         {
             _controlWalkAndMusicAction = InputSystem.actions.FindAction(ControlWalkAndMusicActionName);
 
-            _lookAroundAction = InputSystem.actions.FindAction(LookAroundActionName);
+            _lookAction = InputSystem.actions.FindAction(LookActionName);
+            _enableLookAction = InputSystem.actions.FindAction(EnableLookActionName);
         }
 
         private void Start()
         {
             _currentState = PlayerState.StandStill;
 
-            _playerCameraRotator.EnableLook();
-            _lookAroundAction.performed += HandleLookInput;
-            _lookAroundAction.canceled += HandleLookInput;
+            _enableLookAction.performed += OnEnableLookPerformed;
+            _enableLookAction.canceled += OnEnableLookCanceled;
+
+            _lookAction.performed += HandleLookInput;
+            _lookAction.canceled += HandleLookInput;
         }
 
         private void OnEnable()
@@ -51,9 +57,11 @@ namespace ClassicHotel
                 case PlayerState.StandStill:
                     _currentState = PlayerState.WalkAndListenToMusic;
 
-                    _lookAroundAction.performed -= HandleLookInput;
-                    _lookAroundAction.canceled -= HandleLookInput;
-                    _playerCameraRotator.DisableLook();
+                    _enableLookAction.performed -= OnEnableLookPerformed;
+                    _enableLookAction.canceled -= OnEnableLookCanceled;
+
+                    _lookAction.performed -= HandleLookInput;
+                    _lookAction.canceled -= HandleLookInput;
 
                     _playerMover.StartMoving();
                     _musicPlayer.Play();
@@ -61,9 +69,11 @@ namespace ClassicHotel
                 case PlayerState.WalkAndListenToMusic:
                     _currentState = PlayerState.StandStill;
 
-                    _playerCameraRotator.EnableLook();
-                    _lookAroundAction.performed += HandleLookInput;
-                    _lookAroundAction.canceled += HandleLookInput;
+                    _enableLookAction.performed += OnEnableLookPerformed;
+                    _enableLookAction.canceled += OnEnableLookCanceled;
+
+                    _lookAction.performed += HandleLookInput;
+                    _lookAction.canceled += HandleLookInput;
 
                     _playerMover.StopMoving();
                     _musicPlayer.Pause();
