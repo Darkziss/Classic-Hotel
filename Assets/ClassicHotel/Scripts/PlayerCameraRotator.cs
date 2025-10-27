@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -63,6 +64,12 @@ namespace ClassicHotel
             }
 
             _canLook = false;
+
+            _lookInput = Vector2.zero;
+
+            TweenSettings<Vector3> settings = new(Vector3.zero, 0.5f, Ease.Linear);
+            Tween.LocalRotation(_headTransform, settings)
+                .OnComplete(() => _rotation = Vector2.zero);
         }
 
         private void Look()
