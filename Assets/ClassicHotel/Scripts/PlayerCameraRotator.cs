@@ -67,7 +67,7 @@ namespace ClassicHotel
 
             _lookInput = Vector2.zero;
 
-            TweenSettings<Vector3> settings = new(Vector3.zero, 0.5f, Ease.Linear);
+            TweenSettings<Vector3> settings = new(Vector3.zero, 0.3f, Ease.OutSine);
             Tween.LocalRotation(_headTransform, settings)
                 .OnComplete(() => _rotation = Vector2.zero);
         }
