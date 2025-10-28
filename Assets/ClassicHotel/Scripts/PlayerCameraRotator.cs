@@ -8,86 +8,80 @@ namespace ClassicHotel
     {
         [SerializeField] private PlayerMover _playerMover;
 
-        [SerializeField] private Transform _cameraTransform;
+        [SerializeField] private Transform _headTransform;
 
-        private LookState _currentLookState = LookState.Forward;
-        private LookState _desiredLookState = LookState.Forward;
+        [SerializeField] private float _sensitivity = 1f;
 
-        private readonly TweenSettings<Vector3> _lookForwardTweenSettings = new(Vector3.zero, LookForwardDuration, LookForwardEase);
+        private bool _canLook;
 
-        private readonly TweenSettings<Vector3> _leftLookBackTweenSettings = new(Vector3.up * LookBackYRotation, LookBackDuration,
-            LookBackEase);
-        private readonly TweenSettings<Vector3> _rightLookBackTweenSettings = new(Vector3.down * LookBackYRotation, LookBackDuration,
-            LookBackEase);
+        private Vector2 _rotation;
 
-        public LookState CurrentLookState => _currentLookState;
+        private Vector2 _lookInput;
 
-        private const float LookForwardDuration = 0.5f;
-        private const Ease LookForwardEase = Ease.OutCubic;
+        public bool CanLook => _canLook;
 
-        private const float LookBackYRotation = 135f;
-        private const float LookBackDuration = 1f;
-        private const Ease LookBackEase = Ease.InOutSine;
+        private bool HasLookInput => _lookInput != Vector2.zero;
 
-        private void OnValidate()
+        private const float MinXRotation = -90f;
+        private const float MaxXRotation = 85f;
+
+        private const float MinYRotation = -MaxYRotation;
+        private const float MaxYRotation = 140f;
+
+        private void Update()
         {
-            _cameraTransform = transform;
-        }
-
-        public void UpdateDesiredLookStateAndLookAtIt(int lookInput)
-        {
-            _desiredLookState = (LookState)lookInput;
-
-            if (_currentLookState != _desiredLookState)
+            if (_canLook && HasLookInput)
             {
-                LookAtDesiredState();
+                Look();
             }
         }
 
-        private void LookAtDesiredState()
+        public void UpdateLookInput(Vector2 delta)
         {
-            switch (_desiredLookState)
+            if (!_canLook)
             {
-                case LookState.Forward:
-                    LookForward();
-                    break;
-                case LookState.BackFromLeft:
-                    LookBackFromLeft();
-                    break;
-                case LookState.BackFromRight:
-                    LookBackFromRight();
-                    break;
-                default:
-                    throw new InvalidOperationException(nameof(_desiredLookState));
+                throw new InvalidOperationException(nameof(_canLook));
             }
-        }
-
-        private void LookForward()
-        {
-            Look(_lookForwardTweenSettings);
-        }
-
-        private void LookBackFromLeft()
-        {
-            Look(_leftLookBackTweenSettings);
-        }
-
-        private void LookBackFromRight()
-        {
-            Look(_rightLookBackTweenSettings);
-        }
-
-        private void Look(TweenSettings<Vector3> tweenSettings)
-        {
-            if (_currentLookState == LookState.Turning)
-            {
-                Tween.StopAll(_cameraTransform);
-            }
-
-            _currentLookState = LookState.Turning;
             
-            Tween.LocalRotation(_cameraTransform, tweenSettings)
-                .OnComplete(() => _currentLookState = _desiredLookState);
+            _lookInput = delta;
+        }
+
+        public void EnableLook()
+        {
+            if (_canLook)
+            {
+                throw new InvalidOperationException(nameof(_canLook));
+            }
+
+            _canLook = true;
+        }
+
+        public void DisableLook()
+        {
+            if (!_canLook)
+            {
+                throw new InvalidOperationException(nameof(_canLook));
+            }
+
+            _canLook = false;
+
+            _lookInput = Vector2.zero;
+
+            TweenSettings<Vector3> settings = new(Vector3.zero, 0.3f, Ease.OutSine);
+            Tween.LocalRotation(_headTransform, settings)
+                .OnComplete(() => _rotation = Vector2.zero);
+        }
+
+        private void Look()
+        {
+            Vector2 rotationDelta = new(_lookInput.y, _lookInput.x);
+            rotationDelta *= _sensitivity * Time.deltaTime;
+
+            _rotation += rotationDelta;
+            _rotation.x = Mathf.Clamp(_rotation.x, MinXRotation, MaxXRotation);
+            _rotation.y = Mathf.Clamp(_rotation.y, MinYRotation, MaxYRotation);
+
+            _headTransform.localRotation = Quaternion.Euler(_rotation);
         }
     }
 }
