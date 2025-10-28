@@ -32,6 +32,11 @@ namespace ClassicHotel
         private void Start()
         {
             _currentState = PlayerState.StandStill;
+        }
+
+        private void OnEnable()
+        {
+            _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
 
             _enableLookAction.performed += OnEnableLookPerformed;
             _enableLookAction.canceled += OnEnableLookCanceled;
@@ -40,14 +45,15 @@ namespace ClassicHotel
             _lookAction.canceled += HandleLookInput;
         }
 
-        private void OnEnable()
-        {
-            _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
-        }
-
         private void OnDisable()
         {
             _controlWalkAndMusicAction.performed -= ControlWalkAndMusic;
+
+            _enableLookAction.performed -= OnEnableLookPerformed;
+            _enableLookAction.canceled -= OnEnableLookCanceled;
+
+            _lookAction.performed -= HandleLookInput;
+            _lookAction.canceled -= HandleLookInput;
         }
 
         private void OnEnableLookPerformed(InputAction.CallbackContext obj)
@@ -67,11 +73,8 @@ namespace ClassicHotel
                 case PlayerState.StandStill:
                     _currentState = PlayerState.WalkAndListenToMusic;
 
-                    _enableLookAction.performed -= OnEnableLookPerformed;
-                    _enableLookAction.canceled -= OnEnableLookCanceled;
-
-                    _lookAction.performed -= HandleLookInput;
-                    _lookAction.canceled -= HandleLookInput;
+                    _lookAction.Disable();
+                    _enableLookAction.Disable();
 
                     _playerMover.StartMoving();
                     _musicPlayer.Play();
@@ -79,11 +82,8 @@ namespace ClassicHotel
                 case PlayerState.WalkAndListenToMusic:
                     _currentState = PlayerState.StandStill;
 
-                    _enableLookAction.performed += OnEnableLookPerformed;
-                    _enableLookAction.canceled += OnEnableLookCanceled;
-
-                    _lookAction.performed += HandleLookInput;
-                    _lookAction.canceled += HandleLookInput;
+                    _lookAction.Enable();
+                    _enableLookAction.Enable();
 
                     _playerMover.StopMoving();
                     _musicPlayer.Pause();
