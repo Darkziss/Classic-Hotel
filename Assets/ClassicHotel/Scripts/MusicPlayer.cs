@@ -17,6 +17,8 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip[] _clickAudioClips;
 
+        [SerializeField] private AudioClip[] _musicAudioClips;
+
         private bool _isPlaying;
 
         private const float NormalAmbienceVolume = 1f;
