@@ -52,14 +52,9 @@ namespace ClassicHotel
 
             _meshRenderer.sharedMaterials[ScreenMaterialIndex].color = Color.white;
 
-            if (_audioSource.time > 0f)
-            {
-                _audioSource.UnPause();
-            }
-            else
-            {
-                _audioSource.Play();
-            }
+            int index = Random.Range(0, _musicAudioClips.Length);
+            _audioSource.clip = _musicAudioClips[index];
+            _audioSource.Play();
 
             _ambienceAudioSource.volume = MuffledAmbienceVolume;
         }
