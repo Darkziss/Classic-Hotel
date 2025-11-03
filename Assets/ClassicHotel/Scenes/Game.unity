@@ -23683,8 +23683,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 798965380}
     - target: {fileID: 8113957446932468401, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
-      propertyPath: m_audioClip
-      value: 
+      propertyPath: Loop
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
