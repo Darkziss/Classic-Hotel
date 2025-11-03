@@ -21,6 +21,9 @@ namespace ClassicHotel
 
         private bool _isPlaying;
 
+        private const float MinStartAudioDelta = 0.01f;
+        private const float MinEndAudioDelta = 1f;
+
         private const float NormalAmbienceVolume = 1f;
         private const float MuffledAmbienceVolume = 0.3f;
 
@@ -52,9 +55,19 @@ namespace ClassicHotel
 
             _meshRenderer.sharedMaterials[ScreenMaterialIndex].color = Color.white;
 
-            int index = Random.Range(0, _musicAudioClips.Length);
-            _audioSource.clip = _musicAudioClips[index];
-            _audioSource.Play();
+            if (_audioSource.time < MinStartAudioDelta)
+            {
+                _audioSource.Play();
+            }
+            else if (_audioSource.clip.length - _audioSource.time > MinEndAudioDelta)
+            {
+                _audioSource.UnPause();
+            }
+            else
+            {
+                ChangeMusicToRandom();
+                _audioSource.Play();
+            }
 
             _ambienceAudioSource.volume = MuffledAmbienceVolume;
         }
@@ -83,6 +96,12 @@ namespace ClassicHotel
 
             _clickAudioSource.clip = _clickAudioClips[clickClipIndex];
             _clickAudioSource.Play();
+        }
+
+        private void ChangeMusicToRandom()
+        {
+            int index = Random.Range(1, _musicAudioClips.Length);
+            _audioSource.clip = _musicAudioClips[index];
         }
     }
 }
