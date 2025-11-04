@@ -32,6 +32,9 @@ namespace ClassicHotel
 
         private const int FirstTrackPlaytime = 10;
 
+        private const float RandomTrackMinPlaytime = 7f;
+        private const float RandomTrackMaxPlaytime = 12f;
+
         private const float NormalAmbienceVolume = 1f;
         private const float MuffledAmbienceVolume = 0.3f;
 
@@ -109,7 +112,9 @@ namespace ClassicHotel
         private void SetRandomTrackAndPlay()
         {
             int index = Random.Range(0, _musicTracks.Length);
-            SetTrackAndPlay(_musicTracks[index], FirstTrackPlaytime);
+            _targetPlaytime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
+
+            SetTrackAndPlay(_musicTracks[index], _targetPlaytime);
         }
 
         private void SetTrackAndPlay(AudioClip track, float duration)
@@ -132,7 +137,7 @@ namespace ClassicHotel
         {
             _audioSource.UnPause();
 
-            _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(FirstTrackPlaytime));
+            _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime));
         }
 
         private IEnumerator WaitForEndOfCurrentTrack(float duration)
