@@ -101,7 +101,7 @@ namespace ClassicHotel
 
         private void ChangeMusicToRandom()
         {
-            int index = Random.Range(1, _musicTracks.Length);
+            int index = UnityRandom.Range(0, _musicTracks.Length);
             _audioSource.clip = _musicTracks[index];
         }
     }
