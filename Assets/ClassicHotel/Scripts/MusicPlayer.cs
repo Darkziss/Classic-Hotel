@@ -53,6 +53,14 @@ namespace ClassicHotel
             }
         }
 
+        private void LateUpdate()
+        {
+            if (_isPlaying && _currentPlaytime < _targetPlaytime)
+            {
+                _currentPlaytime += Time.deltaTime;
+            }
+        }
+
         public void Play()
         {
             if (_isPlaying)
@@ -112,15 +120,18 @@ namespace ClassicHotel
         private void SetRandomTrackAndPlay()
         {
             int index = Random.Range(0, _musicTracks.Length);
-            _targetPlaytime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
+            float playtime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
 
-            SetTrackAndPlay(_musicTracks[index], _targetPlaytime);
+            SetTrackAndPlay(_musicTracks[index], playtime);
         }
 
         private void SetTrackAndPlay(AudioClip track, float duration)
         {
             _audioSource.clip = track;
             _audioSource.Play();
+
+            _currentPlaytime = 0f;
+            _targetPlaytime = duration;
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(duration));
         }
@@ -137,7 +148,7 @@ namespace ClassicHotel
         {
             _audioSource.UnPause();
 
-            _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime));
+            _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime - _currentPlaytime));
         }
 
         private IEnumerator WaitForEndOfCurrentTrack(float duration)
