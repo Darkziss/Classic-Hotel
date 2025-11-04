@@ -18,6 +18,7 @@ namespace ClassicHotel
         [SerializeField] private AudioClip[] _clickAudioClips;
 
         [SerializeField] private AudioClip[] _musicAudioClips;
+        [SerializeField] private AudioClip[] _musicTracks;
 
         private bool _isPlaying;
 
@@ -100,8 +101,8 @@ namespace ClassicHotel
 
         private void ChangeMusicToRandom()
         {
-            int index = Random.Range(1, _musicAudioClips.Length);
-            _audioSource.clip = _musicAudioClips[index];
+            int index = Random.Range(1, _musicTracks.Length);
+            _audioSource.clip = _musicTracks[index];
         }
     }
 }
