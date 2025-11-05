@@ -30,6 +30,8 @@ namespace ClassicHotel
 
         private Coroutine _waitCoroutine;
 
+        private float CurrentPlaybackPosition => (float)_audioSource.timeSamples / _audioSource.clip.frequency;
+
         private const int FirstTrackPlaytime = 10;
 
         private const float RandomTrackMinPlaytime = 7f;
@@ -53,14 +55,6 @@ namespace ClassicHotel
             }
         }
 
-        private void LateUpdate()
-        {
-            if (_isPlaying && _currentPlaytime < _targetPlaytime)
-            {
-                _currentPlaytime += Time.deltaTime;
-            }
-        }
-
         public void Play()
         {
             if (_isPlaying)
@@ -72,7 +66,7 @@ namespace ClassicHotel
 
             PlayRandomClickSound();
 
-            if (_audioSource.time > 0f)
+            if (_currentPlaytime > 0f)
             {
                 UnPauseCurrentTrack();
             }
@@ -97,6 +91,7 @@ namespace ClassicHotel
 
             PlayRandomClickSound();
 
+            _currentPlaytime = CurrentPlaybackPosition;
             PauseCurrentTrack();
 
             _ambienceAudioSource.volume = NormalAmbienceVolume;
