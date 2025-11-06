@@ -33,6 +33,7 @@ namespace ClassicHotel
         private float CurrentPlaybackPosition => (float)_audioSource.timeSamples / _audioSource.clip.frequency;
 
         private const int FirstTrackPlaytime = 10;
+        private const float FirstTrackStartTime = 0f;
 
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
@@ -109,20 +110,22 @@ namespace ClassicHotel
 
         private void SetFirstTrackAndPlay()
         {
-            SetTrackAndPlay(_firstMusicTrack, FirstTrackPlaytime);
+            SetTrackAndPlay(_firstMusicTrack, FirstTrackPlaytime, FirstTrackStartTime);
         }
 
         private void SetRandomTrackAndPlay()
         {
             int index = Random.Range(0, _musicTracks.Length);
             float playtime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
+            float startTime = Random.Range(0f, _musicTracks[index].length - playtime);
 
-            SetTrackAndPlay(_musicTracks[index], playtime);
+            SetTrackAndPlay(_musicTracks[index], playtime, startTime);
         }
 
-        private void SetTrackAndPlay(AudioClip track, float duration)
+        private void SetTrackAndPlay(AudioClip track, float duration, float startTime)
         {
             _audioSource.clip = track;
+            _audioSource.time = startTime;
             _audioSource.Play();
 
             _currentPlaytime = 0f;
