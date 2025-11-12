@@ -97,7 +97,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 80ca17d59802a634aaff2cade5134275, type: 2}
-  m_LightingSettings: {fileID: 283395537}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6cae9549c399d754facae6c85a06f4f7, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -546,6 +546,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.9013e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 5.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.618e-42
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -955,6 +971,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 8e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 5.2e-42
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1156,6 +1184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.2643817e+30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1217,6 +1249,10 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.205889e+30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1527,6 +1563,14 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: -2.494189e+17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 5.8656877e-27
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2812,6 +2856,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -4.0364582e+29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2873,6 +2925,22 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.5145515e+25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 3.6e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.814e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3008,70 +3076,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2623438484711539108, guid: 3400b39db9d69954fb36120c15d8fa02, type: 3}
   m_PrefabInstance: {fileID: 456155479}
   m_PrefabAsset: {fileID: 0}
---- !u!850595691 &283395537
-LightingSettings:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 6
-  m_GIWorkflowMode: 1
-  m_EnableBakedLightmaps: 1
-  m_EnableRealtimeLightmaps: 0
-  m_RealtimeEnvironmentLighting: 1
-  m_BounceScale: 1
-  m_AlbedoBoost: 1
-  m_IndirectOutputScale: 0.8
-  m_UsingShadowmask: 1
-  m_BakeBackend: 2
-  m_LightmapMaxSize: 1024
-  m_BakeResolution: 40
-  m_Padding: 2
-  m_LightmapCompression: 3
-  m_AO: 1
-  m_AOMaxDistance: 1
-  m_CompAOExponent: 0.8
-  m_CompAOExponentDirect: 0
-  m_ExtractAO: 0
-  m_MixedBakeMode: 2
-  m_LightmapsBakeMode: 1
-  m_FilterMode: 1
-  m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000, type: 0}
-  m_ExportTrainingData: 0
-  m_TrainingDataDestination: TrainingData
-  m_RealtimeResolution: 2
-  m_ForceWhiteAlbedo: 0
-  m_ForceUpdates: 0
-  m_FinalGather: 0
-  m_FinalGatherRayCount: 256
-  m_FinalGatherFiltering: 1
-  m_PVRCulling: 1
-  m_PVRSampling: 1
-  m_PVRDirectSampleCount: 32
-  m_PVRSampleCount: 512
-  m_PVREnvironmentSampleCount: 256
-  m_PVREnvironmentReferencePointCount: 2048
-  m_LightProbeSampleCountMultiplier: 4
-  m_PVRBounces: 2
-  m_PVRMinBounces: 2
-  m_PVREnvironmentImportanceSampling: 1
-  m_PVRFilteringMode: 1
-  m_PVRDenoiserTypeDirect: 1
-  m_PVRDenoiserTypeIndirect: 1
-  m_PVRDenoiserTypeAO: 1
-  m_PVRFilterTypeDirect: 0
-  m_PVRFilterTypeIndirect: 0
-  m_PVRFilterTypeAO: 0
-  m_PVRFilteringGaussRadiusDirect: 2
-  m_PVRFilteringGaussRadiusIndirect: 5
-  m_PVRFilteringGaussRadiusAO: 2
-  m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-  m_PVRFilteringAtrousPositionSigmaIndirect: 2
-  m_PVRFilteringAtrousPositionSigmaAO: 1
-  m_PVRTiledBaking: 0
-  m_NumRaysToShootPerTexel: -1
-  m_RespectSceneVisibilityWhenBakingGI: 0
 --- !u!1001 &284811713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4189,6 +4193,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0.1484375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.54e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0.04296875
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4250,6 +4266,22 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.2625441e+30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 6.3e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.216e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4725,6 +4757,22 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.4e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.02e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6820,6 +6868,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0.34375
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 8.04e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.61e-43
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6923,6 +6983,10 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -2.0963257e+29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8484,6 +8548,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.6817e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1e-45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8669,6 +8745,14 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.666123e+17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 4.5905e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9083,6 +9167,22 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -9.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11948,6 +12048,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 4.591773e-39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: -9.1835e-41
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12828,6 +12936,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: -1.9472101e+21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 1.9874484e-19
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.4007488e-20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13638,6 +13762,14 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.561202e-39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: -9.1835e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15801,6 +15933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 6.330878e+16
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16105,6 +16241,14 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 8.862e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16534,6 +16678,10 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.7408919e+30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18060,6 +18208,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -1.6936567e+29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 3.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.744e-42
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18742,6 +18906,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -6.9e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.3877232e-38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18803,6 +18975,18 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 3.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.603e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18989,6 +19173,22 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 3.67342e-40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 4.5e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8.753e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20371,6 +20571,18 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 3.923636e-39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 2.2935594e+30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 5.4477173e+37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22347,6 +22559,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 8.04e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.7e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22718,6 +22942,22 @@ PrefabInstance:
     - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
       propertyPath: m_Name
       value: Lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -9.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
