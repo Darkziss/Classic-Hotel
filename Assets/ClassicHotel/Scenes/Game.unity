@@ -1564,13 +1564,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lamp
       objectReference: {fileID: 0}
-    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
-      propertyPath: m_BoundingSphereOverride.y
-      value: -2.494189e+17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7571079901814094507, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
-      propertyPath: m_BoundingSphereOverride.z
-      value: 5.8656877e-27
+    - target: {fileID: 1775418294559170033, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
