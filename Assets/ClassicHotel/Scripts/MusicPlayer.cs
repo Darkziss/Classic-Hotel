@@ -16,6 +16,8 @@ namespace ClassicHotel
         [SerializeField] private Color32 _screenEnabledColor = Color.white;
         [SerializeField] private Color32 _screenDisabledColor = Color.black;
 
+        [SerializeField] private AudioClip _musicChangedSound;
+
         [SerializeField] private AudioClip[] _clickAudioClips;
 
         [SerializeField] private AudioClip _firstMusicTrack;
@@ -119,7 +121,7 @@ namespace ClassicHotel
             float playtime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
             float startTime = Random.Range(0f, _musicTracks[index].length - playtime);
 
-            SetTrackAndPlay(_musicTracks[index], playtime, startTime);
+            StartCoroutine(PlayChangedMusicSoundAndSwitchMusic(_musicTracks[index], playtime, startTime));
         }
 
         private void SetTrackAndPlay(AudioClip track, float duration, float startTime)
@@ -147,6 +149,16 @@ namespace ClassicHotel
             _audioSource.UnPause();
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime - _currentPlaytime));
+        }
+
+        private IEnumerator PlayChangedMusicSoundAndSwitchMusic(AudioClip track, float playtime, float startTime)
+        {
+            _audioSource.Stop();
+            _audioSource.PlayOneShot(_musicChangedSound);
+
+            yield return new WaitForSeconds(_musicChangedSound.length);
+
+            SetTrackAndPlay(track, playtime, startTime);
         }
 
         private IEnumerator WaitForEndOfCurrentTrack(float duration)
