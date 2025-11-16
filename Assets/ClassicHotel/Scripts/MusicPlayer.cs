@@ -16,6 +16,8 @@ namespace ClassicHotel
         [SerializeField] private Color32 _screenEnabledColor = Color.white;
         [SerializeField] private Color32 _screenDisabledColor = Color.black;
 
+        [SerializeField] private AudioClip _scrollStepSound;
+
         [SerializeField] private AudioClip[] _clickAudioClips;
 
         [SerializeField] private AudioClip _firstMusicTrack;
@@ -31,6 +33,11 @@ namespace ClassicHotel
         private Coroutine _waitCoroutine;
 
         private float CurrentPlaybackPosition => (float)_audioSource.timeSamples / _audioSource.clip.frequency;
+
+        private const int MinScrolls = 1;
+        private const int MaxScrolls = 4;
+
+        private const float ScrollStepSoundVolumeScale = 2f;
 
         private const int FirstTrackPlaytime = 10;
         private const float FirstTrackStartTime = 0f;
@@ -119,7 +126,7 @@ namespace ClassicHotel
             float playtime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
             float startTime = Random.Range(0f, _musicTracks[index].length - playtime);
 
-            SetTrackAndPlay(_musicTracks[index], playtime, startTime);
+            StartCoroutine(PlayScrollStepSoundsAndChangeMusic(_musicTracks[index], playtime, startTime));
         }
 
         private void SetTrackAndPlay(AudioClip track, float duration, float startTime)
@@ -147,6 +154,24 @@ namespace ClassicHotel
             _audioSource.UnPause();
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime - _currentPlaytime));
+        }
+
+        private IEnumerator PlayScrollStepSoundsAndChangeMusic(AudioClip track, float playtime, float startTime)
+        {
+            int count = Random.Range(MinScrolls, MaxScrolls);
+            const float AdditionalDelay = 0.1f;
+            WaitForSeconds delay = new(_scrollStepSound.length + AdditionalDelay);
+
+            _audioSource.Stop();
+
+            for (int i = 0; i < count; i++)
+            {
+                _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
+
+                yield return delay;
+            }
+
+            SetTrackAndPlay(track, playtime, startTime);
         }
 
         private IEnumerator WaitForEndOfCurrentTrack(float duration)
