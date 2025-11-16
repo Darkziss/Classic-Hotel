@@ -331,7 +331,7 @@ MonoBehaviour:
   _screenDisabledColor:
     serializedVersion: 2
     rgba: 4278190080
-  _musicChangedSound: {fileID: 8300000, guid: 3cb3250f5ee4a9a4ab0e59cb95b73a4e, type: 3}
+  _scrollStepSound: {fileID: 8300000, guid: 256fe54b33e71474a873bb3a6dc824b3, type: 3}
   _clickAudioClips:
   - {fileID: 8300000, guid: f1721f16f5f1bdb42bed6da73ce0816f, type: 3}
   - {fileID: 8300000, guid: a3e95fcc9b201aa4da20da6c22b82300, type: 3}
