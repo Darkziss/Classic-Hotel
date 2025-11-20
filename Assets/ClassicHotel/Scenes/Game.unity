@@ -23871,6 +23871,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 589425351}
     m_Modifications:
+    - target: {fileID: 4750857976781909548, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff7967778eb9f4c46942e03a99d01ea1, type: 2}
     - target: {fileID: 5883210691413103939, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
