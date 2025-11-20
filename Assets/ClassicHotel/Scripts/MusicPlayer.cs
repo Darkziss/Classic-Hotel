@@ -22,6 +22,8 @@ namespace ClassicHotel
 
         private bool _isPlaying;
 
+        private int _tracksPlayed;
+
         private float _currentPlaytime;
         private float _targetPlaytime;
 
@@ -166,6 +168,7 @@ namespace ClassicHotel
 
             yield return _waitTime;
 
+            _tracksPlayed++;
             SetRandomTrackAndPlay();
         }
     }
