@@ -49,6 +49,11 @@ namespace ClassicHotel
 
         private void OnValidate()
         {
+            if (_meshRenderer == null)
+            {
+                _meshRenderer = GetComponent<MeshRenderer>();
+            }
+            
             if (_audioSource == null)
             {
                 _audioSource = GetComponent<AudioSource>();
