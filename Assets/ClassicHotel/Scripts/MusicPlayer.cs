@@ -13,9 +13,6 @@ namespace ClassicHotel
         
         [SerializeField] private AudioSource _ambienceAudioSource;
 
-        [SerializeField] private Color32 _screenEnabledColor = Color.white;
-        [SerializeField] private Color32 _screenDisabledColor = Color.black;
-
         [SerializeField] private AudioClip _scrollStepSound;
 
         [SerializeField] private AudioClip[] _clickAudioClips;
@@ -48,15 +45,8 @@ namespace ClassicHotel
         private const float NormalAmbienceVolume = 1f;
         private const float MuffledAmbienceVolume = 0.3f;
 
-        private const int ScreenMaterialIndex = 1;
-
         private void OnValidate()
         {
-            if (_meshRenderer == null)
-            {
-                _meshRenderer = GetComponent<MeshRenderer>();
-            }
-
             if (_audioSource == null)
             {
                 _audioSource = GetComponent<AudioSource>();
@@ -84,8 +74,6 @@ namespace ClassicHotel
             }
 
             _ambienceAudioSource.volume = MuffledAmbienceVolume;
-
-            _meshRenderer.sharedMaterials[ScreenMaterialIndex].color = Color.white;
         }
 
         public void Pause()
@@ -103,8 +91,6 @@ namespace ClassicHotel
             PauseCurrentTrack();
 
             _ambienceAudioSource.volume = NormalAmbienceVolume;
-            
-            _meshRenderer.sharedMaterials[ScreenMaterialIndex].color = _screenDisabledColor;
         }
 
         private void PlayRandomClickSound()
