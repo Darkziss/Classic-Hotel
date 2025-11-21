@@ -34,8 +34,6 @@ namespace ClassicHotel
 
         private Coroutine _waitCoroutine;
 
-        private float CurrentPlaybackPosition => (float)_audioSource.timeSamples / _audioSource.clip.frequency;
-
         private const int MinScrolls = 1;
         private const int MaxScrolls = 4;
 
@@ -73,6 +71,14 @@ namespace ClassicHotel
         {
             _scaryEventTriggerTrackCount = Random.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = Random.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
+        private void Update()
+        {
+            if (_isPlaying)
+            {
+                _currentPlaytime += Time.deltaTime;
+            }
+            
+            }
         }
 
         public void Play()
@@ -109,7 +115,6 @@ namespace ClassicHotel
 
             PlayRandomClickSound();
 
-            _currentPlaytime = CurrentPlaybackPosition;
             PauseCurrentTrack();
 
             _ambienceAudioSource.volume = NormalAmbienceVolume;
