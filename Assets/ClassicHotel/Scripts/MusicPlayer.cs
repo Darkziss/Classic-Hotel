@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using PrimeTween;
+using UnityRandom = UnityEngine.Random;
 
 namespace ClassicHotel
 {
@@ -20,15 +23,22 @@ namespace ClassicHotel
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
 
+        [SerializeField] private Material _monsterMaterial;
+
         private bool _isPlaying;
 
         private int _tracksPlayed;
+
+        private bool _isScaryEventTriggered;
 
         private int _scaryEventTriggerTrackCount;
         private float _scaryEventTrackStartTime;
 
         private float _currentPlaytime;
         private float _targetPlaytime;
+
+        private Material[] _originalMaterials;
+        private Material[] _materialsWithMonster;
 
         private readonly MutableWaitForSeconds _waitTime = new();
 
@@ -43,16 +53,23 @@ namespace ClassicHotel
         private const float FirstTrackStartTime = 0f;
 
         private const int ScaryEventTriggerTrackMinCount = 2;
-        private const int ScaryEventTriggerTrackMaxCount = 5;
+        private const int ScaryEventTriggerTrackMaxCount = 4;
 
         private const float ScaryEventTrackMinStartTime = 3;
         private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
+
+        private const float ScaryEventAudioPitch = 0.09f;
+        private const float ScaryEventAudioPitchDuration = 1f;
 
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
 
         private const float NormalAmbienceVolume = 1f;
         private const float MuffledAmbienceVolume = 0.3f;
+
+        private const int ScreenMaterialIndex = 1;
+        private const float MonsterMaterialXOffset = 1.29f;
+        private const float MonsterArrivingDuration = 2f;
 
         private void OnValidate()
         {
@@ -69,8 +86,18 @@ namespace ClassicHotel
 
         private void Start()
         {
-            _scaryEventTriggerTrackCount = Random.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
-            _scaryEventTrackStartTime = Random.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
+            _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
+            _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
+
+            _originalMaterials = new Material[_meshRenderer.materials.Length];
+            _materialsWithMonster = new Material[_meshRenderer.materials.Length];
+
+            Array.Copy(_meshRenderer.materials, _originalMaterials, _meshRenderer.materials.Length);
+            Array.Copy(_meshRenderer.materials, _materialsWithMonster, _meshRenderer.materials.Length);
+
+            _materialsWithMonster[ScreenMaterialIndex] = new Material(_monsterMaterial);
+        }
+
         private void Update()
         {
             if (_isPlaying)
@@ -78,6 +105,22 @@ namespace ClassicHotel
                 _currentPlaytime += Time.deltaTime;
             }
             
+            if (!_isPlaying || _isScaryEventTriggered || _tracksPlayed != _scaryEventTriggerTrackCount)
+            {
+                return;
+            }
+
+            const float MinDelta = 0.1f;
+            if (_scaryEventTrackStartTime - _currentPlaytime <= MinDelta)
+            {
+                _isScaryEventTriggered = true;
+
+                _meshRenderer.materials = _materialsWithMonster;
+
+                Sequence.Create()
+                    .Group(Tween.MaterialMainTextureOffset(_materialsWithMonster[ScreenMaterialIndex], Vector2.right * MonsterMaterialXOffset, 
+                        MonsterArrivingDuration))
+                    .Group(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration));
             }
         }
 
@@ -122,7 +165,7 @@ namespace ClassicHotel
 
         private void PlayRandomClickSound()
         {
-            int clickClipIndex = Random.Range(0, _clickAudioClips.Length);
+            int clickClipIndex = UnityRandom.Range(0, _clickAudioClips.Length);
 
             _clickAudioSource.clip = _clickAudioClips[clickClipIndex];
             _clickAudioSource.Play();
@@ -135,9 +178,9 @@ namespace ClassicHotel
 
         private void SetRandomTrackAndPlay()
         {
-            int index = Random.Range(0, _musicTracks.Length);
-            float playtime = Random.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
-            float startTime = Random.Range(0f, _musicTracks[index].length - playtime);
+            int index = UnityRandom.Range(0, _musicTracks.Length);
+            float playtime = UnityRandom.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
+            float startTime = UnityRandom.Range(0f, _musicTracks[index].length - playtime);
 
             StartCoroutine(PlayScrollStepSoundsAndChangeMusic(_musicTracks[index], playtime, startTime));
         }
@@ -171,7 +214,7 @@ namespace ClassicHotel
 
         private IEnumerator PlayScrollStepSoundsAndChangeMusic(AudioClip track, float playtime, float startTime)
         {
-            int count = Random.Range(MinScrolls, MaxScrolls);
+            int count = UnityRandom.Range(MinScrolls, MaxScrolls);
             const float AdditionalDelay = 0.1f;
             WaitForSeconds delay = new(_scrollStepSound.length + AdditionalDelay);
 
