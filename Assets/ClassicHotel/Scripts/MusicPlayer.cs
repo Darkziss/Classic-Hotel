@@ -24,6 +24,9 @@ namespace ClassicHotel
 
         private int _tracksPlayed;
 
+        private int _scaryEventTriggerTrackCount;
+        private float _scaryEventTrackStartTime;
+
         private float _currentPlaytime;
         private float _targetPlaytime;
 
@@ -40,6 +43,12 @@ namespace ClassicHotel
 
         private const int FirstTrackPlaytime = 10;
         private const float FirstTrackStartTime = 0f;
+
+        private const int ScaryEventTriggerTrackMinCount = 2;
+        private const int ScaryEventTriggerTrackMaxCount = 5;
+
+        private const float ScaryEventTrackMinStartTime = 3;
+        private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
 
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
@@ -58,6 +67,12 @@ namespace ClassicHotel
             {
                 _audioSource = GetComponent<AudioSource>();
             }
+        }
+
+        private void Start()
+        {
+            _scaryEventTriggerTrackCount = Random.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
+            _scaryEventTrackStartTime = Random.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
         }
 
         public void Play()
