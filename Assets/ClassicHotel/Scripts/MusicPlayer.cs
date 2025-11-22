@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using PrimeTween;
@@ -23,8 +22,6 @@ namespace ClassicHotel
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
 
-        [SerializeField] private Material _monsterMaterial;
-
         private bool _isPlaying;
 
         private int _tracksPlayed;
@@ -36,9 +33,6 @@ namespace ClassicHotel
 
         private float _currentPlaytime;
         private float _targetPlaytime;
-
-        private Material[] _originalMaterials;
-        private Material[] _materialsWithMonster;
 
         private readonly MutableWaitForSeconds _waitTime = new();
 
@@ -52,13 +46,13 @@ namespace ClassicHotel
         private const int FirstTrackPlaytime = 10;
         private const float FirstTrackStartTime = 0f;
 
-        private const int ScaryEventTriggerTrackMinCount = 2;
-        private const int ScaryEventTriggerTrackMaxCount = 4;
+        private const int ScaryEventTriggerTrackMinCount = 1;
+        private const int ScaryEventTriggerTrackMaxCount = 2;
 
         private const float ScaryEventTrackMinStartTime = 3;
         private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
 
-        private const float ScaryEventAudioPitch = 0.09f;
+        private const float ScaryEventAudioPitch = 0f;
         private const float ScaryEventAudioPitchDuration = 1f;
 
         private const float RandomTrackMinPlaytime = 7f;
@@ -68,8 +62,6 @@ namespace ClassicHotel
         private const float MuffledAmbienceVolume = 0.3f;
 
         private const int ScreenMaterialIndex = 1;
-        private const float MonsterMaterialXOffset = 1.29f;
-        private const float MonsterArrivingDuration = 2f;
 
         private void OnValidate()
         {
@@ -88,16 +80,6 @@ namespace ClassicHotel
         {
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
-
-            int length = _meshRenderer.sharedMaterials.Length;
-
-            _originalMaterials = new Material[length];
-            _materialsWithMonster = new Material[length];
-
-            Array.Copy(_meshRenderer.sharedMaterials, _originalMaterials, length);
-            Array.Copy(_meshRenderer.sharedMaterials, _materialsWithMonster, length);
-
-            _materialsWithMonster[ScreenMaterialIndex] = new(_monsterMaterial);
         }
 
         private void Update()
@@ -117,12 +99,15 @@ namespace ClassicHotel
             {
                 _isScaryEventTriggered = true;
 
-                _meshRenderer.materials = _materialsWithMonster;
+                const Ease ScaryEventEase = Ease.OutCirc;
 
                 Sequence.Create()
-                    .Group(Tween.MaterialMainTextureOffset(_materialsWithMonster[ScreenMaterialIndex], Vector2.right * MonsterMaterialXOffset, 
-                        MonsterArrivingDuration))
-                    .Group(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration));
+                    .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
+                    .Group(Tween.MaterialColor(_meshRenderer.materials[ScreenMaterialIndex], Color.black, ScaryEventAudioPitchDuration, ScaryEventEase))
+                    .ChainCallback(Pause)
+                    .ChainCallback(_audioSource.Stop)
+                    .ChainCallback(() => _audioSource.pitch = 1f)
+                    .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
         }
 
@@ -240,6 +225,26 @@ namespace ClassicHotel
 
             _tracksPlayed++;
             SetRandomTrackAndPlay();
+        }
+
+        private IEnumerator StartRapidScreenFlicker()
+        {
+            const int Cycles = 30;
+            WaitForSeconds delay = new(0.03f);
+
+            _audioSource.pitch = 0.5f;
+
+            for (int i = 0; i < Cycles; i++)
+            {
+                _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
+
+                Color currentColor = i % 2 == 0 ? Color.black : Color.white;
+                _meshRenderer.materials[ScreenMaterialIndex].color = currentColor;
+
+                yield return delay;
+            }
+
+            _audioSource.pitch = 1f;
         }
     }
 }
