@@ -46,8 +46,8 @@ namespace ClassicHotel
         private const int FirstTrackPlaytime = 10;
         private const float FirstTrackStartTime = 0f;
 
-        private const int ScaryEventTriggerTrackMinCount = 1;
-        private const int ScaryEventTriggerTrackMaxCount = 2;
+        private const int ScaryEventTriggerTrackMinCount = 2;
+        private const int ScaryEventTriggerTrackMaxCount = 4;
 
         private const float ScaryEventTrackMinStartTime = 3;
         private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
