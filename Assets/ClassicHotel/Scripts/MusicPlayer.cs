@@ -89,13 +89,15 @@ namespace ClassicHotel
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
 
-            _originalMaterials = new Material[_meshRenderer.materials.Length];
-            _materialsWithMonster = new Material[_meshRenderer.materials.Length];
+            int length = _meshRenderer.sharedMaterials.Length;
 
-            Array.Copy(_meshRenderer.materials, _originalMaterials, _meshRenderer.materials.Length);
-            Array.Copy(_meshRenderer.materials, _materialsWithMonster, _meshRenderer.materials.Length);
+            _originalMaterials = new Material[length];
+            _materialsWithMonster = new Material[length];
 
-            _materialsWithMonster[ScreenMaterialIndex] = new Material(_monsterMaterial);
+            Array.Copy(_meshRenderer.sharedMaterials, _originalMaterials, length);
+            Array.Copy(_meshRenderer.sharedMaterials, _materialsWithMonster, length);
+
+            _materialsWithMonster[ScreenMaterialIndex] = new(_monsterMaterial);
         }
 
         private void Update()
