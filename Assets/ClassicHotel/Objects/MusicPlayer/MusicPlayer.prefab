@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff7967778eb9f4c46942e03a99d01ea1, type: 2}
     - target: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_Name
       value: MusicPlayer
@@ -325,12 +329,6 @@ MonoBehaviour:
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
   _ambienceAudioSource: {fileID: 0}
-  _screenEnabledColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  _screenDisabledColor:
-    serializedVersion: 2
-    rgba: 4278190080
   _scrollStepSound: {fileID: 8300000, guid: 256fe54b33e71474a873bb3a6dc824b3, type: 3}
   _clickAudioClips:
   - {fileID: 8300000, guid: f1721f16f5f1bdb42bed6da73ce0816f, type: 3}
@@ -350,3 +348,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0534a02bcb1043045b6bdbcfde67c492, type: 3}
   - {fileID: 8300000, guid: 01ae2778b1e5da740967fca642e04e63, type: 3}
   - {fileID: 8300000, guid: 20792c48cfff4904da9e696ccea3032d, type: 3}
+  _monsterMaterial: {fileID: 2100000, guid: d314476e9fc9eac47be0e9a77614a40e, type: 2}
