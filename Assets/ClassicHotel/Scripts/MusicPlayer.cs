@@ -41,6 +41,8 @@ namespace ClassicHotel
         private readonly Color EnabledEmissionColor = Color.white * EmissionIntensity;
         private readonly Color DisabledEmissionColor = Color.black * EmissionIntensity;
 
+        private Material ScreenMaterial => _meshRenderer.materials[ScreenMaterialIndex];
+
         private const int MinScrolls = 1;
         private const int MaxScrolls = 4;
 
@@ -114,8 +116,8 @@ namespace ClassicHotel
 
                 Sequence.Create()
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
-                    .Group(Tween.Custom(screenTween, (color) => _meshRenderer.materials[ScreenMaterialIndex].SetColor(ColorPropertyName, color)))
-                    .Group(Tween.Custom(screenEmissionTween, (color) => _meshRenderer.materials[ScreenMaterialIndex].SetColor(EmissionPropertyName, color)))
+                    .Group(Tween.Custom(screenTween, (color) => ScreenMaterial.SetColor(ColorPropertyName, color)))
+                    .Group(Tween.Custom(screenEmissionTween, (color) => ScreenMaterial.SetColor(EmissionPropertyName, color)))
                     .ChainCallback(Pause)
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
@@ -251,8 +253,8 @@ namespace ClassicHotel
 
                 Color currentColor = i % 2 == 0 ? Color.black : Color.white;
                 Color currentEmissionColor = i % 2 == 0 ? DisabledEmissionColor : EnabledEmissionColor;
-                _meshRenderer.materials[ScreenMaterialIndex].SetColor(ColorPropertyName, currentColor);
-                _meshRenderer.materials[ScreenMaterialIndex].SetColor(EmissionPropertyName, currentEmissionColor);
+                ScreenMaterial.SetColor(ColorPropertyName, currentColor);
+                ScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
 
                 yield return delay;
             }
