@@ -38,6 +38,11 @@ namespace ClassicHotel
 
         private Coroutine _waitCoroutine;
 
+        private readonly Color EnabledEmissionColor = Color.white * EmissionIntensity;
+        private readonly Color DisabledEmissionColor = Color.black * EmissionIntensity;
+
+        private Material ScreenMaterial => _meshRenderer.materials[ScreenMaterialIndex];
+
         private const int MinScrolls = 1;
         private const int MaxScrolls = 4;
 
@@ -62,6 +67,11 @@ namespace ClassicHotel
         private const float MuffledAmbienceVolume = 0.3f;
 
         private const int ScreenMaterialIndex = 1;
+        
+        private const string ColorPropertyName = "_BaseColor";
+        private const string EmissionPropertyName = "_EmissionColor";
+
+        private const float EmissionIntensity = 2.416924f;
 
         private void OnValidate()
         {
@@ -101,9 +111,13 @@ namespace ClassicHotel
 
                 const Ease ScaryEventEase = Ease.OutCirc;
 
+                TweenSettings<Color> screenTween = new(Color.white, Color.black, ScaryEventAudioPitchDuration, ScaryEventEase);
+                TweenSettings<Color> screenEmissionTween = new(EnabledEmissionColor, DisabledEmissionColor, ScaryEventAudioPitchDuration, ScaryEventEase);
+
                 Sequence.Create()
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
-                    .Group(Tween.MaterialColor(_meshRenderer.materials[ScreenMaterialIndex], Color.black, ScaryEventAudioPitchDuration, ScaryEventEase))
+                    .Group(Tween.Custom(screenTween, (color) => ScreenMaterial.SetColor(ColorPropertyName, color)))
+                    .Group(Tween.Custom(screenEmissionTween, (color) => ScreenMaterial.SetColor(EmissionPropertyName, color)))
                     .ChainCallback(Pause)
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
@@ -238,7 +252,9 @@ namespace ClassicHotel
                 _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
 
                 Color currentColor = i % 2 == 0 ? Color.black : Color.white;
-                _meshRenderer.materials[ScreenMaterialIndex].color = currentColor;
+                Color currentEmissionColor = i % 2 == 0 ? DisabledEmissionColor : EnabledEmissionColor;
+                ScreenMaterial.SetColor(ColorPropertyName, currentColor);
+                ScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
 
                 yield return delay;
             }
