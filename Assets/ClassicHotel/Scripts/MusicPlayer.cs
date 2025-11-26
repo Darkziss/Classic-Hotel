@@ -215,8 +215,8 @@ namespace ClassicHotel
         private IEnumerator PlayScrollStepSoundsAndChangeMusic(AudioClip track, float playtime, float startTime)
         {
             int count = UnityRandom.Range(MinScrolls, MaxScrolls);
-            const float AdditionalDelay = 0.1f;
-            WaitForSeconds delay = new(_scrollStepSound.length + AdditionalDelay);
+            const float ScrollDelay = 0.15f;
+            WaitForSeconds delay = new(ScrollDelay);
 
             _audioSource.Stop();
 
