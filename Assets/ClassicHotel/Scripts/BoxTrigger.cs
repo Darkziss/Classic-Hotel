@@ -23,11 +23,6 @@ namespace ClassicHotel
             }
         }
 
-        private void Awake()
-        {
-            TriggerEntered += () => Debug.LogError(gameObject.name);
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             TriggerEntered?.Invoke();
