@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
@@ -17,6 +16,11 @@ namespace ClassicHotel
 
         [ContextMenu(nameof(StartEnding))]
         private void StartEnding()
+        {
+            FlickerCorridorLights();
+        }
+
+        private void FlickerCorridorLights()
         {
             for (int i = 0; i < _lights.Length; i++)
             {
