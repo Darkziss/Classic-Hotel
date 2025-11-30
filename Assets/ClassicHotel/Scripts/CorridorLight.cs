@@ -49,6 +49,7 @@ namespace ClassicHotel
             MutableWaitForSeconds delay = new();
 
             delay.SetSeconds(startDelay);
+            yield return delay;
 
             for (int i = 0; i < flickerCount; i++)
             {
