@@ -30,6 +30,12 @@ namespace ClassicHotel
         private const int LightMaterialIndex = 0;
         private const string EmissionPropertyName = "_EmissionColor";
 
+        private void Start()
+        {
+            _originalIntensity = _light.intensity;
+            _originalEmissionColor = LightMaterial.GetColor(EmissionPropertyName);
+        }
+
         public void TriggerFlicker()
         {
             StartCoroutine(FlickerAnimation());
@@ -37,9 +43,6 @@ namespace ClassicHotel
 
         private IEnumerator FlickerAnimation()
         {
-            float originalIntensity = _light.intensity;
-            _originalEmissionColor = LightMaterial.GetColor(EmissionPropertyName);
-
             int flickerCount = UnityRandom.Range(MinFlickerCount, MaxFlickerCount);
             float startDelay = UnityRandom.Range(MinFlickerStartDelay, MaxFlickerStartDelay);
 
