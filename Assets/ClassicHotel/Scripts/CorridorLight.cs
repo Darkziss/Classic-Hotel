@@ -10,10 +10,10 @@ namespace ClassicHotel
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Light _light;
 
+        private Material _instancedMaterial;
+
         private float _originalIntensity;
         private Color _originalEmissionColor;
-
-        public Material LightMaterial => _renderer.materials[LightMaterialIndex];
 
         private const int MinFlickerCount = 3;
         private const int MaxFlickerCount = 8;
@@ -32,8 +32,10 @@ namespace ClassicHotel
 
         private void Start()
         {
+            _instancedMaterial = _renderer.materials[LightMaterialIndex];
+
             _originalIntensity = _light.intensity;
-            _originalEmissionColor = LightMaterial.GetColor(EmissionPropertyName);
+            _originalEmissionColor = _instancedMaterial.GetColor(EmissionPropertyName);
         }
 
         public void TriggerFlicker()
@@ -80,7 +82,7 @@ namespace ClassicHotel
             _light.intensity = intensity;
 
             Color emissionColor = emission ? _originalEmissionColor : Color.black;
-            LightMaterial.SetColor(EmissionPropertyName, emissionColor);
+            _instancedMaterial.SetColor(EmissionPropertyName, emissionColor);
         }
     }
 }
