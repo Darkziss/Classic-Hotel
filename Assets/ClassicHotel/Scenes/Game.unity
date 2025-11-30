@@ -20,9 +20,9 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.16981131, g: 0.096845515, b: 0, a: 1}
-  m_AmbientEquatorColor: {r: 0.3019608, g: 0.23670629, b: 0.2110706, a: 1}
-  m_AmbientGroundColor: {r: 0.36900002, g: 0.17941502, b: 0.12183959, a: 1}
+  m_AmbientSkyColor: {r: 0.08, g: 0.06769231, b: 0.055384617, a: 1}
+  m_AmbientEquatorColor: {r: 0.3, g: 0.23289473, b: 0.18157895, a: 1}
+  m_AmbientGroundColor: {r: 0.3, g: 0.18529412, b: 0.082352936, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
