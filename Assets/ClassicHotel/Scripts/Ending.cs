@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -9,6 +10,10 @@ namespace ClassicHotel
 
         [SerializeField] private CorridorLight[] _lights;
 
+        private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
+
+        private const float FlickerDelay = 5f;
+
         private void Start()
         {
             _endingTrigger.TriggerEntered += StartEnding;
@@ -17,7 +22,16 @@ namespace ClassicHotel
         [ContextMenu(nameof(StartEnding))]
         private void StartEnding()
         {
+            StartCoroutine(EndingSequence());
+        }
+
+        private IEnumerator EndingSequence()
+        {
             FlickerCorridorLights();
+
+            yield return _flickerDelay;
+
+            CorridorBlackout();
         }
 
         private void FlickerCorridorLights()
@@ -25,6 +39,14 @@ namespace ClassicHotel
             for (int i = 0; i < _lights.Length; i++)
             {
                 _lights[i].TriggerFlicker();
+            }
+        }
+
+        private void CorridorBlackout()
+        {
+            for (int i = 0; i < _lights.Length; i++)
+            {
+                _lights[i].DisableLamp();
             }
         }
 

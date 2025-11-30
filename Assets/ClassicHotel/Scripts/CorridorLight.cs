@@ -93,7 +93,7 @@ namespace ClassicHotel
 
         private void EnableLamp() => SetIntensityAndEmission(_originalIntensity, true);
 
-        private void DisableLamp() => SetIntensityAndEmission(0f, false);
+        public void DisableLamp() => SetIntensityAndEmission(0f, false);
 
         private void SetIntensityAndEmission(float intensity, bool emission)
         {
