@@ -9,6 +9,9 @@ namespace ClassicHotel
     {
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Light _light;
+        [SerializeField] private AudioSource _audioSource;
+
+        [SerializeField] private AudioClip[] _flickerSounds;
 
         private Material _instancedMaterial;
 
@@ -26,6 +29,9 @@ namespace ClassicHotel
 
         private const float DisabledMinDelay = 0.05f;
         private const float DisabledMaxDelay = 0.2f;
+
+        private const float FlickerMinPitch = 0.8f;
+        private const float FlickerMaxPitch = 1.2f;
 
         private const int LightMaterialIndex = 0;
         private const string EmissionPropertyName = "_EmissionColor";
@@ -57,6 +63,8 @@ namespace ClassicHotel
             {
                 DisableLamp();
 
+                PlayRandomFlickerSound();
+
                 float flickerDelay = UnityRandom.Range(DisabledMinDelay, DisabledMaxDelay);
 
                 delay.SetSeconds(flickerDelay);
@@ -64,13 +72,23 @@ namespace ClassicHotel
 
                 EnableLamp();
 
+                PlayRandomFlickerSound();
+
                 flickerDelay = UnityRandom.Range(EnabledMinDelay, EnabledMaxDelay);
-                
+
                 delay.SetSeconds(flickerDelay);
                 yield return delay;
             }
 
             EnableLamp();
+        }
+
+        private void PlayRandomFlickerSound()
+        {
+            int soundIndex = UnityRandom.Range(0, _flickerSounds.Length);
+
+            _audioSource.pitch = UnityRandom.Range(FlickerMinPitch, FlickerMaxPitch);
+            _audioSource.PlayOneShot(_flickerSounds[soundIndex]);
         }
 
         private void EnableLamp() => SetIntensityAndEmission(_originalIntensity, true);
