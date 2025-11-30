@@ -48,6 +48,12 @@ namespace ClassicHotel
             {
                 _lights[i].DisableLamp();
             }
+
+            RenderSettings.ambientSkyColor = Color.black;
+            RenderSettings.ambientEquatorColor = Color.black;
+            RenderSettings.ambientGroundColor = Color.black;
+
+            RenderSettings.fog = false;
         }
 
         [ContextMenu(nameof(FindAllCorridorLights))]
