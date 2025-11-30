@@ -10,18 +10,22 @@ namespace ClassicHotel
         [SerializeField] private MeshRenderer _renderer;
         [SerializeField] private Light _light;
 
+        private float _originalIntensity;
         private Color _originalEmissionColor;
 
         public Material LightMaterial => _renderer.materials[LightMaterialIndex];
 
         private const int MinFlickerCount = 3;
-        private const int MaxFlickerCount = 7;
+        private const int MaxFlickerCount = 8;
 
         private const float MinFlickerStartDelay = 0.05f;
         private const float MaxFlickerStartDelay = 0.3f;
 
-        private const float MinFlickerDelay = 0.05f;
-        private const float MaxFlickerDelay = 0.3f;
+        private const float EnabledMinDelay = 0.02f;
+        private const float EnabledMaxDelay = 0.08f;
+
+        private const float DisabledMinDelay = 0.05f;
+        private const float DisabledMaxDelay = 0.2f;
 
         private const int LightMaterialIndex = 0;
         private const string EmissionPropertyName = "_EmissionColor";
@@ -45,19 +49,27 @@ namespace ClassicHotel
 
             for (int i = 0; i < flickerCount; i++)
             {
-                bool isDisabled = i % 2 == 0;
-                float intensity = isDisabled ? 0f : originalIntensity;
+                DisableLamp();
 
-                SetIntensityAndEmission(intensity, isDisabled);
+                float flickerDelay = UnityRandom.Range(DisabledMinDelay, DisabledMaxDelay);
 
-                float flickerDelay = UnityRandom.Range(MinFlickerDelay, MaxFlickerDelay);
                 delay.SetSeconds(flickerDelay);
+                yield return delay;
 
+                EnableLamp();
+
+                flickerDelay = UnityRandom.Range(EnabledMinDelay, EnabledMaxDelay);
+                
+                delay.SetSeconds(flickerDelay);
                 yield return delay;
             }
 
-            SetIntensityAndEmission(originalIntensity, true);
+            EnableLamp();
         }
+
+        private void EnableLamp() => SetIntensityAndEmission(_originalIntensity, true);
+
+        private void DisableLamp() => SetIntensityAndEmission(0f, false);
 
         private void SetIntensityAndEmission(float intensity, bool emission)
         {
