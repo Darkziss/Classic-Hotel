@@ -17407,6 +17407,7 @@ MonoBehaviour:
   - {fileID: 1971060537}
   - {fileID: 1444319176}
   _playerStateMachine: {fileID: 589425353}
+  _musicPlayer: {fileID: 958851377}
   _lightSwitchAudioSource: {fileID: 752945734}
 --- !u!4 &1474351416 stripped
 Transform:
@@ -24369,10 +24370,7 @@ PrefabInstance:
       objectReference: {fileID: 798965380}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5883210691413103939, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1533896358}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
 --- !u!1001 &8817929083371682407

@@ -8,6 +8,7 @@ namespace ClassicHotel
     [RequireComponent(typeof(MeshFilter), typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour
     {
+        [SerializeField] private Transform _transform;
         [SerializeField] private MeshRenderer _meshRenderer;
 
         [SerializeField] private AudioSource _audioSource;
@@ -21,6 +22,8 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
+
+        [SerializeField] private Vector3 _flashlightRotation;
 
         private bool _isPlaying;
 
@@ -75,6 +78,11 @@ namespace ClassicHotel
 
         private void OnValidate()
         {
+            if (_transform == null)
+            {
+                _transform = transform;
+            }
+
             if (_meshRenderer == null)
             {
                 _meshRenderer = GetComponent<MeshRenderer>();
@@ -161,6 +169,13 @@ namespace ClassicHotel
             PauseCurrentTrack();
 
             _ambienceAudioSource.volume = NormalAmbienceVolume;
+        }
+
+        public void SwitchToFlashlightMode()
+        {
+            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, 1f);
+
+            Tween.LocalRotation(_transform, rotationSettings);
         }
 
         private void PlayRandomClickSound()

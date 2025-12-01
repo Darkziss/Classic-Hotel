@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6235e36c2219e34ea9e30250da23d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _transform: {fileID: 5883210691413103939}
   _meshRenderer: {fileID: 4750857976781909548}
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
@@ -348,3 +349,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0534a02bcb1043045b6bdbcfde67c492, type: 3}
   - {fileID: 8300000, guid: 01ae2778b1e5da740967fca642e04e63, type: 3}
   - {fileID: 8300000, guid: 20792c48cfff4904da9e696ccea3032d, type: 3}
+  _flashlightRotation: {x: 0, y: 175, z: 0}
