@@ -13,6 +13,8 @@ namespace ClassicHotel
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioSource _clickAudioSource;
+
+        [SerializeField] private Light _screenLight;
         
         [SerializeField] private AudioSource _ambienceAudioSource;
 
@@ -24,6 +26,7 @@ namespace ClassicHotel
         [SerializeField] private AudioClip[] _musicTracks;
 
         [SerializeField] private Vector3 _flashlightRotation;
+        [SerializeField] private float _screenLightIntensity;
 
         private bool _isPlaying;
 
@@ -173,9 +176,14 @@ namespace ClassicHotel
 
         public void SwitchToFlashlightMode()
         {
-            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, 1f);
+            const float Duration = 1f;
 
-            Tween.LocalRotation(_transform, rotationSettings);
+            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration);
+            TweenSettings<float> intensitySettings = new(_screenLightIntensity, Duration);
+
+            Sequence.Create()
+                .Chain(Tween.LocalRotation(_transform, rotationSettings))
+                .Group(Tween.LightIntensity(_screenLight, intensitySettings));
         }
 
         private void PlayRandomClickSound()
