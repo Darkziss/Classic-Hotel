@@ -66,6 +66,21 @@ namespace ClassicHotel
             _playerCameraRotator.DisableLook();
         }
 
+        public void SwitchToBlackoutMode()
+        {
+            _controlWalkAndMusicAction.Disable();
+
+            _lookAction.Enable();
+            _enableLookAction.Enable();
+
+            if (_playerMover.IsMoving)
+            {
+                _playerMover.StopMoving();
+            }
+
+            _musicPlayer.Pause();
+        }
+
         private void ControlWalkAndMusic(InputAction.CallbackContext context)
         {
             switch (_currentState)

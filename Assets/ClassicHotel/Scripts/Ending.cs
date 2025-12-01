@@ -10,11 +10,16 @@ namespace ClassicHotel
 
         [SerializeField] private CorridorLight[] _lights;
 
+        [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
 
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
+        private readonly WaitForSeconds _playerStopDelay = new(PlayerStopDelay);
+
         private const float FlickerDelay = 5f;
+
+        private const float PlayerStopDelay = 0.5f;
 
         private void Start()
         {
@@ -34,6 +39,10 @@ namespace ClassicHotel
             yield return _flickerDelay;
 
             CorridorBlackout();
+
+            yield return _playerStopDelay;
+
+            _playerStateMachine.SwitchToBlackoutMode();
         }
 
         private void FlickerCorridorLights()
