@@ -10,6 +10,8 @@ namespace ClassicHotel
 
         [SerializeField] private CorridorLight[] _lights;
 
+        [SerializeField] private AudioSource _lightSwitchAudioSource;
+
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
         private const float FlickerDelay = 5f;
@@ -54,6 +56,8 @@ namespace ClassicHotel
             RenderSettings.ambientGroundColor = Color.black;
 
             RenderSettings.fog = false;
+
+            _lightSwitchAudioSource.Play();
         }
 
         [ContextMenu(nameof(FindAllCorridorLights))]
