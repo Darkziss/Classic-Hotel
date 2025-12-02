@@ -176,10 +176,12 @@ namespace ClassicHotel
 
         public void SwitchToFlashlightMode()
         {
-            const float Duration = 1f;
+            const float Duration = 0.6f;
+            const Ease RotateEase = Ease.OutExpo;
+            const Ease IntensityEase = Ease.Default;
 
-            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration);
-            TweenSettings<float> intensitySettings = new(_screenLightIntensity, Duration);
+            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration, RotateEase);
+            TweenSettings<float> intensitySettings = new(_screenLightIntensity, Duration, IntensityEase);
 
             Sequence.Create()
                 .Chain(Tween.LocalRotation(_transform, rotationSettings))
