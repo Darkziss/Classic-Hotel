@@ -24365,6 +24365,14 @@ PrefabInstance:
       value: MusicPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 6929652917288438152, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: _flashlightMove.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6929652917288438152, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: _flashlightMove.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6929652917288438152, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
       propertyPath: _ambienceAudioSource
       value: 
       objectReference: {fileID: 798965380}

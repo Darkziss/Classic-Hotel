@@ -26,6 +26,8 @@ namespace ClassicHotel
         [SerializeField] private AudioClip[] _musicTracks;
 
         [SerializeField] private Vector3 _flashlightRotation;
+        [SerializeField] private Vector3 _flashlightMove;
+
         [SerializeField] private float _screenLightIntensity;
 
         private bool _isPlaying;
@@ -177,14 +179,20 @@ namespace ClassicHotel
         public void SwitchToFlashlightMode()
         {
             const float Duration = 0.6f;
+
             const Ease RotateEase = Ease.OutExpo;
+            const Ease PositionEase = Ease.OutBack;
+
             const Ease IntensityEase = Ease.Default;
 
             TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration, RotateEase);
+            TweenSettings<Vector3> positionSettings = new(_transform.localPosition + _flashlightMove, Duration, PositionEase);
+
             TweenSettings<float> intensitySettings = new(_screenLightIntensity, Duration, IntensityEase);
 
             Sequence.Create()
                 .Chain(Tween.LocalRotation(_transform, rotationSettings))
+                .Group(Tween.LocalPosition(_transform, positionSettings))
                 .Group(Tween.LightIntensity(_screenLight, intensitySettings));
         }
 
