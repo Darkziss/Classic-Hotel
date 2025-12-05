@@ -11,11 +11,11 @@ namespace ClassicHotel
 
         [SerializeField] private CorridorLight[] _lights;
 
+        [SerializeField] private Monster _monster;
+
         [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private MusicPlayer _musicPlayer;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
-
-        [SerializeField] private AudioSource _monster;
 
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
@@ -62,15 +62,7 @@ namespace ClassicHotel
 
             yield return _monsterSpawnDelay;
 
-            _monster.gameObject.SetActive(true);
-            _monster.Play();
-
-            const float ChaseDuration = 0.8f;
-            const Ease ChaseEase = Ease.InCirc;
-            TweenSettings<Vector3> chaseTweenSettings = new(_playerStateMachine.transform.position, ChaseDuration, ChaseEase);
-
-            Tween.Position(_monster.transform, chaseTweenSettings)
-                .OnComplete(_monster.Stop);
+            _monster.TriggerChase();
         }
 
         private void FlickerCorridorLights()

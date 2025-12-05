@@ -5780,11 +5780,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5954028673234247541, guid: 67804d7676226b549bb5a7155c84948e, type: 3}
   m_PrefabInstance: {fileID: 532003331}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &536199430 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1198644557474743757, guid: 0fb79b150cde0f64f8958a79ef56c260, type: 3}
-  m_PrefabInstance: {fileID: 6614451933732772775}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &537239738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17411,10 +17406,10 @@ MonoBehaviour:
   - {fileID: 2099824871}
   - {fileID: 1971060537}
   - {fileID: 1444319176}
+  _monster: {fileID: 1985260251}
   _playerStateMachine: {fileID: 589425353}
   _musicPlayer: {fileID: 958851377}
   _lightSwitchAudioSource: {fileID: 752945734}
-  _monster: {fileID: 536199430}
 --- !u!4 &1474351416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2339788736735537371, guid: 6238064db0178104fa5efa4d89261ecf, type: 3}
@@ -22399,6 +22394,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7339160854040558145, guid: 6b8c7a1c7d30ac34ea2ddb8532c1c474, type: 3}
   m_PrefabInstance: {fileID: 266488424}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1985260251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7454049187521237420, guid: 0fb79b150cde0f64f8958a79ef56c260, type: 3}
+  m_PrefabInstance: {fileID: 6614451933732772775}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3941f34408f334ca106807401c0d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1991602587 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2989829900575770433, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}
@@ -24326,6 +24332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7454049187521237420, guid: 0fb79b150cde0f64f8958a79ef56c260, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 589425351}
     - target: {fileID: 7933632156531132078, guid: 0fb79b150cde0f64f8958a79ef56c260, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.1
@@ -24369,10 +24379,6 @@ PrefabInstance:
     - target: {fileID: 8394259764373394886, guid: 0fb79b150cde0f64f8958a79ef56c260, type: 3}
       propertyPath: m_Name
       value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 8394259764373394886, guid: 0fb79b150cde0f64f8958a79ef56c260, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
