@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -14,17 +15,23 @@ namespace ClassicHotel
         [SerializeField] private MusicPlayer _musicPlayer;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
 
+        [SerializeField] private AudioSource _monster;
+
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
         private readonly WaitForSeconds _playerStopDelay = new(PlayerStopDelay);
 
         private readonly WaitForSeconds _musicPlayerRotateDelay = new(MusicPlayerRotateDelay);
 
+        private readonly WaitForSeconds _monsterSpawnDelay = new(MonsterSpawnDelay);
+
         private const float FlickerDelay = 5f;
 
         private const float PlayerStopDelay = 0.5f;
 
         private const float MusicPlayerRotateDelay = 1.2f;
+
+        private const float MonsterSpawnDelay = 3f;
 
         private void Start()
         {
@@ -52,6 +59,18 @@ namespace ClassicHotel
             yield return _musicPlayerRotateDelay;
 
             _musicPlayer.SwitchToFlashlightMode();
+
+            yield return _monsterSpawnDelay;
+
+            _monster.gameObject.SetActive(true);
+            _monster.Play();
+
+            const float ChaseDuration = 0.8f;
+            const Ease ChaseEase = Ease.InCirc;
+            TweenSettings<Vector3> chaseTweenSettings = new(_playerStateMachine.transform.position, ChaseDuration, ChaseEase);
+
+            Tween.Position(_monster.transform, chaseTweenSettings)
+                .OnComplete(_monster.Stop);
         }
 
         private void FlickerCorridorLights()
