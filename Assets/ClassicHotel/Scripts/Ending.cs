@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -15,6 +16,9 @@ namespace ClassicHotel
         [SerializeField] private AudioSource _lightSwitchAudioSource;
         [SerializeField] private Ambience _ambience;
         [SerializeField] private BoxTrigger _endPoint;
+        [SerializeField] private Transform _endDoor;
+        [SerializeField] private AudioSource _endDoorAudioSource;
+        [SerializeField] private Canvas _canvas;
 
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
@@ -26,6 +30,10 @@ namespace ClassicHotel
 
         private readonly WaitForSeconds _playerWalkEnableDelay = new(PlayerWalkEnableDelay);
 
+        private readonly WaitForSeconds _doorOpenDelay = new(DoorOpenDelay);
+
+        private readonly WaitForSeconds _endingScreenShowDelay = new(EndingScreenShowDelay);
+
         private const float FlickerDelay = 5f;
 
         private const float PlayerStopDelay = 0.5f;
@@ -36,11 +44,16 @@ namespace ClassicHotel
 
         private const float PlayerWalkEnableDelay = 2f;
 
+        private const float DoorOpenDelay = 1.2f;
+
+        private const float EndingScreenShowDelay = 0.5f;
+
         private void Start()
         {
             _endingTrigger.TriggerEntered += StartEnding;
 
             _endPoint.TriggerEntered += _playerStateMachine.ParalyzePlayer;
+            _endPoint.TriggerEntered += StartDoorEnding;
         }
 
         [ContextMenu(nameof(StartEnding))]
@@ -72,6 +85,27 @@ namespace ClassicHotel
             yield return _playerWalkEnableDelay;
 
             _playerStateMachine.EnableWalkInBlackoutMode();
+        }
+
+        private void StartDoorEnding()
+        {
+            StartCoroutine(DoorEndingSequence());
+        }
+
+        private IEnumerator DoorEndingSequence()
+        {
+            yield return _doorOpenDelay;
+
+            const float DoorRotationY = 125f;
+            float duration = _endDoorAudioSource.clip.length;
+            const Ease DoorEase = Ease.OutBack;
+
+            Sequence.Create()
+                .Chain(Tween.LocalRotation(_endDoor, Vector3.up * DoorRotationY, duration, DoorEase))
+                .ChainDelay(EndingScreenShowDelay)
+                .ChainCallback(() => _canvas.gameObject.SetActive(true));
+            
+            _endDoorAudioSource.Play();
         }
 
         private void FlickerCorridorLights()
