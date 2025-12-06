@@ -14,6 +14,7 @@ namespace ClassicHotel
         [SerializeField] private MusicPlayer _musicPlayer;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
         [SerializeField] private Ambience _ambience;
+        [SerializeField] private BoxTrigger _endPoint;
 
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
@@ -38,6 +39,8 @@ namespace ClassicHotel
         private void Start()
         {
             _endingTrigger.TriggerEntered += StartEnding;
+
+            _endPoint.TriggerEntered += _playerStateMachine.ParalyzePlayer;
         }
 
         [ContextMenu(nameof(StartEnding))]

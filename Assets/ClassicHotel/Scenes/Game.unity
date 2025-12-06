@@ -17428,6 +17428,7 @@ MonoBehaviour:
   _musicPlayer: {fileID: 958851377}
   _lightSwitchAudioSource: {fileID: 752945734}
   _ambience: {fileID: 798965382}
+  _endPoint: {fileID: 1898229343}
 --- !u!4 &1474351416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2339788736735537371, guid: 6238064db0178104fa5efa4d89261ecf, type: 3}
@@ -18537,7 +18538,7 @@ Transform:
   m_GameObject: {fileID: 1617553040}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: -2.1560001}
+  m_LocalPosition: {x: 0, y: 1.4, z: 99.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21727,6 +21728,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1898229342}
+  - component: {fileID: 1898229344}
+  - component: {fileID: 1898229343}
   m_Layer: 0
   m_Name: EndPoint
   m_TagString: Untagged
@@ -21749,6 +21752,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 522462128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898229343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898229341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c7ed1d0bcebd2e43b45206273f28857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1898229344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898229341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1900573673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2989829900575770433, guid: 24ee5b3a24af41b46ac91df9b4c3cc07, type: 3}

@@ -93,6 +93,21 @@ namespace ClassicHotel
             _controlWalkAndMusicAction.performed += ControlWalkDuringBlackout;
         }
 
+        public void ParalyzePlayer()
+        {
+            _currentState = PlayerState.StandStill;
+
+            _controlWalkAndMusicAction.Disable();
+
+            _lookAction.Disable();
+            _enableLookAction.Disable();
+
+            if (_playerMover.IsMoving)
+            {
+                _playerMover.StopMoving();
+            }
+        }
+
         private void ControlWalkAndMusic(InputAction.CallbackContext context)
         {
             switch (_currentState)
