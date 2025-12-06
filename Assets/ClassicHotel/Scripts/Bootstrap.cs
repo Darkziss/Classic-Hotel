@@ -9,6 +9,8 @@ namespace ClassicHotel
         [SerializeField] private bool _isCursorVisible = true;
         [SerializeField] private CursorLockMode _cursorLockMode;
 
+        [SerializeField] private Ambience _ambience;
+
         private const int DefaultTargetFps = 60;
 
         private void Awake()
@@ -17,6 +19,8 @@ namespace ClassicHotel
 
             Cursor.visible = _isCursorVisible;
             Cursor.lockState = _cursorLockMode;
+
+            _ambience.PlayNormalAmbience();
         }
     }
 }

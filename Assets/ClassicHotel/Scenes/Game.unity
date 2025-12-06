@@ -9350,6 +9350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798965381}
   - component: {fileID: 798965380}
+  - component: {fileID: 798965382}
   m_Layer: 0
   m_Name: Ambience
   m_TagString: Untagged
@@ -9469,6 +9470,21 @@ Transform:
   - {fileID: 404187498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &798965382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798965379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6989a39ceab94444aa7a1ea997c92b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioSource: {fileID: 798965380}
+  _normalAmbience: {fileID: 8300000, guid: d982d3bd49195434da3db3a0f21ce033, type: 3}
+  _blackoutAmbience: {fileID: 0}
 --- !u!1001 &802445252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12670,6 +12686,7 @@ MonoBehaviour:
   _targetFps: 60
   _isCursorVisible: 0
   _cursorLockMode: 1
+  _ambience: {fileID: 798965382}
 --- !u!4 &1030348574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7339160854040558145, guid: 6b8c7a1c7d30ac34ea2ddb8532c1c474, type: 3}
@@ -17406,7 +17423,6 @@ MonoBehaviour:
   - {fileID: 2099824871}
   - {fileID: 1971060537}
   - {fileID: 1444319176}
-  _monster: {fileID: 0}
   _playerStateMachine: {fileID: 589425353}
   _musicPlayer: {fileID: 958851377}
   _lightSwitchAudioSource: {fileID: 752945734}
@@ -24366,9 +24382,9 @@ PrefabInstance:
       value: MusicPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 6929652917288438152, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
-      propertyPath: _ambienceAudioSource
+      propertyPath: _ambience
       value: 
-      objectReference: {fileID: 798965380}
+      objectReference: {fileID: 798965382}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

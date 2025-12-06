@@ -16,7 +16,7 @@ namespace ClassicHotel
 
         [SerializeField] private Light _screenLight;
         
-        [SerializeField] private AudioSource _ambienceAudioSource;
+        [SerializeField] private Ambience _ambience;
 
         [SerializeField] private AudioClip _scrollStepSound;
 
@@ -70,9 +70,6 @@ namespace ClassicHotel
 
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
-
-        private const float NormalAmbienceVolume = 1f;
-        private const float MuffledAmbienceVolume = 0.3f;
 
         private const int ScreenMaterialIndex = 1;
         
@@ -157,7 +154,7 @@ namespace ClassicHotel
                 SetFirstTrackAndPlay();
             }
 
-            _ambienceAudioSource.volume = MuffledAmbienceVolume;
+            _ambience.MuffleVolume();
         }
 
         public void Pause()
@@ -173,7 +170,7 @@ namespace ClassicHotel
 
             PauseCurrentTrack();
 
-            _ambienceAudioSource.volume = NormalAmbienceVolume;
+            _ambience.NormalizeVolume();
         }
 
         public void SwitchToFlashlightMode()
