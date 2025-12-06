@@ -32,12 +32,12 @@ namespace ClassicHotel
         private void Start()
         {
             _currentState = PlayerState.StandStill;
+
+            _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
         }
 
         private void OnEnable()
         {
-            _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
-
             _enableLookAction.performed += OnEnableLookPerformed;
             _enableLookAction.canceled += OnEnableLookCanceled;
 
@@ -68,6 +68,8 @@ namespace ClassicHotel
 
         public void SwitchToBlackoutMode()
         {
+            _currentState = PlayerState.StandStill;
+            
             _controlWalkAndMusicAction.Disable();
 
             _lookAction.Enable();
@@ -79,6 +81,16 @@ namespace ClassicHotel
             }
 
             _musicPlayer.Pause();
+        }
+
+        public void EnableWalkInBlackoutMode()
+        {
+            _playerMover.ChangeSpeedToBlackoutSpeed();
+
+            _controlWalkAndMusicAction.Enable();
+
+            _controlWalkAndMusicAction.performed -= ControlWalkAndMusic;
+            _controlWalkAndMusicAction.performed += ControlWalkDuringBlackout;
         }
 
         private void ControlWalkAndMusic(InputAction.CallbackContext context)
@@ -102,6 +114,29 @@ namespace ClassicHotel
 
                     _playerMover.StopMoving();
                     _musicPlayer.Pause();
+                    break;
+            }
+        }
+
+        private void ControlWalkDuringBlackout(InputAction.CallbackContext context)
+        {
+            switch (_currentState)
+            {
+                case PlayerState.StandStill:
+                    _currentState = PlayerState.WalkAndListenToMusic;
+
+                    _lookAction.Disable();
+                    _enableLookAction.Disable();
+
+                    _playerMover.StartMoving();
+                    break;
+                case PlayerState.WalkAndListenToMusic:
+                    _currentState = PlayerState.StandStill;
+
+                    _lookAction.Enable();
+                    _enableLookAction.Enable();
+
+                    _playerMover.StopMoving();
                     break;
             }
         }
