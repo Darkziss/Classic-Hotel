@@ -13,6 +13,7 @@ namespace ClassicHotel
         [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private MusicPlayer _musicPlayer;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
+        [SerializeField] private Ambience _ambience;
 
         private readonly WaitForSeconds _flickerDelay = new(FlickerDelay);
 
@@ -44,6 +45,8 @@ namespace ClassicHotel
             yield return _flickerDelay;
 
             CorridorBlackout();
+
+            _ambience.PlayBlackoutAmbience();
 
             yield return _playerStopDelay;
 

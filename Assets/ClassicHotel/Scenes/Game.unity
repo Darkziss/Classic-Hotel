@@ -17426,6 +17426,7 @@ MonoBehaviour:
   _playerStateMachine: {fileID: 589425353}
   _musicPlayer: {fileID: 958851377}
   _lightSwitchAudioSource: {fileID: 752945734}
+  _ambience: {fileID: 798965382}
 --- !u!4 &1474351416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2339788736735537371, guid: 6238064db0178104fa5efa4d89261ecf, type: 3}
