@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Linq;
 using UnityEngine;
-using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -10,8 +9,6 @@ namespace ClassicHotel
         [SerializeField] private BoxTrigger _endingTrigger;
 
         [SerializeField] private CorridorLight[] _lights;
-
-        [SerializeField] private Monster _monster;
 
         [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private MusicPlayer _musicPlayer;
@@ -23,15 +20,11 @@ namespace ClassicHotel
 
         private readonly WaitForSeconds _musicPlayerRotateDelay = new(MusicPlayerRotateDelay);
 
-        private readonly WaitForSeconds _monsterSpawnDelay = new(MonsterSpawnDelay);
-
         private const float FlickerDelay = 5f;
 
         private const float PlayerStopDelay = 0.5f;
 
         private const float MusicPlayerRotateDelay = 1.2f;
-
-        private const float MonsterSpawnDelay = 3f;
 
         private void Start()
         {
@@ -59,10 +52,6 @@ namespace ClassicHotel
             yield return _musicPlayerRotateDelay;
 
             _musicPlayer.SwitchToFlashlightMode();
-
-            yield return _monsterSpawnDelay;
-
-            _monster.TriggerChase();
         }
 
         private void FlickerCorridorLights()
