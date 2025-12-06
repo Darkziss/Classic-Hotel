@@ -13,6 +13,8 @@ namespace ClassicHotel
         private const float NormalVolume = 1f;
         private const float MuffledVolume = 0.3f;
 
+        private const float BlackoutVolume = 0.35f;
+
         private void OnValidate()
         {
             if (_audioSource == null)
@@ -35,6 +37,7 @@ namespace ClassicHotel
             }
 
             _audioSource.clip = _blackoutAmbience;
+            _audioSource.volume = BlackoutVolume;
             _audioSource.Play();
         }
 

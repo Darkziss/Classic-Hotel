@@ -21,11 +21,15 @@ namespace ClassicHotel
 
         private readonly WaitForSeconds _musicPlayerRotateDelay = new(MusicPlayerRotateDelay);
 
+        private readonly WaitForSeconds _ambienceChangeDelay = new(AmbienceChangeDelay);
+
         private const float FlickerDelay = 5f;
 
         private const float PlayerStopDelay = 0.5f;
 
         private const float MusicPlayerRotateDelay = 1.2f;
+
+        private const float AmbienceChangeDelay = 1f;
 
         private void Start()
         {
@@ -46,8 +50,6 @@ namespace ClassicHotel
 
             CorridorBlackout();
 
-            _ambience.PlayBlackoutAmbience();
-
             yield return _playerStopDelay;
 
             _playerStateMachine.SwitchToBlackoutMode();
@@ -55,6 +57,10 @@ namespace ClassicHotel
             yield return _musicPlayerRotateDelay;
 
             _musicPlayer.SwitchToFlashlightMode();
+
+            yield return _ambienceChangeDelay;
+
+            _ambience.PlayBlackoutAmbience();
         }
 
         private void FlickerCorridorLights()
