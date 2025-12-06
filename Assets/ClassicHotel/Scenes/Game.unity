@@ -9484,7 +9484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 798965380}
   _normalAmbience: {fileID: 8300000, guid: d982d3bd49195434da3db3a0f21ce033, type: 3}
-  _blackoutAmbience: {fileID: 0}
+  _blackoutAmbience: {fileID: 8300000, guid: 469f6935a68832741bf3a40735e7f239, type: 3}
 --- !u!1001 &802445252
 PrefabInstance:
   m_ObjectHideFlags: 0
