@@ -33,6 +33,8 @@ namespace ClassicHotel
 
         private bool _isPlaying;
 
+        private bool _isGlitching;
+
         private int _tracksPlayed;
 
         private bool _isScaryEventTriggered;
@@ -165,7 +167,7 @@ namespace ClassicHotel
 
         public void Pause()
         {
-            if (!_isPlaying)
+            if (!_isPlaying || _isGlitching)
             {
                 return;
             }
@@ -278,6 +280,8 @@ namespace ClassicHotel
 
         private IEnumerator StartRapidScreenFlicker()
         {
+            _isGlitching = true;
+
             const int Cycles = 30;
             WaitForSeconds delay = new(0.03f);
 
@@ -296,6 +300,8 @@ namespace ClassicHotel
             }
 
             _audioSource.pitch = 1f;
+
+            _isGlitching = false;
 
             RapidScreenGlitchEnded?.Invoke();
         }

@@ -112,7 +112,10 @@ namespace ClassicHotel
         {
             _currentState = PlayerState.StandStill;
 
-            _playerMover.StopMoving();
+            if (_playerMover.IsMoving)
+            {
+                _playerMover.StopMoving();
+            }
             _musicPlayer.Pause();
 
             _lookAction.Enable();
