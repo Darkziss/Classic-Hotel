@@ -12,7 +12,7 @@ namespace ClassicHotel
         [SerializeField] private Vector3 _closedRotation;
 
         private const float SlamDuration = 0.3f;
-        private const Ease SlamEase = Ease.Default;
+        private const Ease SlamEase = Ease.InBack;
 
         private void OnValidate()
         {
