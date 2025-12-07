@@ -13,10 +13,16 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip[] _flickerSounds;
 
+        [SerializeField] private LayerMask _playerLayerMask;
+
         private Material _instancedMaterial;
 
         private float _originalIntensity;
         private Color _originalEmissionColor;
+
+        private float _maxDistance;
+
+        private const float DistanceFactor = 0.5f;
 
         private const int MinFlickerCount = 3;
         private const int MaxFlickerCount = 8;
@@ -42,6 +48,8 @@ namespace ClassicHotel
 
             _originalIntensity = _light.intensity;
             _originalEmissionColor = _instancedMaterial.GetColor(EmissionPropertyName);
+
+            _maxDistance = _audioSource.maxDistance * DistanceFactor;
         }
 
         public void TriggerFlicker()
@@ -85,6 +93,13 @@ namespace ClassicHotel
 
         private void PlayRandomFlickerSound()
         {
+            bool isPlayerNear = Physics.CheckSphere(transform.position, _maxDistance, _playerLayerMask);
+
+            if (!isPlayerNear)
+            {
+                return;
+            }
+
             int soundIndex = UnityRandom.Range(0, _flickerSounds.Length);
 
             _audioSource.pitch = UnityRandom.Range(FlickerMinPitch, FlickerMaxPitch);
