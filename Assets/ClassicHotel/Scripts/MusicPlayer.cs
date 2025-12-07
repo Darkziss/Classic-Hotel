@@ -46,10 +46,10 @@ namespace ClassicHotel
 
         private Coroutine _waitCoroutine;
 
+        private Material _instancedScreenMaterial;
+
         private readonly Color EnabledEmissionColor = Color.white * EmissionIntensity;
         private readonly Color DisabledEmissionColor = Color.black * EmissionIntensity;
-
-        private Material ScreenMaterial => _meshRenderer.materials[ScreenMaterialIndex];
 
         private const int MinScrolls = 1;
         private const int MaxScrolls = 4;
@@ -98,6 +98,8 @@ namespace ClassicHotel
 
         private void Start()
         {
+            _instancedScreenMaterial = _meshRenderer.materials[ScreenMaterialIndex];
+
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
         }
@@ -126,8 +128,8 @@ namespace ClassicHotel
 
                 Sequence.Create()
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
-                    .Group(Tween.Custom(screenTween, (color) => ScreenMaterial.SetColor(ColorPropertyName, color)))
-                    .Group(Tween.Custom(screenEmissionTween, (color) => ScreenMaterial.SetColor(EmissionPropertyName, color)))
+                    .Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
+                    .Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
@@ -282,8 +284,8 @@ namespace ClassicHotel
 
                 Color currentColor = i % 2 == 0 ? Color.black : Color.white;
                 Color currentEmissionColor = i % 2 == 0 ? DisabledEmissionColor : EnabledEmissionColor;
-                ScreenMaterial.SetColor(ColorPropertyName, currentColor);
-                ScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
+                _instancedScreenMaterial.SetColor(ColorPropertyName, currentColor);
+                _instancedScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
 
                 yield return delay;
             }
