@@ -25,6 +25,7 @@ namespace ClassicHotel
         [SerializeField] private AudioClip[] _footstepsAudioClips;
 
         [SerializeField] private float _speed = 1f;
+        [SerializeField] private float _blackoutSpeed = 1f;
 
         private bool _isMoving;
 
@@ -95,6 +96,11 @@ namespace ClassicHotel
 
             StopCoroutine(_footstepSoundCoroutine);
             _footstepSoundCoroutine = null;
+        }
+
+        public void ChangeSpeedToBlackoutSpeed()
+        {
+            _speed = _blackoutSpeed;
         }
 
         private IEnumerator PlayRandomlyFootstepSound()

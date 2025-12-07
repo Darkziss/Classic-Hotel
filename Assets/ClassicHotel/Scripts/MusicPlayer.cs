@@ -8,12 +8,15 @@ namespace ClassicHotel
     [RequireComponent(typeof(MeshFilter), typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour
     {
+        [SerializeField] private Transform _transform;
         [SerializeField] private MeshRenderer _meshRenderer;
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioSource _clickAudioSource;
+
+        [SerializeField] private Light _screenLight;
         
-        [SerializeField] private AudioSource _ambienceAudioSource;
+        [SerializeField] private Ambience _ambience;
 
         [SerializeField] private AudioClip _scrollStepSound;
 
@@ -21,6 +24,11 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
+
+        [SerializeField] private Vector3 _flashlightRotation;
+        [SerializeField] private Vector3 _flashlightMove;
+
+        [SerializeField] private float _screenLightIntensity;
 
         private bool _isPlaying;
 
@@ -63,9 +71,6 @@ namespace ClassicHotel
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
 
-        private const float NormalAmbienceVolume = 1f;
-        private const float MuffledAmbienceVolume = 0.3f;
-
         private const int ScreenMaterialIndex = 1;
         
         private const string ColorPropertyName = "_BaseColor";
@@ -75,6 +80,11 @@ namespace ClassicHotel
 
         private void OnValidate()
         {
+            if (_transform == null)
+            {
+                _transform = transform;
+            }
+
             if (_meshRenderer == null)
             {
                 _meshRenderer = GetComponent<MeshRenderer>();
@@ -118,7 +128,6 @@ namespace ClassicHotel
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
                     .Group(Tween.Custom(screenTween, (color) => ScreenMaterial.SetColor(ColorPropertyName, color)))
                     .Group(Tween.Custom(screenEmissionTween, (color) => ScreenMaterial.SetColor(EmissionPropertyName, color)))
-                    .ChainCallback(Pause)
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
@@ -144,7 +153,7 @@ namespace ClassicHotel
                 SetFirstTrackAndPlay();
             }
 
-            _ambienceAudioSource.volume = MuffledAmbienceVolume;
+            _ambience.MuffleVolume();
         }
 
         public void Pause()
@@ -160,7 +169,27 @@ namespace ClassicHotel
 
             PauseCurrentTrack();
 
-            _ambienceAudioSource.volume = NormalAmbienceVolume;
+            _ambience.NormalizeVolume();
+        }
+
+        public void SwitchToFlashlightMode()
+        {
+            const float Duration = 0.6f;
+
+            const Ease RotateEase = Ease.OutExpo;
+            const Ease PositionEase = Ease.OutBack;
+
+            const Ease IntensityEase = Ease.Default;
+
+            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration, RotateEase);
+            TweenSettings<Vector3> positionSettings = new(_transform.localPosition + _flashlightMove, Duration, PositionEase);
+
+            TweenSettings<float> intensitySettings = new(_screenLightIntensity, Duration, IntensityEase);
+
+            Sequence.Create()
+                .Chain(Tween.LocalRotation(_transform, rotationSettings))
+                .Group(Tween.LocalPosition(_transform, positionSettings))
+                .Group(Tween.LightIntensity(_screenLight, intensitySettings));
         }
 
         private void PlayRandomClickSound()
