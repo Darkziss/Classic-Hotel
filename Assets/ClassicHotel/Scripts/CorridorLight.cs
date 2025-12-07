@@ -22,7 +22,7 @@ namespace ClassicHotel
 
         private float _maxDistance;
 
-        private const float DistanceFactor = 0.5f;
+        private const float DistanceFactor = 0.8f;
 
         private const int MinFlickerCount = 3;
         private const int MaxFlickerCount = 8;
