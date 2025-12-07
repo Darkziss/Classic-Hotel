@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using PrimeTween;
@@ -32,6 +33,8 @@ namespace ClassicHotel
 
         private bool _isPlaying;
 
+        private bool _isGlitching;
+
         private int _tracksPlayed;
 
         private bool _isScaryEventTriggered;
@@ -51,6 +54,9 @@ namespace ClassicHotel
         private readonly Color EnabledEmissionColor = Color.white * EmissionIntensity;
         private readonly Color DisabledEmissionColor = Color.black * EmissionIntensity;
 
+        public event Action RapidScreenGlitchStarted;
+        public event Action RapidScreenGlitchEnded;
+
         private const int MinScrolls = 1;
         private const int MaxScrolls = 4;
 
@@ -59,8 +65,8 @@ namespace ClassicHotel
         private const int FirstTrackPlaytime = 10;
         private const float FirstTrackStartTime = 0f;
 
-        private const int ScaryEventTriggerTrackMinCount = 2;
-        private const int ScaryEventTriggerTrackMaxCount = 4;
+        private const int ScaryEventTriggerTrackMinCount = 1;
+        private const int ScaryEventTriggerTrackMaxCount = 2;
 
         private const float ScaryEventTrackMinStartTime = 3;
         private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
@@ -127,6 +133,7 @@ namespace ClassicHotel
                 TweenSettings<Color> screenEmissionTween = new(EnabledEmissionColor, DisabledEmissionColor, ScaryEventAudioPitchDuration, ScaryEventEase);
 
                 Sequence.Create()
+                    .ChainCallback(() => RapidScreenGlitchStarted?.Invoke())
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
                     .Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
                     .Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
@@ -160,7 +167,7 @@ namespace ClassicHotel
 
         public void Pause()
         {
-            if (!_isPlaying)
+            if (!_isPlaying || _isGlitching)
             {
                 return;
             }
@@ -273,6 +280,8 @@ namespace ClassicHotel
 
         private IEnumerator StartRapidScreenFlicker()
         {
+            _isGlitching = true;
+
             const int Cycles = 30;
             WaitForSeconds delay = new(0.03f);
 
@@ -291,6 +300,10 @@ namespace ClassicHotel
             }
 
             _audioSource.pitch = 1f;
+
+            _isGlitching = false;
+
+            RapidScreenGlitchEnded?.Invoke();
         }
     }
 }
