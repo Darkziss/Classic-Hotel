@@ -108,6 +108,17 @@ namespace ClassicHotel
             }
         }
 
+        public void ForceStop()
+        {
+            _currentState = PlayerState.StandStill;
+
+            _playerMover.StopMoving();
+            _musicPlayer.Pause();
+
+            _lookAction.Enable();
+            _enableLookAction.Enable();
+        }
+
         private void ControlWalkAndMusic(InputAction.CallbackContext context)
         {
             switch (_currentState)
