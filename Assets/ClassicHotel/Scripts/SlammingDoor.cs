@@ -3,9 +3,11 @@ using PrimeTween;
 
 namespace ClassicHotel
 {
+    [RequireComponent(typeof(AudioSource))]
     public class SlammingDoor : MonoBehaviour
     {
         [SerializeField] private Transform _transform;
+        [SerializeField] private AudioSource _audioSource;
         
         [SerializeField] private BoxTrigger _trigger;
 
@@ -19,6 +21,11 @@ namespace ClassicHotel
             if (_transform == null)
             {
                 _transform = transform;
+            }
+
+            if (_audioSource == null)
+            {
+                _audioSource = GetComponent<AudioSource>();
             }
         }
 
@@ -37,6 +44,8 @@ namespace ClassicHotel
             TweenSettings<Vector3> settings = new(_closedRotation, SlamDuration, SlamEase);
 
             Tween.LocalRotation(_transform, settings);
+
+            _audioSource.Play();
         }
     }
 }
