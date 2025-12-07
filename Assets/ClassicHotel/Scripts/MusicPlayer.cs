@@ -128,7 +128,6 @@ namespace ClassicHotel
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
                     .Group(Tween.Custom(screenTween, (color) => ScreenMaterial.SetColor(ColorPropertyName, color)))
                     .Group(Tween.Custom(screenEmissionTween, (color) => ScreenMaterial.SetColor(EmissionPropertyName, color)))
-                    .ChainCallback(Pause)
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
