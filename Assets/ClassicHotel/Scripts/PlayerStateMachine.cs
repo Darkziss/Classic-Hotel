@@ -11,7 +11,7 @@ namespace ClassicHotel
 
         [SerializeField] private PlayerInput _playerInput;
 
-        private PlayerState _currentState;
+        private PlayerState _currentState = PlayerState.StandStill;
 
         private bool _isBlackoutMode;
         
@@ -21,11 +21,6 @@ namespace ClassicHotel
             {
                 _playerInput = GetComponent<PlayerInput>();
             }
-        }
-
-        private void Start()
-        {
-            _currentState = PlayerState.StandStill;
         }
 
         private void OnEnable()
