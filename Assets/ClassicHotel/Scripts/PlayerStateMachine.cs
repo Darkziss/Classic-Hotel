@@ -1,79 +1,62 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ClassicHotel
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class PlayerStateMachine : MonoBehaviour
     {
         [SerializeField] private PlayerMover _playerMover;
         [SerializeField] private PlayerCameraRotator _playerCameraRotator;
         [SerializeField] private MusicPlayer _musicPlayer;
 
+        [SerializeField] private PlayerInput _playerInput;
+
         private PlayerState _currentState;
+
+        private bool _isBlackoutMode;
         
-        private InputAction _controlWalkAndMusicAction;
-
-        private InputAction _lookAction;
-        private InputAction _enableLookAction;
-
-        private const string ControlWalkAndMusicActionName = "ControlWalkAndMusic";
-
-        private const string LookActionName = "Look";
-        private const string EnableLookActionName = "EnableLook";
-
-        private void Awake()
+        private void OnValidate()
         {
-            _controlWalkAndMusicAction = InputSystem.actions.FindAction(ControlWalkAndMusicActionName);
-
-            _lookAction = InputSystem.actions.FindAction(LookActionName);
-            _enableLookAction = InputSystem.actions.FindAction(EnableLookActionName);
+            if (_playerInput == null)
+            {
+                _playerInput = GetComponent<PlayerInput>();
+            }
         }
 
         private void Start()
         {
             _currentState = PlayerState.StandStill;
-
-            _controlWalkAndMusicAction.performed += ControlWalkAndMusic;
         }
 
         private void OnEnable()
         {
-            _enableLookAction.performed += OnEnableLookPerformed;
-            _enableLookAction.canceled += OnEnableLookCanceled;
+            _playerInput.ControlWalkAndMusicActionPerformed += ControlWalkAndMusic;
+            
+            _playerInput.LookActionTriggered += HandleLookInput;
 
-            _lookAction.performed += HandleLookInput;
-            _lookAction.canceled += HandleLookInput;
+            _playerInput.EnableLookActionPerformed += _playerCameraRotator.EnableLook;
+            _playerInput.EnableLookActionCanceled += _playerCameraRotator.DisableLook;
         }
 
         private void OnDisable()
         {
-            _controlWalkAndMusicAction.performed -= ControlWalkAndMusic;
+            _playerInput.ControlWalkAndMusicActionPerformed -= ControlWalkAndMusic;
 
-            _enableLookAction.performed -= OnEnableLookPerformed;
-            _enableLookAction.canceled -= OnEnableLookCanceled;
+            _playerInput.LookActionTriggered -= HandleLookInput;
 
-            _lookAction.performed -= HandleLookInput;
-            _lookAction.canceled -= HandleLookInput;
-        }
-
-        private void OnEnableLookPerformed(InputAction.CallbackContext obj)
-        {
-            _playerCameraRotator.EnableLook();
-        }
-
-        private void OnEnableLookCanceled(InputAction.CallbackContext obj)
-        {
-            _playerCameraRotator.DisableLook();
+            _playerInput.EnableLookActionPerformed -= _playerCameraRotator.EnableLook;
+            _playerInput.EnableLookActionCanceled -= _playerCameraRotator.DisableLook;
         }
 
         public void SwitchToBlackoutMode()
         {
             _currentState = PlayerState.StandStill;
-            
-            _controlWalkAndMusicAction.Disable();
 
-            _lookAction.Enable();
-            _enableLookAction.Enable();
+            _isBlackoutMode = true;
+
+            _playerInput.DisableWalk();
+
+            _playerInput.EnableLook();
 
             if (_playerMover.IsMoving)
             {
@@ -87,20 +70,16 @@ namespace ClassicHotel
         {
             _playerMover.ChangeSpeedToBlackoutSpeed();
 
-            _controlWalkAndMusicAction.Enable();
-
-            _controlWalkAndMusicAction.performed -= ControlWalkAndMusic;
-            _controlWalkAndMusicAction.performed += ControlWalkDuringBlackout;
+            _playerInput.EnableWalk();
         }
 
         public void ParalyzePlayer()
         {
             _currentState = PlayerState.StandStill;
 
-            _controlWalkAndMusicAction.Disable();
+            _playerInput.DisableWalk();
 
-            _lookAction.Disable();
-            _enableLookAction.Disable();
+            _playerInput.DisableLook();
 
             if (_playerMover.IsMoving)
             {
@@ -118,68 +97,50 @@ namespace ClassicHotel
             }
             _musicPlayer.Pause();
 
-            _lookAction.Enable();
-            _enableLookAction.Enable();
+            _playerInput.EnableLook();
         }
 
-        private void ControlWalkAndMusic(InputAction.CallbackContext context)
+        private void ControlWalkAndMusic()
         {
             switch (_currentState)
             {
                 case PlayerState.StandStill:
                     _currentState = PlayerState.WalkAndListenToMusic;
 
-                    _lookAction.Disable();
-                    _enableLookAction.Disable();
+                    _playerInput.DisableLook();
 
                     _playerMover.StartMoving();
-                    _musicPlayer.Play();
+
+                    if (!_isBlackoutMode)
+                    {
+                        _musicPlayer.Play();
+                    }
+
                     break;
                 case PlayerState.WalkAndListenToMusic:
                     _currentState = PlayerState.StandStill;
 
-                    _lookAction.Enable();
-                    _enableLookAction.Enable();
+                    _playerInput.EnableLook();
 
                     _playerMover.StopMoving();
-                    _musicPlayer.Pause();
+                    
+                    if (!_isBlackoutMode)
+                    {
+                        _musicPlayer.Pause();
+                    }
+
                     break;
             }
         }
 
-        private void ControlWalkDuringBlackout(InputAction.CallbackContext context)
-        {
-            switch (_currentState)
-            {
-                case PlayerState.StandStill:
-                    _currentState = PlayerState.WalkAndListenToMusic;
-
-                    _lookAction.Disable();
-                    _enableLookAction.Disable();
-
-                    _playerMover.StartMoving();
-                    break;
-                case PlayerState.WalkAndListenToMusic:
-                    _currentState = PlayerState.StandStill;
-
-                    _lookAction.Enable();
-                    _enableLookAction.Enable();
-
-                    _playerMover.StopMoving();
-                    break;
-            }
-        }
-
-        private void HandleLookInput(InputAction.CallbackContext context)
+        private void HandleLookInput(Vector2 input)
         {
             if (!_playerCameraRotator.CanLook)
             {
                 return;
             }
 
-            Vector2 lookInput = _lookAction.ReadValue<Vector2>();
-
-            _playerCameraRotator.UpdateLookInput(lookInput);
+            _playerCameraRotator.UpdateLookInput(input);
         }
     }
 }

@@ -6777,6 +6777,7 @@ GameObject:
   - component: {fileID: 589425351}
   - component: {fileID: 589425352}
   - component: {fileID: 589425353}
+  - component: {fileID: 589425354}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -6844,6 +6845,19 @@ MonoBehaviour:
   _playerMover: {fileID: 589425352}
   _playerCameraRotator: {fileID: 963194229}
   _musicPlayer: {fileID: 958851377}
+  _playerInput: {fileID: 589425354}
+--- !u!114 &589425354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589425350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41682212e2489af4a8c38d50b1311dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &589548487
 GameObject:
   m_ObjectHideFlags: 0
