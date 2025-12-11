@@ -70,6 +70,8 @@ namespace ClassicHotel
 
             CorridorBlackout();
 
+            _musicPlayer.EnableRimLights();
+
             yield return _playerStopDelay;
 
             _playerStateMachine.SwitchToBlackoutMode();
