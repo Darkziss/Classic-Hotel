@@ -168,7 +168,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2800343791720261787}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -576,6 +576,7 @@ MonoBehaviour:
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
   _screenLight: {fileID: 8247698525525135355}
+  _backLight: {fileID: 663666259331170687}
   _ambience: {fileID: 0}
   _scrollStepSound: {fileID: 8300000, guid: 256fe54b33e71474a873bb3a6dc824b3, type: 3}
   _clickAudioClips:
