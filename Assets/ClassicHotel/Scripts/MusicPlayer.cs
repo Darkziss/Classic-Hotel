@@ -16,6 +16,8 @@ namespace ClassicHotel
         [SerializeField] private AudioSource _clickAudioSource;
 
         [SerializeField] private Light _screenLight;
+
+        [SerializeField] private Light _frontLight;
         [SerializeField] private Light _backLight;
         
         [SerializeField] private Ambience _ambience;
@@ -191,8 +193,6 @@ namespace ClassicHotel
 
             const Ease IntensityEase = Ease.Default;
 
-            _backLight.enabled = true;
-
             TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration, RotateEase);
             TweenSettings<Vector3> positionSettings = new(_transform.localPosition + _flashlightMove, Duration, PositionEase);
 
@@ -202,6 +202,12 @@ namespace ClassicHotel
                 .Chain(Tween.LocalRotation(_transform, rotationSettings))
                 .Group(Tween.LocalPosition(_transform, positionSettings))
                 .Group(Tween.LightIntensity(_screenLight, intensitySettings));
+        }
+
+        public void EnableRimLights()
+        {
+            _frontLight.enabled = true;
+            _backLight.enabled = true;
         }
 
         private void PlayRandomClickSound()
