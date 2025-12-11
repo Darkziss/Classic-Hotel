@@ -138,6 +138,7 @@ namespace ClassicHotel
         private void FindAllCorridorLights()
         {
             _lights = FindObjectsByType<CorridorLight>(FindObjectsSortMode.None)
+                .Where(light => light.gameObject.activeInHierarchy)
                 .OrderBy(light => light.transform.position.z)
                 .ToArray();
         }
