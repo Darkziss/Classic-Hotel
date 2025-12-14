@@ -16,6 +16,7 @@ namespace ClassicHotel
         [SerializeField] private AudioSource _clickAudioSource;
 
         [SerializeField] private Canvas _screenCanvas;
+        [SerializeField] private CanvasGroup _screenCanvasGroup;
 
         [SerializeField] private Light _screenLight;
 
@@ -136,12 +137,14 @@ namespace ClassicHotel
 
                 TweenSettings<Color> screenTween = new(Color.white, Color.black, ScaryEventAudioPitchDuration, ScaryEventEase);
                 TweenSettings<Color> screenEmissionTween = new(EnabledEmissionColor, DisabledEmissionColor, ScaryEventAudioPitchDuration, ScaryEventEase);
+                TweenSettings<float> screenUIAlphaTween = new(1f, 0f, ScaryEventAudioPitchDuration, ScaryEventEase);
 
                 Sequence.Create()
                     .ChainCallback(() => RapidScreenGlitchStarted?.Invoke())
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
                     .Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
                     .Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
+                    .Group(Tween.Alpha(_screenCanvasGroup, screenUIAlphaTween))
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
@@ -315,6 +318,8 @@ namespace ClassicHotel
             }
 
             _audioSource.pitch = 1f;
+            _screenCanvas.enabled = true;
+            _screenCanvasGroup.alpha = 1f;
 
             _isGlitching = false;
 
