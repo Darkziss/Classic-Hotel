@@ -39,7 +39,9 @@ namespace ClassicHotel
 
         private IEnumerator TVEvent()
         {
-            WaitForSeconds disableDelay = new(_audioSource.clip.length);
+            const float AdditionalDelay = 0.1f + ProgramStartDelay;
+
+            WaitForSeconds disableDelay = new(_audioSource.clip.length + AdditionalDelay);
 
             PlaySwitchSound();
 
