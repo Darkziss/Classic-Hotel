@@ -2373,6 +2373,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 4750857976781909548}
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
+  _screenCanvas: {fileID: 1624421968437872127}
   _screenLight: {fileID: 8247698525525135355}
   _frontLight: {fileID: 3222258036235028187}
   _backLight: {fileID: 663666259331170687}

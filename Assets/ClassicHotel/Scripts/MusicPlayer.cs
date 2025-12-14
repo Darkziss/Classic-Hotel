@@ -15,6 +15,8 @@ namespace ClassicHotel
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioSource _clickAudioSource;
 
+        [SerializeField] private Canvas _screenCanvas;
+
         [SerializeField] private Light _screenLight;
 
         [SerializeField] private Light _frontLight;
@@ -300,10 +302,14 @@ namespace ClassicHotel
             {
                 _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
 
-                Color currentColor = i % 2 == 0 ? Color.black : Color.white;
-                Color currentEmissionColor = i % 2 == 0 ? DisabledEmissionColor : EnabledEmissionColor;
+                bool isDisabled = i % 2 == 0;
+
+                Color currentColor = isDisabled ? Color.black : Color.white;
+                Color currentEmissionColor = isDisabled ? DisabledEmissionColor : EnabledEmissionColor;
                 _instancedScreenMaterial.SetColor(ColorPropertyName, currentColor);
                 _instancedScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
+
+                _screenCanvas.enabled = !isDisabled;
 
                 yield return delay;
             }
