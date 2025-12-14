@@ -29407,6 +29407,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 4088697747302416036, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4088697747302416036, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5883210691413103939, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
