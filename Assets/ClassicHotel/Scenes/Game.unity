@@ -29407,6 +29407,26 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 2816058253619782587, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1235676874, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
+    - target: {fileID: 2816058253619782587, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816058253619782587, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Color.g
+      value: 0.654902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816058253619782587, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816058253619782587, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5883210691413103939, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4
