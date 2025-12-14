@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace ClassicHotel
@@ -10,6 +11,8 @@ namespace ClassicHotel
         [SerializeField] private AudioSource _audioSource;
 
         [SerializeField] private AudioClip _switchSound;
+
+        private const float ProgramStartDelay = 0.5f;
 
         private void OnValidate()
         {
@@ -31,7 +34,25 @@ namespace ClassicHotel
 
         private void TriggerEvent()
         {
-            _audioSource.PlayOneShot(_switchSound);
+            StartCoroutine(TVEvent());
+        }
+
+        private IEnumerator TVEvent()
+        {
+            WaitForSeconds disableDelay = new(_audioSource.clip.length);
+
+            PlaySwitchSound();
+
+            _audioSource.PlayDelayed(ProgramStartDelay);
+
+            yield return disableDelay;
+
+            PlaySwitchSound();
+
+            void PlaySwitchSound()
+            {
+                _audioSource.PlayOneShot(_switchSound);
+            }
         }
     }
 }
