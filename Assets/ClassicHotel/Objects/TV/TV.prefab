@@ -204,7 +204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.TV
   _tvEnableTrigger: {fileID: 135237886134087008}
+  _meshRenderer: {fileID: 2300000}
   _audioSource: {fileID: 1346044953009467858}
+  _screenEnabledColor: {r: 8, g: 8, b: 8, a: 0}
+  _screenDisabledColor: {r: 0, g: 0, b: 0, a: 0}
   _switchSound: {fileID: 8300000, guid: 86a746ee55df9c1428730cb20fc63a14, type: 3}
 --- !u!1 &7563472642012940432
 GameObject:
