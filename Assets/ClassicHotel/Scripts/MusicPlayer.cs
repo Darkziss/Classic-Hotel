@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using PrimeTween;
 using UnityRandom = UnityEngine.Random;
 
@@ -18,6 +19,8 @@ namespace ClassicHotel
         [SerializeField] private Canvas _screenCanvas;
         [SerializeField] private CanvasGroup _screenCanvasGroup;
 
+        [SerializeField] private Image _playStateImage;
+
         [SerializeField] private Light _screenLight;
 
         [SerializeField] private Light _frontLight;
@@ -31,6 +34,9 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
+
+        [SerializeField] private Sprite _playSprite;
+        [SerializeField] private Sprite _pauseSprite;
 
         [SerializeField] private Vector3 _flashlightRotation;
         [SerializeField] private Vector3 _flashlightMove;
@@ -171,6 +177,8 @@ namespace ClassicHotel
             }
 
             _ambience.MuffleVolume();
+
+            _playStateImage.sprite = _playSprite;
         }
 
         public void Pause()
@@ -187,6 +195,8 @@ namespace ClassicHotel
             PauseCurrentTrack();
 
             _ambience.NormalizeVolume();
+            
+            _playStateImage.sprite = _pauseSprite;
         }
 
         public void SwitchToFlashlightMode()

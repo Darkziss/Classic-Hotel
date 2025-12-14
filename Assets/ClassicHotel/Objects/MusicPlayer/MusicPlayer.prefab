@@ -2388,6 +2388,7 @@ MonoBehaviour:
   _clickAudioSource: {fileID: 3964638231316523061}
   _screenCanvas: {fileID: 1624421968437872127}
   _screenCanvasGroup: {fileID: 2573579178537663692}
+  _playStateImage: {fileID: 2816058253619782587}
   _screenLight: {fileID: 8247698525525135355}
   _frontLight: {fileID: 3222258036235028187}
   _backLight: {fileID: 663666259331170687}
@@ -2411,6 +2412,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0534a02bcb1043045b6bdbcfde67c492, type: 3}
   - {fileID: 8300000, guid: 01ae2778b1e5da740967fca642e04e63, type: 3}
   - {fileID: 8300000, guid: 20792c48cfff4904da9e696ccea3032d, type: 3}
+  _playSprite: {fileID: 1967626088, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
+  _pauseSprite: {fileID: 1235676874, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
   _flashlightRotation: {x: -5, y: 175, z: -3}
   _flashlightMove: {x: 0, y: 0.05, z: 0.2}
   _screenLightIntensity: 1
