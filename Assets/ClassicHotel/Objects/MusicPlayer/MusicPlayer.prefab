@@ -1571,7 +1571,7 @@ GameObject:
   - component: {fileID: 6422534301192623110}
   - component: {fileID: 8234052204590297616}
   m_Layer: 5
-  m_Name: Screen
+  m_Name: ScreenCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2177,27 +2177,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.95125127
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.16773124
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.25488707
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.044943456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
