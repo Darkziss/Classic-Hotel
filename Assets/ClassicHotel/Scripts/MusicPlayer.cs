@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using PrimeTween;
 using UnityRandom = UnityEngine.Random;
 
@@ -15,6 +16,11 @@ namespace ClassicHotel
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioSource _clickAudioSource;
 
+        [SerializeField] private Canvas _screenCanvas;
+        [SerializeField] private CanvasGroup _screenCanvasGroup;
+
+        [SerializeField] private Image _playStateImage;
+
         [SerializeField] private Light _screenLight;
 
         [SerializeField] private Light _frontLight;
@@ -28,6 +34,9 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
+
+        [SerializeField] private Sprite _playSprite;
+        [SerializeField] private Sprite _pauseSprite;
 
         [SerializeField] private Vector3 _flashlightRotation;
         [SerializeField] private Vector3 _flashlightMove;
@@ -134,12 +143,14 @@ namespace ClassicHotel
 
                 TweenSettings<Color> screenTween = new(Color.white, Color.black, ScaryEventAudioPitchDuration, ScaryEventEase);
                 TweenSettings<Color> screenEmissionTween = new(EnabledEmissionColor, DisabledEmissionColor, ScaryEventAudioPitchDuration, ScaryEventEase);
+                TweenSettings<float> screenUIAlphaTween = new(1f, 0f, ScaryEventAudioPitchDuration, ScaryEventEase);
 
                 Sequence.Create()
                     .ChainCallback(() => RapidScreenGlitchStarted?.Invoke())
                     .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
                     .Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
                     .Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
+                    .Group(Tween.Alpha(_screenCanvasGroup, screenUIAlphaTween))
                     .ChainCallback(() => _audioSource.pitch = 1f)
                     .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
@@ -166,6 +177,8 @@ namespace ClassicHotel
             }
 
             _ambience.MuffleVolume();
+
+            _playStateImage.sprite = _playSprite;
         }
 
         public void Pause()
@@ -182,6 +195,8 @@ namespace ClassicHotel
             PauseCurrentTrack();
 
             _ambience.NormalizeVolume();
+            
+            _playStateImage.sprite = _pauseSprite;
         }
 
         public void SwitchToFlashlightMode()
@@ -300,15 +315,21 @@ namespace ClassicHotel
             {
                 _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
 
-                Color currentColor = i % 2 == 0 ? Color.black : Color.white;
-                Color currentEmissionColor = i % 2 == 0 ? DisabledEmissionColor : EnabledEmissionColor;
+                bool isDisabled = i % 2 == 0;
+
+                Color currentColor = isDisabled ? Color.black : Color.white;
+                Color currentEmissionColor = isDisabled ? DisabledEmissionColor : EnabledEmissionColor;
                 _instancedScreenMaterial.SetColor(ColorPropertyName, currentColor);
                 _instancedScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
+
+                _screenCanvas.enabled = !isDisabled;
 
                 yield return delay;
             }
 
             _audioSource.pitch = 1f;
+            _screenCanvas.enabled = true;
+            _screenCanvasGroup.alpha = 1f;
 
             _isGlitching = false;
 
