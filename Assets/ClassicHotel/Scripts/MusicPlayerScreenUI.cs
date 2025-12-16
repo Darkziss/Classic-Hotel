@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using PrimeTween;
 
 namespace ClassicHotel
 {
@@ -15,10 +16,13 @@ namespace ClassicHotel
         [SerializeField] private Image _trackImage;
 
         [SerializeField] private TextMeshProUGUI _progressText;
+        [SerializeField] private ProgressBar _progressBar;
 
         private Coroutine _progressCoroutine;
 
         private readonly WaitForSeconds _trackProgressDelay = new(1f);
+
+        private const Ease ProgressEase = Ease.Linear;
 
         private void OnEnable()
         {
@@ -42,11 +46,19 @@ namespace ClassicHotel
             _trackAuthorText.text = track.AuthorName;
 
             _trackImage.sprite = track.Image;
+
+            PlayProgressAnimation(0f, duration);
         }
 
         private void PlayProgressAnimation(float currentPlaytime, float targetPlaytime)
         {
             _progressCoroutine = StartCoroutine(TrackProgressTextRoutine(currentPlaytime, targetPlaytime));
+
+            float duration = targetPlaytime - currentPlaytime;
+            
+            TweenSettings<float> progressBarTweenSettings = new(currentPlaytime, targetPlaytime, duration, ProgressEase);
+
+            Tween.Custom(_progressBar, progressBarTweenSettings, (_, progress) => _progressBar.Set(progress, targetPlaytime));
         }
 
         private void StopProgressAnimation()
@@ -58,6 +70,8 @@ namespace ClassicHotel
             
             StopCoroutine(_progressCoroutine);
             _progressCoroutine = null;
+
+            Tween.StopAll(_progressBar);
         }
 
         private void SetProgressText(int second)
