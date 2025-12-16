@@ -96,8 +96,6 @@ namespace ClassicHotel
 
         private const float EmissionIntensity = 2.416924f;
 
-        public event Action<int, int> MusicPlayerInited;
-
         public event Action TrackPaused;
         public event Action<float, float> TrackResumed;
 
