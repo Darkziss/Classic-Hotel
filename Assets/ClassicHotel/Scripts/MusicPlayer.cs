@@ -96,10 +96,12 @@ namespace ClassicHotel
 
         private const float EmissionIntensity = 2.416924f;
 
+        public event Action<int, int> MusicPlayerInited;
+
         public event Action TrackPaused;
         public event Action<float, float> TrackResumed;
 
-        public event Action<TrackInfo, float> TrackChanged;
+        public event Action<TrackInfo> TrackChanged;
 
         private void OnValidate()
         {
@@ -125,6 +127,8 @@ namespace ClassicHotel
 
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
+
+
         }
 
         private void Update()
@@ -267,7 +271,7 @@ namespace ClassicHotel
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(duration));
 
-            TrackChanged?.Invoke(track, duration);
+            TrackChanged?.Invoke(track);
         }
 
         private void PauseCurrentTrack()
@@ -301,6 +305,7 @@ namespace ClassicHotel
             }
 
             SetTrackAndPlay(track, playtime, startTime);
+            TrackResumed?.Invoke(_currentPlaytime, _targetPlaytime);
         }
 
         private IEnumerator WaitForEndOfCurrentTrack(float duration)

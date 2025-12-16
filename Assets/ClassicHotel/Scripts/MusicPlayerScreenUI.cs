@@ -40,14 +40,12 @@ namespace ClassicHotel
             _musicPlayer.TrackChanged -= UpdateTrackInfo;
         }
 
-        private void UpdateTrackInfo(TrackInfo track, float duration)
+        private void UpdateTrackInfo(TrackInfo track)
         {
             _trackNameText.text = track.Name;
             _trackAuthorText.text = track.AuthorName;
 
             _trackImage.sprite = track.Image;
-
-            PlayProgressAnimation(0f, duration);
         }
 
         private void PlayProgressAnimation(float currentPlaytime, float targetPlaytime)
