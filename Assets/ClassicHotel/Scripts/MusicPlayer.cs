@@ -35,6 +35,9 @@ namespace ClassicHotel
         [SerializeField] private AudioClip _firstMusicTrack;
         [SerializeField] private AudioClip[] _musicTracks;
 
+        [SerializeField] private TrackInfo test_firstMusicTrack;
+        [SerializeField] private TrackInfo[] test_musicTracks;
+
         [SerializeField] private Sprite _playSprite;
         [SerializeField] private Sprite _pauseSprite;
 

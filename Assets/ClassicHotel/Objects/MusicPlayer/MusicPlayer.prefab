@@ -2274,6 +2274,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0534a02bcb1043045b6bdbcfde67c492, type: 3}
   - {fileID: 8300000, guid: 01ae2778b1e5da740967fca642e04e63, type: 3}
   - {fileID: 8300000, guid: 20792c48cfff4904da9e696ccea3032d, type: 3}
+  test_firstMusicTrack: {fileID: 11400000, guid: 5745bf2ed2fc5c54d8cdf242a5a22511, type: 2}
+  test_musicTracks:
+  - {fileID: 11400000, guid: aac9eb314c4cb334185202a844350b80, type: 2}
+  - {fileID: 11400000, guid: bef0af8a4a4f8314f91797dcafa1da66, type: 2}
+  - {fileID: 11400000, guid: 9c5279c4cf8bb68438cae7d2405eddce, type: 2}
+  - {fileID: 11400000, guid: ec431f3ffd0010149959bc9c6d6852d6, type: 2}
+  - {fileID: 11400000, guid: 724e7cc17f9399943914b6e7f5f927a0, type: 2}
+  - {fileID: 11400000, guid: 1bab7c971828e304d92764d9db46b910, type: 2}
+  - {fileID: 11400000, guid: 6479ba76685feac4797880701f2385ad, type: 2}
+  - {fileID: 11400000, guid: 4c288f3e981ce884caddeed762a4baf6, type: 2}
+  - {fileID: 11400000, guid: c3f666fde5df98149ad8cfb3c97e70a2, type: 2}
+  - {fileID: 11400000, guid: ded749b6ceabc674db57aff05ba78376, type: 2}
+  - {fileID: 11400000, guid: 6012654f9218fcc4384a3ebf2138047f, type: 2}
+  - {fileID: 11400000, guid: 7226d802b948b36418c7dc1ecde723de, type: 2}
+  - {fileID: 11400000, guid: 5edc66f283290f3479726e2b87d86db7, type: 2}
   _playSprite: {fileID: 1967626088, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
   _pauseSprite: {fileID: 1235676874, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
   _flashlightRotation: {x: -5, y: 175, z: -3}
