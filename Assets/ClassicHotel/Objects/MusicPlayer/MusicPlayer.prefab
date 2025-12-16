@@ -1560,6 +1560,7 @@ MonoBehaviour:
   _trackNameText: {fileID: 8162343815066216843}
   _trackAuthorText: {fileID: 3224298809526679189}
   _trackImage: {fileID: 625426717052706629}
+  _progressText: {fileID: 4180142782245107948}
 --- !u!1 &8665641610312967397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +1978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0:05
+  m_text: 0:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2eb188734f7586459cc4aa27aa2c569, type: 2}
   m_sharedMaterial: {fileID: -2525003636500070245, guid: b2eb188734f7586459cc4aa27aa2c569, type: 2}

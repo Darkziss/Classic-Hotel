@@ -96,7 +96,10 @@ namespace ClassicHotel
 
         private const float EmissionIntensity = 2.416924f;
 
-        public event Action<TrackInfo> TrackChanged;
+        public event Action TrackPaused;
+        public event Action<float, float> TrackResumed;
+
+        public event Action<TrackInfo, float> TrackChanged;
 
         private void OnValidate()
         {
@@ -181,6 +184,8 @@ namespace ClassicHotel
             _ambience.MuffleVolume();
 
             _playStateImage.sprite = _playSprite;
+
+            TrackResumed?.Invoke(_currentPlaytime, _targetPlaytime);
         }
 
         public void Pause()
@@ -199,6 +204,8 @@ namespace ClassicHotel
             _ambience.NormalizeVolume();
             
             _playStateImage.sprite = _pauseSprite;
+
+            TrackPaused?.Invoke();
         }
 
         public void SwitchToFlashlightMode()
@@ -260,7 +267,7 @@ namespace ClassicHotel
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(duration));
 
-            TrackChanged?.Invoke(track);
+            TrackChanged?.Invoke(track, duration);
         }
 
         private void PauseCurrentTrack()
