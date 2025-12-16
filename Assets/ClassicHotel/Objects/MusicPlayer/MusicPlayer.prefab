@@ -416,7 +416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 325873999, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Example Author
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2eb188734f7586459cc4aa27aa2c569, type: 2}
   m_sharedMaterial: {fileID: -2525003636500070245, guid: b2eb188734f7586459cc4aa27aa2c569, type: 2}
@@ -1133,7 +1133,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Example Track
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b2eb188734f7586459cc4aa27aa2c569, type: 2}
   m_sharedMaterial: {fileID: -2525003636500070245, guid: b2eb188734f7586459cc4aa27aa2c569, type: 2}
@@ -2276,23 +2278,8 @@ MonoBehaviour:
   _clickAudioClips:
   - {fileID: 8300000, guid: f1721f16f5f1bdb42bed6da73ce0816f, type: 3}
   - {fileID: 8300000, guid: a3e95fcc9b201aa4da20da6c22b82300, type: 3}
-  _firstMusicTrack: {fileID: 8300000, guid: 7f08eac84b0cf3642a52a73f1886122c, type: 3}
+  _firstMusicTrack: {fileID: 11400000, guid: 5745bf2ed2fc5c54d8cdf242a5a22511, type: 2}
   _musicTracks:
-  - {fileID: 8300000, guid: 4934d83bdbf276047a6d388556075604, type: 3}
-  - {fileID: 8300000, guid: 27494a44372102a44a0b5ff680c033eb, type: 3}
-  - {fileID: 8300000, guid: a2619bbc9812a2047a01b993d2bb11c7, type: 3}
-  - {fileID: 8300000, guid: 97a8529c8908edb4e887bb39ac23f83c, type: 3}
-  - {fileID: 8300000, guid: 698a8ae3c8d18af4d8d514626f957100, type: 3}
-  - {fileID: 8300000, guid: 0e89c731059d294409b8b7e369264bb4, type: 3}
-  - {fileID: 8300000, guid: 09d3cf09f69eb7e4182a17f2298ee7b9, type: 3}
-  - {fileID: 8300000, guid: 246563a301e17154faaad5c7c005703d, type: 3}
-  - {fileID: 8300000, guid: 65dc0d5203953f84da3e2c852c56b9fb, type: 3}
-  - {fileID: 8300000, guid: fd38c9a5b15295d4ab3d52aafe0fb32b, type: 3}
-  - {fileID: 8300000, guid: 0534a02bcb1043045b6bdbcfde67c492, type: 3}
-  - {fileID: 8300000, guid: 01ae2778b1e5da740967fca642e04e63, type: 3}
-  - {fileID: 8300000, guid: 20792c48cfff4904da9e696ccea3032d, type: 3}
-  test_firstMusicTrack: {fileID: 11400000, guid: 5745bf2ed2fc5c54d8cdf242a5a22511, type: 2}
-  test_musicTracks:
   - {fileID: 11400000, guid: aac9eb314c4cb334185202a844350b80, type: 2}
   - {fileID: 11400000, guid: bef0af8a4a4f8314f91797dcafa1da66, type: 2}
   - {fileID: 11400000, guid: 9c5279c4cf8bb68438cae7d2405eddce, type: 2}

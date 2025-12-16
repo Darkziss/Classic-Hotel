@@ -32,11 +32,8 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip[] _clickAudioClips;
 
-        [SerializeField] private AudioClip _firstMusicTrack;
-        [SerializeField] private AudioClip[] _musicTracks;
-
-        [SerializeField] private TrackInfo test_firstMusicTrack;
-        [SerializeField] private TrackInfo[] test_musicTracks;
+        [SerializeField] private TrackInfo _firstMusicTrack;
+        [SerializeField] private TrackInfo[] _musicTracks;
 
         [SerializeField] private Sprite _playSprite;
         [SerializeField] private Sprite _pauseSprite;
@@ -98,6 +95,8 @@ namespace ClassicHotel
         private const string EmissionPropertyName = "_EmissionColor";
 
         private const float EmissionIntensity = 2.416924f;
+
+        public event Action<TrackInfo> TrackChanged;
 
         private void OnValidate()
         {
@@ -245,14 +244,14 @@ namespace ClassicHotel
         {
             int index = UnityRandom.Range(0, _musicTracks.Length);
             float playtime = UnityRandom.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
-            float startTime = UnityRandom.Range(0f, _musicTracks[index].length - playtime);
+            float startTime = UnityRandom.Range(0f, _musicTracks[index].Clip.length - playtime);
 
             StartCoroutine(PlayScrollStepSoundsAndChangeMusic(_musicTracks[index], playtime, startTime));
         }
 
-        private void SetTrackAndPlay(AudioClip track, float duration, float startTime)
+        private void SetTrackAndPlay(TrackInfo track, float duration, float startTime)
         {
-            _audioSource.clip = track;
+            _audioSource.clip = track.Clip;
             _audioSource.time = startTime;
             _audioSource.Play();
 
@@ -260,6 +259,8 @@ namespace ClassicHotel
             _targetPlaytime = duration;
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(duration));
+
+            TrackChanged?.Invoke(track);
         }
 
         private void PauseCurrentTrack()
@@ -277,7 +278,7 @@ namespace ClassicHotel
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime - _currentPlaytime));
         }
 
-        private IEnumerator PlayScrollStepSoundsAndChangeMusic(AudioClip track, float playtime, float startTime)
+        private IEnumerator PlayScrollStepSoundsAndChangeMusic(TrackInfo track, float playtime, float startTime)
         {
             int count = UnityRandom.Range(MinScrolls, MaxScrolls);
             const float ScrollDelay = 0.15f;
