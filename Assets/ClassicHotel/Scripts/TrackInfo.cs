@@ -12,6 +12,14 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip _clip;
 
+        public string Name => _name;
+
+        public string AuthorName => _author;
+
+        public Sprite Image => _image;
+
+        public AudioClip Clip => _clip;
+
         private const string DefaultFileName = "Track";
     }
 }
