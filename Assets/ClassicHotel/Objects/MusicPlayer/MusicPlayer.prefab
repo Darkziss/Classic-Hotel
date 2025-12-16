@@ -1433,6 +1433,7 @@ GameObject:
   - component: {fileID: 6422534301192623110}
   - component: {fileID: 8234052204590297616}
   - component: {fileID: 2573579178537663692}
+  - component: {fileID: 6525120694134522218}
   m_Layer: 5
   m_Name: ScreenCanvas
   m_TagString: Untagged
@@ -1541,6 +1542,22 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6525120694134522218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677356593285433197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39bdebb56638ec74fbfd0c424ba1b344, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerScreenUI
+  _musicPlayer: {fileID: 6929652917288438152}
+  _trackNameText: {fileID: 8162343815066216843}
+  _trackAuthorText: {fileID: 3224298809526679189}
+  _trackImage: {fileID: 625426717052706629}
 --- !u!1 &8665641610312967397
 GameObject:
   m_ObjectHideFlags: 0
