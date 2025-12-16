@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fd239611c3042341bd9487d4aabd3fa, type: 3}
-  m_Name: Track
+  m_Name: FlightOfTheBumblebee
   m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.TrackInfo
-  _name: Turkish March
-  _author: Ludwig van Beethoven
+  _name: Flight of the Bumblebee
+  _author: Rimsky Korsakov
   _image: {fileID: 0}
-  _clip: {fileID: 8300000, guid: 7f08eac84b0cf3642a52a73f1886122c, type: 3}
+  _clip: {fileID: 8300000, guid: 97a8529c8908edb4e887bb39ac23f83c, type: 3}
