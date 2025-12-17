@@ -32,8 +32,8 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip[] _clickAudioClips;
 
-        [SerializeField] private AudioClip _firstMusicTrack;
-        [SerializeField] private AudioClip[] _musicTracks;
+        [SerializeField] private TrackInfo _firstMusicTrack;
+        [SerializeField] private TrackInfo[] _musicTracks;
 
         [SerializeField] private Sprite _playSprite;
         [SerializeField] private Sprite _pauseSprite;
@@ -96,6 +96,11 @@ namespace ClassicHotel
 
         private const float EmissionIntensity = 2.416924f;
 
+        public event Action TrackPaused;
+        public event Action<float, float> TrackResumed;
+
+        public event Action<TrackInfo, int, int> TrackChanged;
+
         private void OnValidate()
         {
             if (_transform == null)
@@ -120,6 +125,8 @@ namespace ClassicHotel
 
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
+
+            TrackChanged?.Invoke(_firstMusicTrack, 1, _musicTracks.Length);
         }
 
         private void Update()
@@ -179,6 +186,8 @@ namespace ClassicHotel
             _ambience.MuffleVolume();
 
             _playStateImage.sprite = _playSprite;
+
+            TrackResumed?.Invoke(_currentPlaytime, _targetPlaytime);
         }
 
         public void Pause()
@@ -197,6 +206,8 @@ namespace ClassicHotel
             _ambience.NormalizeVolume();
             
             _playStateImage.sprite = _pauseSprite;
+
+            TrackPaused?.Invoke();
         }
 
         public void SwitchToFlashlightMode()
@@ -242,14 +253,14 @@ namespace ClassicHotel
         {
             int index = UnityRandom.Range(0, _musicTracks.Length);
             float playtime = UnityRandom.Range(RandomTrackMinPlaytime, RandomTrackMaxPlaytime);
-            float startTime = UnityRandom.Range(0f, _musicTracks[index].length - playtime);
+            float startTime = UnityRandom.Range(0f, _musicTracks[index].Clip.length - playtime);
 
             StartCoroutine(PlayScrollStepSoundsAndChangeMusic(_musicTracks[index], playtime, startTime));
         }
 
-        private void SetTrackAndPlay(AudioClip track, float duration, float startTime)
+        private void SetTrackAndPlay(TrackInfo track, float duration, float startTime)
         {
-            _audioSource.clip = track;
+            _audioSource.clip = track.Clip;
             _audioSource.time = startTime;
             _audioSource.Play();
 
@@ -257,6 +268,18 @@ namespace ClassicHotel
             _targetPlaytime = duration;
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(duration));
+
+            int index = Array.IndexOf(_musicTracks, track);
+
+            if (track == _firstMusicTrack)
+            {
+                TrackChanged?.Invoke(track, 1, _musicTracks.Length);
+
+            }
+            else
+            {
+                TrackChanged?.Invoke(track, index + 1, _musicTracks.Length);
+            }
         }
 
         private void PauseCurrentTrack()
@@ -274,7 +297,7 @@ namespace ClassicHotel
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime - _currentPlaytime));
         }
 
-        private IEnumerator PlayScrollStepSoundsAndChangeMusic(AudioClip track, float playtime, float startTime)
+        private IEnumerator PlayScrollStepSoundsAndChangeMusic(TrackInfo track, float playtime, float startTime)
         {
             int count = UnityRandom.Range(MinScrolls, MaxScrolls);
             const float ScrollDelay = 0.15f;
@@ -290,6 +313,7 @@ namespace ClassicHotel
             }
 
             SetTrackAndPlay(track, playtime, startTime);
+            TrackResumed?.Invoke(_currentPlaytime, _targetPlaytime);
         }
 
         private IEnumerator WaitForEndOfCurrentTrack(float duration)
