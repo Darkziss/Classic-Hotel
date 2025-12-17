@@ -15,6 +15,8 @@ namespace ClassicHotel
 
         [SerializeField] private Image _trackImage;
 
+        [SerializeField] private TextMeshProUGUI _positionText;
+
         [SerializeField] private TextMeshProUGUI _progressText;
         [SerializeField] private ProgressBar _progressBar;
 
@@ -40,12 +42,14 @@ namespace ClassicHotel
             _musicPlayer.TrackChanged -= UpdateTrackInfo;
         }
 
-        private void UpdateTrackInfo(TrackInfo track)
+        private void UpdateTrackInfo(TrackInfo track, int position, int maxPosition)
         {
             _trackNameText.text = track.Name;
             _trackAuthorText.text = track.AuthorName;
 
             _trackImage.sprite = track.Image;
+
+            _positionText.text = $"{position} of {maxPosition}";
         }
 
         private void PlayProgressAnimation(float currentPlaytime, float targetPlaytime)

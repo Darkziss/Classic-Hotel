@@ -99,7 +99,7 @@ namespace ClassicHotel
         public event Action TrackPaused;
         public event Action<float, float> TrackResumed;
 
-        public event Action<TrackInfo> TrackChanged;
+        public event Action<TrackInfo, int, int> TrackChanged;
 
         private void OnValidate()
         {
@@ -126,7 +126,7 @@ namespace ClassicHotel
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
 
-            TrackChanged?.Invoke(_firstMusicTrack);
+            TrackChanged?.Invoke(_firstMusicTrack, 1, _musicTracks.Length);
         }
 
         private void Update()
@@ -269,7 +269,17 @@ namespace ClassicHotel
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(duration));
 
-            TrackChanged?.Invoke(track);
+            int index = Array.IndexOf(_musicTracks, track);
+
+            if (track == _firstMusicTrack)
+            {
+                TrackChanged?.Invoke(track, 1, _musicTracks.Length);
+
+            }
+            else
+            {
+                TrackChanged?.Invoke(track, index + 1, _musicTracks.Length);
+            }
         }
 
         private void PauseCurrentTrack()
