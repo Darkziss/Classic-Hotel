@@ -126,7 +126,7 @@ namespace ClassicHotel
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
 
-
+            TrackChanged?.Invoke(_firstMusicTrack);
         }
 
         private void Update()
