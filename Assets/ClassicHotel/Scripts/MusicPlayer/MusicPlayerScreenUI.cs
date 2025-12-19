@@ -13,6 +13,8 @@ namespace ClassicHotel
         [SerializeField] private Canvas _canvas;
         [SerializeField] private CanvasGroup _canvasGroup;
 
+        [SerializeField] private Image _playStateImage;
+
         [SerializeField] private TextMeshProUGUI _trackNameText;
         [SerializeField] private TextMeshProUGUI _trackAuthorText;
 
@@ -23,6 +25,9 @@ namespace ClassicHotel
         [SerializeField] private TextMeshProUGUI _progressText;
         [SerializeField] private ProgressBar _progressBar;
 
+        [SerializeField] private Sprite _playIcon;
+        [SerializeField] private Sprite _pauseIcon;
+
         private Coroutine _progressCoroutine;
 
         private readonly WaitForSeconds _trackProgressDelay = new(1f);
@@ -32,7 +37,10 @@ namespace ClassicHotel
         private void OnEnable()
         {
             _musicPlayer.TrackResumed += PlayProgressAnimation;
+            _musicPlayer.TrackResumed += (_, _) => _playStateImage.sprite = _playIcon;
+
             _musicPlayer.TrackPaused += StopProgressAnimation;
+            _musicPlayer.TrackPaused += () => _playStateImage.sprite = _pauseIcon;
 
             _musicPlayer.TrackChanged += UpdateTrackInfo;
         }

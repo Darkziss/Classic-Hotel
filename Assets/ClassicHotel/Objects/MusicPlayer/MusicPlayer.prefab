@@ -1590,12 +1590,15 @@ MonoBehaviour:
   _musicPlayer: {fileID: 6929652917288438152}
   _canvas: {fileID: 1624421968437872127}
   _canvasGroup: {fileID: 2573579178537663692}
+  _playStateImage: {fileID: 2816058253619782587}
   _trackNameText: {fileID: 8162343815066216843}
   _trackAuthorText: {fileID: 3224298809526679189}
   _trackImage: {fileID: 625426717052706629}
   _positionText: {fileID: 4626558342846360441}
   _progressText: {fileID: 4180142782245107948}
   _progressBar: {fileID: 5051951819952992068}
+  _playIcon: {fileID: 1967626088, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
+  _pauseIcon: {fileID: 1235676874, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
 --- !u!1 &8665641610312967397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,7 +2361,6 @@ MonoBehaviour:
   _transform: {fileID: 5883210691413103939}
   _musicPlayerScreen: {fileID: 7999050864383243369}
   _audioSource: {fileID: 8113957446932468401}
-  _clickAudioSource: {fileID: 3964638231316523061}
   _randomClickAudioSource: {fileID: 8428192175472646068}
   _playStateImage: {fileID: 2816058253619782587}
   _screenLight: {fileID: 8247698525525135355}
@@ -2366,9 +2368,6 @@ MonoBehaviour:
   _backLight: {fileID: 663666259331170687}
   _ambience: {fileID: 0}
   _scrollStepSound: {fileID: 8300000, guid: 256fe54b33e71474a873bb3a6dc824b3, type: 3}
-  _clickAudioClips:
-  - {fileID: 8300000, guid: f1721f16f5f1bdb42bed6da73ce0816f, type: 3}
-  - {fileID: 8300000, guid: a3e95fcc9b201aa4da20da6c22b82300, type: 3}
   _firstMusicTrack: {fileID: 11400000, guid: 5745bf2ed2fc5c54d8cdf242a5a22511, type: 2}
   _musicTracks:
   - {fileID: 11400000, guid: aac9eb314c4cb334185202a844350b80, type: 2}
@@ -2384,8 +2383,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6012654f9218fcc4384a3ebf2138047f, type: 2}
   - {fileID: 11400000, guid: 7226d802b948b36418c7dc1ecde723de, type: 2}
   - {fileID: 11400000, guid: 5edc66f283290f3479726e2b87d86db7, type: 2}
-  _playSprite: {fileID: 1967626088, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
-  _pauseSprite: {fileID: 1235676874, guid: 8f70da14ce1ce20469c9f62dc1069e86, type: 3}
   _flashlightRotation: {x: -5, y: 175, z: -3}
   _flashlightMove: {x: 0, y: 0.05, z: 0.2}
   _screenLightIntensity: 1

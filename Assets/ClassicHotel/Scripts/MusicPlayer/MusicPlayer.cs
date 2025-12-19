@@ -32,9 +32,6 @@ namespace ClassicHotel
         [SerializeField] private TrackInfo _firstMusicTrack;
         [SerializeField] private TrackInfo[] _musicTracks;
 
-        [SerializeField] private Sprite _playSprite;
-        [SerializeField] private Sprite _pauseSprite;
-
         [SerializeField] private Vector3 _flashlightRotation;
         [SerializeField] private Vector3 _flashlightMove;
 
@@ -148,8 +145,6 @@ namespace ClassicHotel
 
             _ambience.MuffleVolume();
 
-            _playStateImage.sprite = _playSprite;
-
             TrackResumed?.Invoke(_currentPlaytime, _targetPlaytime);
         }
 
@@ -168,8 +163,6 @@ namespace ClassicHotel
 
             _ambience.NormalizeVolume();
             
-            _playStateImage.sprite = _pauseSprite;
-
             TrackPaused?.Invoke();
         }
 
