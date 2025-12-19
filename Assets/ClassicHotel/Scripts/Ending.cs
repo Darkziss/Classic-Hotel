@@ -13,6 +13,7 @@ namespace ClassicHotel
 
         [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private MusicPlayer _musicPlayer;
+        [SerializeField] private MusicPlayerVisuals _musicPlayerVisuals;
         [SerializeField] private LightGroup _musicPlayerRimLights;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
         [SerializeField] private Ambience _ambience;
@@ -79,7 +80,7 @@ namespace ClassicHotel
 
             yield return _musicPlayerRotateDelay;
 
-            _musicPlayer.SwitchToFlashlightMode();
+            _musicPlayerVisuals.SwitchToFlashlightMode();
 
             yield return _ambienceChangeDelay;
 

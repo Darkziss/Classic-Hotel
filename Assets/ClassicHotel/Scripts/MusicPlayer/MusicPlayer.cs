@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using PrimeTween;
 using UnityRandom = UnityEngine.Random;
 
@@ -10,27 +9,18 @@ namespace ClassicHotel
     [RequireComponent(typeof(MeshFilter), typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour
     {
-        [SerializeField] private Transform _transform;
-
         [SerializeField] private MusicPlayerScreen _musicPlayerScreen;
 
-        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioSource _musicSource;
 
         [SerializeField] private RandomOneShotAudioSource _randomClickAudioSource;
 
-        [SerializeField] private Light _screenLight;
-        
         [SerializeField] private Ambience _ambience;
 
         [SerializeField] private AudioClip _scrollStepSound;
 
         [SerializeField] private TrackInfo _firstMusicTrack;
         [SerializeField] private TrackInfo[] _musicTracks;
-
-        [SerializeField] private Vector3 _flashlightRotation;
-        [SerializeField] private Vector3 _flashlightMove;
-
-        [SerializeField] private float _screenLightIntensity;
 
         private bool _isPlaying;
 
@@ -72,14 +62,9 @@ namespace ClassicHotel
 
         private void OnValidate()
         {
-            if (_transform == null)
+            if (_musicSource == null)
             {
-                _transform = transform;
-            }
-            
-            if (_audioSource == null)
-            {
-                _audioSource = GetComponent<AudioSource>();
+                _musicSource = GetComponent<AudioSource>();
             }
         }
 
@@ -113,7 +98,7 @@ namespace ClassicHotel
                 const float AudioPitchDuration = 1f;
                 const Ease AudioPitchEase = Ease.OutCirc;
 
-                Tween.AudioPitch(_audioSource, TargetAudioPitch, AudioPitchDuration, AudioPitchEase);
+                Tween.AudioPitch(_musicSource, TargetAudioPitch, AudioPitchDuration, AudioPitchEase);
                 _musicPlayerScreen.TriggerRapidScreenFlicker();
             }
         }
@@ -161,26 +146,6 @@ namespace ClassicHotel
             TrackPaused?.Invoke();
         }
 
-        public void SwitchToFlashlightMode()
-        {
-            const float Duration = 0.6f;
-
-            const Ease RotateEase = Ease.OutExpo;
-            const Ease PositionEase = Ease.OutBack;
-
-            const Ease IntensityEase = Ease.Default;
-
-            TweenSettings<Vector3> rotationSettings = new(_flashlightRotation, Duration, RotateEase);
-            TweenSettings<Vector3> positionSettings = new(_transform.localPosition + _flashlightMove, Duration, PositionEase);
-
-            TweenSettings<float> intensitySettings = new(_screenLightIntensity, Duration, IntensityEase);
-
-            Sequence.Create()
-                .Chain(Tween.LocalRotation(_transform, rotationSettings))
-                .Group(Tween.LocalPosition(_transform, positionSettings))
-                .Group(Tween.LightIntensity(_screenLight, intensitySettings));
-        }
-
         private void SetFirstTrackAndPlay()
         {
             SetTrackAndPlay(_firstMusicTrack, FirstTrackPlaytime, FirstTrackStartTime);
@@ -197,9 +162,9 @@ namespace ClassicHotel
 
         private void SetTrackAndPlay(TrackInfo track, float duration, float startTime)
         {
-            _audioSource.clip = track.Clip;
-            _audioSource.time = startTime;
-            _audioSource.Play();
+            _musicSource.clip = track.Clip;
+            _musicSource.time = startTime;
+            _musicSource.Play();
 
             _currentPlaytime = 0f;
             _targetPlaytime = duration;
@@ -220,7 +185,7 @@ namespace ClassicHotel
 
         private void PauseCurrentTrack()
         {
-            _audioSource.Pause();
+            _musicSource.Pause();
 
             StopCoroutine(_waitCoroutine);
             _waitCoroutine = null;
@@ -228,7 +193,7 @@ namespace ClassicHotel
 
         private void UnPauseCurrentTrack()
         {
-            _audioSource.UnPause();
+            _musicSource.UnPause();
 
             _waitCoroutine = StartCoroutine(WaitForEndOfCurrentTrack(_targetPlaytime - _currentPlaytime));
         }
@@ -239,11 +204,11 @@ namespace ClassicHotel
             const float ScrollDelay = 0.15f;
             WaitForSeconds delay = new(ScrollDelay);
 
-            _audioSource.Stop();
+            _musicSource.Stop();
 
             for (int i = 0; i < count; i++)
             {
-                _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
+                _musicSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
 
                 yield return delay;
             }
