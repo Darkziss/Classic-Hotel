@@ -26,7 +26,7 @@ namespace ClassicHotel
 
         private int _tracksPlayed;
 
-        private bool _isRapidGlitchTriggered;
+        private bool _isRapidGlitchHappened;
 
         private int _rapidGlitchTriggerTrackCount;
         private float _rapidGlitchTrackStartTime;
@@ -83,7 +83,7 @@ namespace ClassicHotel
                 _currentPlaytime += Time.deltaTime;
             }
             
-            if (!_isPlaying || _isRapidGlitchTriggered || _tracksPlayed != _rapidGlitchTriggerTrackCount)
+            if (!_isPlaying || _isRapidGlitchHappened || _tracksPlayed != _rapidGlitchTriggerTrackCount)
             {
                 return;
             }
@@ -91,7 +91,7 @@ namespace ClassicHotel
             const float MinDelta = 0.1f;
             if (_rapidGlitchTrackStartTime - _currentPlaytime <= MinDelta)
             {
-                _isRapidGlitchTriggered = true;
+                _isRapidGlitchHappened = true;
                 
                 const float TargetAudioPitch = 0f;
 
