@@ -71,9 +71,6 @@ namespace ClassicHotel
         private const float ScaryEventTrackMinStartTime = 3;
         private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
 
-        private const float ScaryEventAudioPitch = 0f;
-        private const float ScaryEventAudioPitchDuration = 1f;
-
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
 
@@ -119,10 +116,13 @@ namespace ClassicHotel
             if (_scaryEventTrackStartTime - _currentPlaytime <= MinDelta)
             {
                 _isScaryEventTriggered = true;
+                
+                const float TargetAudioPitch = 0f;
 
-                const Ease ScaryEventEase = Ease.OutCirc;
+                const float ScaryEventAudioPitchDuration = 1f;
+                const Ease AudioPitchEase = Ease.OutCirc;
 
-                Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase);
+                Tween.AudioPitch(_audioSource, TargetAudioPitch, ScaryEventAudioPitchDuration, AudioPitchEase);
                 _musicPlayerScreen.TriggerRapidScreenFlicker();
             }
         }
