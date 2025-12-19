@@ -18,8 +18,6 @@ namespace ClassicHotel
 
         [SerializeField] private RandomOneShotAudioSource _randomClickAudioSource;
 
-        [SerializeField] private Image _playStateImage;
-
         [SerializeField] private Light _screenLight;
         
         [SerializeField] private Ambience _ambience;
