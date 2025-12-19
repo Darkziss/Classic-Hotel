@@ -41,10 +41,10 @@ namespace ClassicHotel
 
         private int _tracksPlayed;
 
-        private bool _isScaryEventTriggered;
+        private bool _isRapidGlitchTriggered;
 
-        private int _scaryEventTriggerTrackCount;
-        private float _scaryEventTrackStartTime;
+        private int _rapidGlitchTriggerTrackCount;
+        private float _rapidGlitchTrackStartTime;
 
         private float _currentPlaytime;
         private float _targetPlaytime;
@@ -61,11 +61,11 @@ namespace ClassicHotel
         private const int FirstTrackPlaytime = 10;
         private const float FirstTrackStartTime = 0f;
 
-        private const int ScaryEventTriggerTrackMinCount = 1;
-        private const int ScaryEventTriggerTrackMaxCount = 2;
+        private const int RapidGlitchTriggerTrackMinCount = 1;
+        private const int RapidGlitchTriggerTrackMaxCount = 2;
 
-        private const float ScaryEventTrackMinStartTime = 3;
-        private const float ScaryEventTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
+        private const float RapidGlitchTrackMinStartTime = 3;
+        private const float RapidTrackMaxStartTime = RandomTrackMaxPlaytime * 0.8f;
 
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
@@ -90,8 +90,8 @@ namespace ClassicHotel
 
         private void Start()
         {
-            _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
-            _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
+            _rapidGlitchTriggerTrackCount = UnityRandom.Range(RapidGlitchTriggerTrackMinCount, RapidGlitchTriggerTrackMaxCount);
+            _rapidGlitchTrackStartTime = UnityRandom.Range(RapidGlitchTrackMinStartTime, RapidTrackMaxStartTime);
 
             TrackChanged?.Invoke(_firstMusicTrack, 1, _musicTracks.Length);
         }
@@ -103,15 +103,15 @@ namespace ClassicHotel
                 _currentPlaytime += Time.deltaTime;
             }
             
-            if (!_isPlaying || _isScaryEventTriggered || _tracksPlayed != _scaryEventTriggerTrackCount)
+            if (!_isPlaying || _isRapidGlitchTriggered || _tracksPlayed != _rapidGlitchTriggerTrackCount)
             {
                 return;
             }
 
             const float MinDelta = 0.1f;
-            if (_scaryEventTrackStartTime - _currentPlaytime <= MinDelta)
+            if (_rapidGlitchTrackStartTime - _currentPlaytime <= MinDelta)
             {
-                _isScaryEventTriggered = true;
+                _isRapidGlitchTriggered = true;
                 
                 const float TargetAudioPitch = 0f;
 
