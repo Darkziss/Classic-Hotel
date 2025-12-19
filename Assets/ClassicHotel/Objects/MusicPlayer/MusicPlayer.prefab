@@ -450,8 +450,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3762806942584112572}
   - component: {fileID: 3964638231316523061}
+  - component: {fileID: 8428192175472646068}
   m_Layer: 0
-  m_Name: ClickAudioSource
+  m_Name: RandomClickAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -569,6 +570,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8428192175472646068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2526230013443794970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37818949d2982fd48b1972197f6192e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.RandomOneShotAudioSource
+  _audioSource: {fileID: 3964638231316523061}
+  _clips:
+  - {fileID: 8300000, guid: f1721f16f5f1bdb42bed6da73ce0816f, type: 3}
+  - {fileID: 8300000, guid: a3e95fcc9b201aa4da20da6c22b82300, type: 3}
 --- !u!1 &2800343791720261787
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2359,7 @@ MonoBehaviour:
   _musicPlayerScreen: {fileID: 7999050864383243369}
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
+  _randomClickAudioSource: {fileID: 8428192175472646068}
   _playStateImage: {fileID: 2816058253619782587}
   _screenLight: {fileID: 8247698525525135355}
   _frontLight: {fileID: 3222258036235028187}

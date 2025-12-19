@@ -15,7 +15,8 @@ namespace ClassicHotel
         [SerializeField] private MusicPlayerScreen _musicPlayerScreen;
 
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioSource _clickAudioSource;
+
+        [SerializeField] private RandomOneShotAudioSource _randomClickAudioSource;
 
         [SerializeField] private Image _playStateImage;
 
@@ -27,8 +28,6 @@ namespace ClassicHotel
         [SerializeField] private Ambience _ambience;
 
         [SerializeField] private AudioClip _scrollStepSound;
-
-        [SerializeField] private AudioClip[] _clickAudioClips;
 
         [SerializeField] private TrackInfo _firstMusicTrack;
         [SerializeField] private TrackInfo[] _musicTracks;
@@ -136,7 +135,7 @@ namespace ClassicHotel
 
             _isPlaying = true;
 
-            PlayRandomClickSound();
+            _randomClickAudioSource.PlayOneShot();
 
             if (_currentPlaytime > 0f)
             {
@@ -163,7 +162,7 @@ namespace ClassicHotel
 
             _isPlaying = false;
 
-            PlayRandomClickSound();
+            _randomClickAudioSource.PlayOneShot();
 
             PauseCurrentTrack();
 
@@ -198,14 +197,6 @@ namespace ClassicHotel
         {
             _frontLight.enabled = true;
             _backLight.enabled = true;
-        }
-
-        private void PlayRandomClickSound()
-        {
-            int clickClipIndex = UnityRandom.Range(0, _clickAudioClips.Length);
-
-            _clickAudioSource.clip = _clickAudioClips[clickClipIndex];
-            _clickAudioSource.Play();
         }
 
         private void SetFirstTrackAndPlay()
