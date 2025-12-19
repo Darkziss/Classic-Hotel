@@ -119,10 +119,10 @@ namespace ClassicHotel
                 
                 const float TargetAudioPitch = 0f;
 
-                const float ScaryEventAudioPitchDuration = 1f;
+                const float AudioPitchDuration = 1f;
                 const Ease AudioPitchEase = Ease.OutCirc;
 
-                Tween.AudioPitch(_audioSource, TargetAudioPitch, ScaryEventAudioPitchDuration, AudioPitchEase);
+                Tween.AudioPitch(_audioSource, TargetAudioPitch, AudioPitchDuration, AudioPitchEase);
                 _musicPlayerScreen.TriggerRapidScreenFlicker();
             }
         }
