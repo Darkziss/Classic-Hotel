@@ -13,6 +13,7 @@ namespace ClassicHotel
 
         [SerializeField] private PlayerStateMachine _playerStateMachine;
         [SerializeField] private MusicPlayer _musicPlayer;
+        [SerializeField] private LightGroup _musicPlayerRimLights;
         [SerializeField] private AudioSource _lightSwitchAudioSource;
         [SerializeField] private Ambience _ambience;
         [SerializeField] private BoxTrigger _endPoint;
@@ -70,7 +71,7 @@ namespace ClassicHotel
 
             CorridorBlackout();
 
-            _musicPlayer.EnableRimLights();
+            _musicPlayerRimLights.Enable();
 
             yield return _playerStopDelay;
 

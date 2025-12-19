@@ -2176,6 +2176,9 @@ PrefabInstance:
       addedObject: {fileID: 8113957446932468401}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7438835704868580867}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3435462093099614451}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       insertIndex: -1
@@ -2299,6 +2302,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7438835704868580867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552328819918049273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5259339b451c24095da45fc2e6b9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.LightGroup
+  _lights:
+  - {fileID: 3222258036235028187}
+  - {fileID: 663666259331170687}
 --- !u!114 &3435462093099614451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2364,8 +2382,6 @@ MonoBehaviour:
   _randomClickAudioSource: {fileID: 8428192175472646068}
   _playStateImage: {fileID: 2816058253619782587}
   _screenLight: {fileID: 8247698525525135355}
-  _frontLight: {fileID: 3222258036235028187}
-  _backLight: {fileID: 663666259331170687}
   _ambience: {fileID: 0}
   _scrollStepSound: {fileID: 8300000, guid: 256fe54b33e71474a873bb3a6dc824b3, type: 3}
   _firstMusicTrack: {fileID: 11400000, guid: 5745bf2ed2fc5c54d8cdf242a5a22511, type: 2}

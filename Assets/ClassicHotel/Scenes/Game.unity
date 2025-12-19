@@ -13291,6 +13291,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb16dcf28900934c91d7be220d0fa38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerScreen
+--- !u!114 &958851387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7438835704868580867, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+  m_PrefabInstance: {fileID: 6709121884478045547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5259339b451c24095da45fc2e6b9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.LightGroup
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -20283,6 +20294,7 @@ MonoBehaviour:
   - {fileID: 1444319176}
   _playerStateMachine: {fileID: 589425353}
   _musicPlayer: {fileID: 958851377}
+  _musicPlayerRimLights: {fileID: 958851387}
   _lightSwitchAudioSource: {fileID: 752945734}
   _ambience: {fileID: 798965382}
   _endPoint: {fileID: 1898229343}
