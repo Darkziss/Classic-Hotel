@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2323,7 +2323,8 @@ MonoBehaviour:
   _screenMaterial: {fileID: 7939178933162196359}
   _scrollStepAudioSource: {fileID: 3435462093099614451}
   _screenUI: {fileID: 6525120694134522218}
-  _enabledColor: {r: 4, g: 4, b: 4, a: 1}
+  _enabledColor: {r: 1, g: 1, b: 1, a: 1}
+  _emissionColor: {r: 4, g: 4, b: 4, a: 1}
   _disabledColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &6929652917288438152
 MonoBehaviour:

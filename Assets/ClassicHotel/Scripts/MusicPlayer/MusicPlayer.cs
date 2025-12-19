@@ -122,17 +122,17 @@ namespace ClassicHotel
 
                 const Ease ScaryEventEase = Ease.OutCirc;
 
-                Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase)
-                    .OnComplete(_musicPlayerScreen.TriggerRapidScreenFlicker);
+                Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase);
+                _musicPlayerScreen.TriggerRapidScreenFlicker();
 
                 //Sequence.Create()
                 //    .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
                 //    .ChainCallback(_musicPlayerScreen.TriggerRapidScreenFlicker);
-                    //.Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
-                    //.Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
-                    //.Group(Tween.Alpha(_screenCanvasGroup, screenUIAlphaTween))
-                    //.ChainCallback(() => _audioSource.pitch = 1f)
-                    //.ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
+                //.Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
+                //.Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
+                //.Group(Tween.Alpha(_screenCanvasGroup, screenUIAlphaTween))
+                //.ChainCallback(() => _audioSource.pitch = 1f)
+                //.ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
         }
 

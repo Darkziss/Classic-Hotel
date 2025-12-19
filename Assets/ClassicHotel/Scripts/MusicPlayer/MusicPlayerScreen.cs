@@ -13,7 +13,8 @@ namespace ClassicHotel
         
         [SerializeField] private MusicPlayerScreenUI _screenUI;
 
-        [SerializeField, ColorUsage(true, true)] private Color _enabledColor = Color.white;
+        [SerializeField] private Color _enabledColor = Color.white;
+        [SerializeField, ColorUsage(true, true)] private Color _emissionColor = Color.white;
         [SerializeField] private Color _disabledColor = Color.black;
 
         private bool _isFlickering;
@@ -43,15 +44,13 @@ namespace ClassicHotel
 
             RapidScreenGlitchStarted?.Invoke();
 
-            TweenSettings<Color> settings = new(_enabledColor, _disabledColor, FadeOutDuration, FadeOutEase);
+            TweenSettings<Color> colorSettings = new(_enabledColor, _disabledColor, FadeOutDuration, FadeOutEase);
+            TweenSettings<float> alphaSettings = new(1f, 0f, FadeOutDuration, FadeOutEase);
 
-            Tween.Custom(settings, (color) =>
-            {
-                _screenMaterial.SetBaseColor(color);
-                _screenMaterial.SetEmissionColor(color);
-
-                _screenUI.SetCanvasGroupAlpha(color.a);
-            }).OnComplete(() => StartCoroutine(RapidScreenFlickerRoutine()));
+            Sequence.Create()
+                .Group(Tween.Custom(colorSettings, _screenMaterial.SetBaseColor))
+                .Group(Tween.Custom(alphaSettings, _screenUI.SetCanvasGroupAlpha))
+                .OnComplete(() => StartCoroutine(RapidScreenFlickerRoutine()));
         }
 
         private IEnumerator RapidScreenFlickerRoutine()
@@ -64,22 +63,22 @@ namespace ClassicHotel
             {
                 _scrollStepAudioSource.PlayOneShot();
 
-                bool isDisabled = i % 2 == 0;
+                bool isEnabled = i % 2 != 0;
 
-                Color color = isDisabled ? _disabledColor : _enabledColor;
+                Color color = isEnabled ? _disabledColor : _emissionColor;
 
                 _screenMaterial.SetBaseColor(color);
-                _screenMaterial.SetEmissionColor(color);
-
-                _screenUI.SetCanvasEnabledState(!isDisabled);
 
                 yield return delay;
             }
 
-            _scrollStepAudioSource.SetPitch(1f);
+            _screenMaterial.SetBaseColor(_enabledColor);
+            _screenMaterial.SetEmissionColor(_disabledColor);
 
             _screenUI.SetCanvasEnabledState(true);
             _screenUI.SetCanvasGroupAlpha(1f);
+
+            _scrollStepAudioSource.SetPitch(1f);
 
             _isFlickering = false;
 
