@@ -6,7 +6,7 @@ using UnityRandom = UnityEngine.Random;
 
 namespace ClassicHotel
 {
-    [RequireComponent(typeof(MeshFilter), typeof(AudioSource))]
+    [RequireComponent(typeof(AudioSource))]
     public class MusicPlayer : MonoBehaviour
     {
         [SerializeField] private MusicPlayerScreen _musicPlayerScreen;
