@@ -213,7 +213,6 @@ namespace ClassicHotel
             if (track == _firstMusicTrack)
             {
                 TrackChanged?.Invoke(track, 1, _musicTracks.Length);
-
             }
             else
             {
