@@ -11,13 +11,11 @@ namespace ClassicHotel
     public class MusicPlayer : MonoBehaviour
     {
         [SerializeField] private Transform _transform;
-        [SerializeField] private MeshRenderer _meshRenderer;
+
+        [SerializeField] private MusicPlayerScreen _musicPlayerScreen;
 
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioSource _clickAudioSource;
-
-        [SerializeField] private Canvas _screenCanvas;
-        [SerializeField] private CanvasGroup _screenCanvasGroup;
 
         [SerializeField] private Image _playStateImage;
 
@@ -45,8 +43,6 @@ namespace ClassicHotel
 
         private bool _isPlaying;
 
-        private bool _isGlitching;
-
         private int _tracksPlayed;
 
         private bool _isScaryEventTriggered;
@@ -60,14 +56,6 @@ namespace ClassicHotel
         private readonly MutableWaitForSeconds _waitTime = new();
 
         private Coroutine _waitCoroutine;
-
-        private Material _instancedScreenMaterial;
-
-        private readonly Color EnabledEmissionColor = Color.white * EmissionIntensity;
-        private readonly Color DisabledEmissionColor = Color.black * EmissionIntensity;
-
-        public event Action RapidScreenGlitchStarted;
-        public event Action RapidScreenGlitchEnded;
 
         private const int MinScrolls = 1;
         private const int MaxScrolls = 4;
@@ -89,13 +77,6 @@ namespace ClassicHotel
         private const float RandomTrackMinPlaytime = 7f;
         private const float RandomTrackMaxPlaytime = 12f;
 
-        private const int ScreenMaterialIndex = 1;
-        
-        private const string ColorPropertyName = "_BaseColor";
-        private const string EmissionPropertyName = "_EmissionColor";
-
-        private const float EmissionIntensity = 2.416924f;
-
         public event Action TrackPaused;
         public event Action<float, float> TrackResumed;
 
@@ -107,11 +88,6 @@ namespace ClassicHotel
             {
                 _transform = transform;
             }
-
-            if (_meshRenderer == null)
-            {
-                _meshRenderer = GetComponent<MeshRenderer>();
-            }
             
             if (_audioSource == null)
             {
@@ -121,8 +97,6 @@ namespace ClassicHotel
 
         private void Start()
         {
-            _instancedScreenMaterial = _meshRenderer.materials[ScreenMaterialIndex];
-
             _scaryEventTriggerTrackCount = UnityRandom.Range(ScaryEventTriggerTrackMinCount, ScaryEventTriggerTrackMaxCount);
             _scaryEventTrackStartTime = UnityRandom.Range(ScaryEventTrackMinStartTime, ScaryEventTrackMaxStartTime);
 
@@ -148,18 +122,17 @@ namespace ClassicHotel
 
                 const Ease ScaryEventEase = Ease.OutCirc;
 
-                TweenSettings<Color> screenTween = new(Color.white, Color.black, ScaryEventAudioPitchDuration, ScaryEventEase);
-                TweenSettings<Color> screenEmissionTween = new(EnabledEmissionColor, DisabledEmissionColor, ScaryEventAudioPitchDuration, ScaryEventEase);
-                TweenSettings<float> screenUIAlphaTween = new(1f, 0f, ScaryEventAudioPitchDuration, ScaryEventEase);
+                Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase)
+                    .OnComplete(_musicPlayerScreen.TriggerRapidScreenFlicker);
 
-                Sequence.Create()
-                    .ChainCallback(() => RapidScreenGlitchStarted?.Invoke())
-                    .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
-                    .Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
-                    .Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
-                    .Group(Tween.Alpha(_screenCanvasGroup, screenUIAlphaTween))
-                    .ChainCallback(() => _audioSource.pitch = 1f)
-                    .ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
+                //Sequence.Create()
+                //    .Chain(Tween.AudioPitch(_audioSource, ScaryEventAudioPitch, ScaryEventAudioPitchDuration, ScaryEventEase))
+                //    .ChainCallback(_musicPlayerScreen.TriggerRapidScreenFlicker);
+                    //.Group(Tween.Custom(screenTween, (color) => _instancedScreenMaterial.SetColor(ColorPropertyName, color)))
+                    //.Group(Tween.Custom(screenEmissionTween, (color) => _instancedScreenMaterial.SetColor(EmissionPropertyName, color)))
+                    //.Group(Tween.Alpha(_screenCanvasGroup, screenUIAlphaTween))
+                    //.ChainCallback(() => _audioSource.pitch = 1f)
+                    //.ChainCallback(() => StartCoroutine(StartRapidScreenFlicker()));
             }
         }
 
@@ -192,7 +165,7 @@ namespace ClassicHotel
 
         public void Pause()
         {
-            if (!_isPlaying || _isGlitching)
+            if (!_isPlaying || _musicPlayerScreen.IsFlickering)
             {
                 return;
             }
@@ -324,40 +297,6 @@ namespace ClassicHotel
 
             _tracksPlayed++;
             SetRandomTrackAndPlay();
-        }
-
-        private IEnumerator StartRapidScreenFlicker()
-        {
-            _isGlitching = true;
-
-            const int Cycles = 30;
-            WaitForSeconds delay = new(0.03f);
-
-            _audioSource.pitch = 0.5f;
-
-            for (int i = 0; i < Cycles; i++)
-            {
-                _audioSource.PlayOneShot(_scrollStepSound, ScrollStepSoundVolumeScale);
-
-                bool isDisabled = i % 2 == 0;
-
-                Color currentColor = isDisabled ? Color.black : Color.white;
-                Color currentEmissionColor = isDisabled ? DisabledEmissionColor : EnabledEmissionColor;
-                _instancedScreenMaterial.SetColor(ColorPropertyName, currentColor);
-                _instancedScreenMaterial.SetColor(EmissionPropertyName, currentEmissionColor);
-
-                _screenCanvas.enabled = !isDisabled;
-
-                yield return delay;
-            }
-
-            _audioSource.pitch = 1f;
-            _screenCanvas.enabled = true;
-            _screenCanvasGroup.alpha = 1f;
-
-            _isGlitching = false;
-
-            RapidScreenGlitchEnded?.Invoke();
         }
     }
 }

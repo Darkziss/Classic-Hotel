@@ -4,13 +4,13 @@ namespace ClassicHotel
 {
     public class RapidMusicPlayerScreenGlitch : MonoBehaviour
     {
-        [SerializeField] private MusicPlayer _musicPlayer;
+        [SerializeField] private MusicPlayerScreen _musicPlayerScreen;
 
         [SerializeField] private PlayerStateMachine _playerStateMachine;
 
         private void Start()
         {
-            _musicPlayer.RapidScreenGlitchEnded += StopPlayer;
+            _musicPlayerScreen.RapidScreenGlitchEnded += StopPlayer;
         }
 
         private void StopPlayer()

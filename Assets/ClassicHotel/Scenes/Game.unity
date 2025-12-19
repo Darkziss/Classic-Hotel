@@ -7885,7 +7885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8416c235e3fb51e47b66f6177c0d427f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicPlayer: {fileID: 958851377}
+  _musicPlayerScreen: {fileID: 958851381}
   _playerStateMachine: {fileID: 589425353}
 --- !u!4 &589548489
 Transform:
@@ -13280,6 +13280,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6235e36c2219e34ea9e30250da23d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &958851381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7999050864383243369, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+  m_PrefabInstance: {fileID: 6709121884478045547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb16dcf28900934c91d7be220d0fa38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerScreen
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

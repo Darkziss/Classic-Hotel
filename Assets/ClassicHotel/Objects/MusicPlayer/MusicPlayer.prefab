@@ -1571,6 +1571,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerScreenUI
   _musicPlayer: {fileID: 6929652917288438152}
+  _canvas: {fileID: 1624421968437872127}
+  _canvasGroup: {fileID: 2573579178537663692}
   _trackNameText: {fileID: 8162343815066216843}
   _trackAuthorText: {fileID: 3224298809526679189}
   _trackImage: {fileID: 625426717052706629}
@@ -2154,6 +2156,15 @@ PrefabInstance:
       addedObject: {fileID: 8113957446932468401}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3435462093099614451}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7939178933162196359}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7999050864383243369}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 6929652917288438152}
   m_SourcePrefab: {fileID: 100100000, guid: 9afb54ea3c87a52428b6018cb6b12725, type: 3}
 --- !u!23 &4750857976781909548 stripped
@@ -2268,6 +2279,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3435462093099614451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552328819918049273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583bb305d6e61d1499614f09688fcf48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.SingleOneShotAudioSource
+  _audioSource: {fileID: 8113957446932468401}
+  _audioClip: {fileID: 8300000, guid: 256fe54b33e71474a873bb3a6dc824b3, type: 3}
+  _volumeScale: 2
+--- !u!114 &7939178933162196359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552328819918049273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e89a63d854b4d4b85b4b71f027d7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.InstancedMaterial
+  _meshRenderer: {fileID: 4750857976781909548}
+  _index: 1
+--- !u!114 &7999050864383243369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552328819918049273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb16dcf28900934c91d7be220d0fa38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerScreen
+  _screenMaterial: {fileID: 7939178933162196359}
+  _scrollStepAudioSource: {fileID: 3435462093099614451}
+  _screenUI: {fileID: 6525120694134522218}
+  _enabledColor: {r: 4, g: 4, b: 4, a: 1}
+  _disabledColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &6929652917288438152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,11 +2338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 5883210691413103939}
-  _meshRenderer: {fileID: 4750857976781909548}
+  _musicPlayerScreen: {fileID: 7999050864383243369}
   _audioSource: {fileID: 8113957446932468401}
   _clickAudioSource: {fileID: 3964638231316523061}
-  _screenCanvas: {fileID: 1624421968437872127}
-  _screenCanvasGroup: {fileID: 2573579178537663692}
   _playStateImage: {fileID: 2816058253619782587}
   _screenLight: {fileID: 8247698525525135355}
   _frontLight: {fileID: 3222258036235028187}

@@ -10,6 +10,9 @@ namespace ClassicHotel
     {
         [SerializeField] private MusicPlayer _musicPlayer;
 
+        [SerializeField] private Canvas _canvas;
+        [SerializeField] private CanvasGroup _canvasGroup;
+
         [SerializeField] private TextMeshProUGUI _trackNameText;
         [SerializeField] private TextMeshProUGUI _trackAuthorText;
 
@@ -40,6 +43,16 @@ namespace ClassicHotel
             _musicPlayer.TrackPaused -= StopProgressAnimation;
 
             _musicPlayer.TrackChanged -= UpdateTrackInfo;
+        }
+
+        public void SetCanvasEnabledState(bool isEnabled)
+        {
+            _canvas.enabled = isEnabled;
+        }
+
+        public void SetCanvasGroupAlpha(float alpha)
+        {
+            _canvasGroup.alpha = alpha;
         }
 
         private void UpdateTrackInfo(TrackInfo track, int position, int maxPosition)
