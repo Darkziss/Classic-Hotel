@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace ClassicHotel
 {
-    [RequireComponent(typeof(MeshRenderer), typeof(AudioSource))]
+    [RequireComponent(typeof(InstancedMaterial), typeof(AudioSource))]
     public class TV : MonoBehaviour
     {
         [SerializeField] private BoxTrigger _tvEnableTrigger;
 
-        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private InstancedMaterial _screenMaterial;
         [SerializeField] private AudioSource _audioSource;
 
         [SerializeField, ColorUsage(true, true)] private Color _screenEnabledColor = Color.white;
@@ -16,30 +16,19 @@ namespace ClassicHotel
 
         [SerializeField] private AudioClip _switchSound;
 
-        private Material _instancedScreenMaterial;
-
         private const float ProgramStartDelay = 0.5f;
-
-        private const int ScreenMaterialIndex = 1;
-
-        private const string EmissionColorPropertyName = "_EmissionColor";
 
         private void OnValidate()
         {
-            if (_meshRenderer == null)
+            if (_screenMaterial == null)
             {
-                _meshRenderer = GetComponent<MeshRenderer>();
+                _screenMaterial = GetComponent<InstancedMaterial>();
             }
             
             if (_audioSource == null)
             {
                 _audioSource = GetComponent<AudioSource>();
             }
-        }
-
-        private void Start()
-        {
-            _instancedScreenMaterial = _meshRenderer.materials[ScreenMaterialIndex];
         }
 
         private void OnEnable()
@@ -65,7 +54,7 @@ namespace ClassicHotel
 
             PlaySwitchSound();
 
-            SetColorOfScreen(_screenEnabledColor);
+            _screenMaterial.SetEmissionColor(_screenEnabledColor);
 
             _audioSource.PlayDelayed(ProgramStartDelay);
 
@@ -73,17 +62,12 @@ namespace ClassicHotel
 
             PlaySwitchSound();
 
-            SetColorOfScreen(_screenDisabledColor);
+            _screenMaterial.SetEmissionColor(_screenDisabledColor);
 
             void PlaySwitchSound()
             {
                 _audioSource.PlayOneShot(_switchSound);
             }
-        }
-
-        private void SetColorOfScreen(Color color)
-        {
-            _instancedScreenMaterial.SetColor(EmissionColorPropertyName, color);
         }
     }
 }

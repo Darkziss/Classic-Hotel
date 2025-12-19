@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 1346044953009467858}
+  - component: {fileID: 8341349720132494560}
   - component: {fileID: 4158297433751579606}
   m_Layer: 0
   m_Name: TV
@@ -191,6 +192,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8341349720132494560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e89a63d854b4d4b85b4b71f027d7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.InstancedMaterial
+  _meshRenderer: {fileID: 2300000}
+  _index: 1
 --- !u!114 &4158297433751579606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.TV
   _tvEnableTrigger: {fileID: 135237886134087008}
-  _meshRenderer: {fileID: 2300000}
+  _screenMaterial: {fileID: 8341349720132494560}
   _audioSource: {fileID: 1346044953009467858}
   _screenEnabledColor: {r: 8, g: 8, b: 8, a: 0}
   _screenDisabledColor: {r: 0, g: 0, b: 0, a: 0}

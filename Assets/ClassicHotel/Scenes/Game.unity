@@ -7885,7 +7885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8416c235e3fb51e47b66f6177c0d427f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicPlayer: {fileID: 958851377}
+  _musicPlayerScreen: {fileID: 958851381}
   _playerStateMachine: {fileID: 589425353}
 --- !u!4 &589548489
 Transform:
@@ -13280,6 +13280,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6235e36c2219e34ea9e30250da23d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &958851381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7999050864383243369, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+  m_PrefabInstance: {fileID: 6709121884478045547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb16dcf28900934c91d7be220d0fa38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerScreen
+--- !u!114 &958851387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7438835704868580867, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+  m_PrefabInstance: {fileID: 6709121884478045547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5259339b451c24095da45fc2e6b9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.LightGroup
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -17022,18 +17044,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4158297433751579606, guid: 61399d2f3ed456342b96a35b5c92fb45, type: 3}
-      propertyPath: _screenEnabledColor.b
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158297433751579606, guid: 61399d2f3ed456342b96a35b5c92fb45, type: 3}
-      propertyPath: _screenEnabledColor.g
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158297433751579606, guid: 61399d2f3ed456342b96a35b5c92fb45, type: 3}
-      propertyPath: _screenEnabledColor.r
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20269,27 +20279,23 @@ MonoBehaviour:
   _lights:
   - {fileID: 820618532}
   - {fileID: 1792610028}
-  - {fileID: 0}
   - {fileID: 1900573673}
-  - {fileID: 0}
   - {fileID: 1648306537}
   - {fileID: 715328630}
   - {fileID: 766036419}
-  - {fileID: 0}
   - {fileID: 1676329403}
   - {fileID: 426917899}
-  - {fileID: 0}
   - {fileID: 1734953271}
   - {fileID: 604547894}
   - {fileID: 980381488}
   - {fileID: 2068190468}
-  - {fileID: 0}
   - {fileID: 1410914066}
   - {fileID: 2000604665}
-  - {fileID: 0}
   - {fileID: 1444319176}
   _playerStateMachine: {fileID: 589425353}
   _musicPlayer: {fileID: 958851377}
+  _musicPlayerVisuals: {fileID: 2041663412}
+  _musicPlayerRimLights: {fileID: 958851387}
   _lightSwitchAudioSource: {fileID: 752945734}
   _ambience: {fileID: 798965382}
   _endPoint: {fileID: 1898229343}
@@ -26690,6 +26696,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7339160854040558145, guid: 6b8c7a1c7d30ac34ea2ddb8532c1c474, type: 3}
   m_PrefabInstance: {fileID: 146635089}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2041663412 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6624714407635458344, guid: fda34f281be45934ca6e06b8843f1186, type: 3}
+  m_PrefabInstance: {fileID: 6709121884478045547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc328f8f21f116f4b99770c1154915b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.MusicPlayerVisuals
 --- !u!1001 &2049837994
 PrefabInstance:
   m_ObjectHideFlags: 0
