@@ -7,7 +7,7 @@ namespace ClassicHotel
     {
         [SerializeField] private MeshRenderer _meshRenderer;
 
-        [SerializeField] private int _materialIndex;
+        [SerializeField] private int _index;
 
         private Material _material;
 
@@ -25,7 +25,7 @@ namespace ClassicHotel
 
         private void Start()
         {
-            _material = _meshRenderer.materials[_materialIndex];
+            _material = _meshRenderer.materials[_index];
         }
 
         public void SetBaseColor(Color color)
