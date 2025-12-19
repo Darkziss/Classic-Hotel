@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClassicHotel.InstancedMaterial
   _meshRenderer: {fileID: 2300000}
-  _materialIndex: 1
+  _index: 1
 --- !u!114 &4158297433751579606
 MonoBehaviour:
   m_ObjectHideFlags: 0
