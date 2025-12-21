@@ -8,6 +8,7 @@ namespace ClassicHotel
         [SerializeField] private BoxTrigger _trigger;
 
         [SerializeField] private Transform _mirrorSphereTransform;
+        [SerializeField] private AudioSource _mirrorSphereAudioSource;
         [SerializeField] private Transform _jumpscarePointTransform;
 
         [SerializeField] private Transform _sphereStartTransform;
@@ -31,7 +32,8 @@ namespace ClassicHotel
             const float ScaleDuration = 1f;
             const Ease ScaleEase = Ease.OutQuad;
 
-            const float StartPositionDuration = 0.5f;
+            float startPositionDuration = _mirrorSphereAudioSource.clip.length;
+            const Ease StartPositionEase = Ease.OutCirc;
 
             const float JumpscareDelay = 1f;
 
@@ -39,11 +41,12 @@ namespace ClassicHotel
             const Ease JumpscareEase = Ease.InExpo;
 
             TweenSettings<float> scaleSettings = new(0f, _sphereTargetUniformScale, ScaleDuration, ScaleEase);
-            TweenSettings<Vector3> startPositionSettings = new(_sphereStartTransform.position, StartPositionDuration);
+            TweenSettings<Vector3> startPositionSettings = new(_sphereStartTransform.position, startPositionDuration, StartPositionEase);
 
             TweenSettings<Vector3> jumpscareSettings = new(_jumpscarePointTransform.position, JumpscareDuration, JumpscareEase);
 
             _mirrorSphereTransform.gameObject.SetActive(true);
+            _mirrorSphereAudioSource.Play();
 
             Sequence.Create()
                 .Group(Tween.Scale(_mirrorSphereTransform, scaleSettings))
