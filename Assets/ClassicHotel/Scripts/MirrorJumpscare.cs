@@ -12,6 +12,8 @@ namespace ClassicHotel
 
         [SerializeField] private Transform _sphereStartTransform;
 
+        [SerializeField] private BlinkScreen _blinkScreen;
+
         [SerializeField] float _sphereTargetUniformScale;
 
         private void OnEnable()
@@ -48,7 +50,12 @@ namespace ClassicHotel
                 .Group(Tween.Position(_mirrorSphereTransform, startPositionSettings))
                 .ChainDelay(JumpscareDelay)
                 .Chain(Tween.Position(_mirrorSphereTransform, jumpscareSettings))
-                .OnComplete(() => _mirrorSphereTransform.gameObject.SetActive(false));
+                .OnComplete(() =>
+                {
+                    _blinkScreen.Blink();
+
+                    _mirrorSphereTransform.gameObject.SetActive(false);
+                });
         }
     }
 }
