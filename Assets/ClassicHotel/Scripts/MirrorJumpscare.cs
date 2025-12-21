@@ -34,7 +34,7 @@ namespace ClassicHotel
             const float JumpscareDelay = 1f;
 
             const float JumpscareDuration = 0.25f;
-            const Ease JumpscareEase = Ease.InBack;
+            const Ease JumpscareEase = Ease.InExpo;
 
             TweenSettings<float> scaleSettings = new(0f, _sphereTargetUniformScale, ScaleDuration, ScaleEase);
             TweenSettings<Vector3> startPositionSettings = new(_sphereStartTransform.position, StartPositionDuration);
